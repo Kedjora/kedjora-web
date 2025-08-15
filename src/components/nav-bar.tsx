@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X, Monitor, Handshake, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -75,13 +74,9 @@ export function NavBar() {
               className="flex items-center space-x-2 group"
               onClick={scrollToTop}
             >
-              <Image
-                src="/images/weltivation-logo.png"
-                alt="Weltivation"
-                width={200}
-                height={50}
-                className="h-10 lg:h-12 w-auto transition-all duration-300 group-hover:brightness-110"
-              />
+              <span className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent transition-all duration-300 group-hover:from-emerald-300 group-hover:to-green-400">
+                Kedjora
+              </span>
             </Link>
           </motion.div>
 
