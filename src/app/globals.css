@@ -84,3 +84,14 @@ html,
 body {
   overflow-x: hidden;
 }
+
+/* Floating navigation spacing */
+main {
+  padding-top: 6rem; /* Space for floating nav */
+}
+
+@media (max-width: 1024px) {
+  main {
+    padding-top: 5rem; /* Smaller spacing on mobile */
+  }
+}
