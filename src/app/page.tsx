@@ -1,103 +1,211 @@
-import Image from "next/image";
+"use client"
+
+import Link from "next/link"
+import { CodeRain } from "@/components/code-rain"
+import { NavBar } from "@/components/nav-bar"
+import { Footer } from "@/components/footer"
+import { PoweredByBadge } from "@/components/powered-by-badge"
+import { ExpertiseSection } from "@/components/expertise-section"
+import { SpinningEarth } from "@/components/spinning-earth"
+import { TypingHero } from "@/components/typing-hero"
+import { motion } from "framer-motion"
+import { Zap } from "lucide-react"
+import { ProfileDropdown } from "@/components/profile-dropdown"
+import { ServicesViewportSection } from "@/components/services-viewport-section"
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="relative min-h-screen bg-black text-foreground overflow-x-hidden">
+      {/* Background layers */}
+      <div className="fixed inset-0 z-0">
+        {/* Spinning Earth */}
+        <div className="opacity-10">
+          <SpinningEarth />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* Code rain */}
+        <div className="opacity-10 dark:opacity-10 light:opacity-3">
+          <CodeRain />
+        </div>
+      </div>
+
+      {/* Hero Video - Full screen background */}
+      <div className="fixed inset-0 z-[1] pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-25"
+          style={{
+            filter: "contrast(1.2) brightness(0.7) grayscale(100%)",
+          }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+          <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20video%20-%20Made%20with%20Clipchamp%20%283%29%20%281%29%20%282%29%20%282%29-i8U3zTcWrQss8nKM5ekseP7qFR5KVP.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      {/* Content container */}
+      <div className="relative z-10">
+        <NavBar />
+        <ProfileDropdown />
+
+        {/* Hero section with better contrast */}
+        <section className="flex flex-col items-center justify-center min-h-[90vh] px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <div className="mb-8">
+              <PoweredByBadge />
+            </div>
+
+            {/* Enhanced hero with better contrast */}
+            <div className="relative">
+              {/* Background for better contrast in light mode */}
+              <div className="absolute inset-0 bg-background/80 dark:bg-transparent rounded-2xl blur-3xl"></div>
+              <div className="relative z-10">
+                <TypingHero />
+              </div>
+            </div>
+
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto my-8"></div>
+
+            {/* Enhanced description with better contrast */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-background/60 dark:bg-transparent rounded-xl blur-2xl"></div>
+              <p className="relative z-10 text-muted-foreground max-w-xl mx-auto font-medium">
+                Transforming ideas into powerful digital solutions that drive growth and innovation for forward-thinking
+                businesses.
+              </p>
+            </div>
+
+            {/* Button section - Left to Right order */}
+            <div className="pt-8">
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <Link
+                  href="/services"
+                  className="group relative px-6 py-3 bg-gray-800 text-white rounded-lg font-medium text-base hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 border border-gray-700"
+                >
+                  <span className="flex items-center space-x-2">
+                    <span>Services</span>
+                  </span>
+                </Link>
+
+                <Link
+                  href="/support"
+                  className="group relative px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-lg font-medium text-base hover:from-emerald-400 hover:to-green-500 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_rgba(52,211,153,0.3)]"
+                >
+                  <span className="flex items-center space-x-2">
+                    <Zap className="w-5 h-5" />
+                    <span>Support</span>
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Expertise section */}
+        <ExpertiseSection />
+
+        {/* Services viewport section */}
+        <ServicesViewportSection />
+
+        {/* Enhanced Contact section */}
+        <section id="contact" className="py-20 px-4 sm:px-6 relative bg-black">
+          <div className="max-w-4xl mx-auto text-center space-y-12">
+            <div className="space-y-6">
+              <motion.h2
+                className="text-4xl sm:text-5xl font-bold"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <span className="text-foreground">Ready to </span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-green-600">
+                  innovate?
+                </span>
+              </motion.h2>
+              <motion.div
+                className="h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              />
+              <motion.p
+                className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                Lets discuss how we can transform your vision into reality with cutting-edge technology and strategic
+                innovation.
+              </motion.p>
+            </div>
+
+            <motion.div
+              className="pt-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <div className="flex flex-col items-center space-y-6">
+                <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                  <Link
+                    href="/services"
+                    className="group relative px-6 py-3 bg-gray-800 text-white rounded-lg font-medium text-base hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 border border-gray-700"
+                  >
+                    <span className="flex items-center space-x-2">
+                      <span>Services</span>
+                    </span>
+                  </Link>
+
+                  <Link
+                    href="/consultation"
+                    className="group relative px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-lg font-medium text-base hover:from-emerald-400 hover:to-green-500 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_rgba(52,211,153,0.3)]"
+                  >
+                    <span className="flex items-center space-x-2">
+                      <Zap className="w-5 h-5" />
+                      <span>Free Consultation</span>
+                    </span>
+                  </Link>
+
+                  <Link
+                    href="/support"
+                    className="group relative px-6 py-3 bg-gray-800 text-white rounded-lg font-medium text-base hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 border border-gray-700"
+                  >
+                    <span className="flex items-center space-x-2">
+                      <Zap className="w-5 h-5" />
+                      <span>Support</span>
+                    </span>
+                  </Link>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center max-w-2xl">
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                      <span className="text-primary font-bold text-sm">1</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">No commitment required</p>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                      <span className="text-primary font-bold text-sm">2</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">30-minute strategy session</p>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                      <span className="text-primary font-bold text-sm">3</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Expert guidance</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    </main>
+  )
 }
