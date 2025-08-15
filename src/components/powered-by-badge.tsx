@@ -43,11 +43,14 @@ export function PoweredByBadge() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center px-3 py-2 bg-black/80 backdrop-blur-sm border border-gray-700 rounded-full text-xs text-gray-300 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer hover:shadow-[0_0_20px_rgba(52,211,153,0.1)]"
+          className="inline-flex items-center px-4 py-3 bg-black/80 backdrop-blur-sm border border-gray-700 rounded-full text-sm text-gray-300 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer hover:shadow-[0_0_20px_rgba(52,211,153,0.1)] hover:scale-105"
           onClick={handleClick}
         >
-          <span className="text-xs ml-1 mr-1">powered by</span>
-          <img src="/images/weltivation-logo.png" alt="Weltivation" className="w-28 h-7 object-contain scale-125" />
+          <Star className="w-4 h-4 text-emerald-400 mr-2" />
+          <span className="text-sm ml-1 mr-2">powered by</span>
+          <span className="text-base font-bold bg-gradient-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent">
+            Kedjora
+          </span>
         </motion.div>
       </div>
 
@@ -87,7 +90,9 @@ export function PoweredByBadge() {
                 {/* Header with large logo */}
                 <div className="text-center space-y-4 pt-8">
                   <div className="flex justify-center">
-                    <img src="/images/weltivation-logo.png" alt="Weltivation" className="w-32 h-20 object-contain" />
+                    <span className="text-4xl font-bold bg-gradient-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent">
+                      Kedjora
+                    </span>
                   </div>
                   <h2 className="text-2xl font-bold text-white">Partnership Program</h2>
                   <p className="text-gray-400">Exclusive benefits for our valued partners</p>
@@ -99,11 +104,9 @@ export function PoweredByBadge() {
                   <div className="flex justify-center">
                     <div className="inline-flex items-center px-3 py-2 bg-black/80 backdrop-blur-sm border border-gray-700 rounded-full text-xs text-gray-300">
                       <span className="ml-1 mr-1">powered by</span>
-                      <img
-                        src="/images/weltivation-logo.png"
-                        alt="Weltivation"
-                        className="w-28 h-7 object-contain scale-125"
-                      />
+                      <span className="text-sm font-bold bg-gradient-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent ml-1">
+                        Kedjora
+                      </span>
                     </div>
                   </div>
                 </div>
