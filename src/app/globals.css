@@ -87,11 +87,11 @@ body {
 
 /* Floating navigation spacing */
 main {
-  padding-top: 6rem; /* Space for floating nav */
+  padding-top: 3rem; /* Reduced space for floating nav */
 }
 
 @media (max-width: 1024px) {
   main {
-    padding-top: 5rem; /* Smaller spacing on mobile */
+    padding-top: 1.5rem; /* Smaller spacing on mobile */
   }
 }
