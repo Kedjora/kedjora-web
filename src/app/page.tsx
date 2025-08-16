@@ -76,7 +76,7 @@ const SmoothVideoBackground = () => {
       // Force hardware acceleration
       video.style.transform = 'translateZ(0)'
       video.style.backfaceVisibility = 'hidden'
-      video.style.webkitBackfaceVisibility = 'hidden'
+      video.style.setProperty('-webkit-backface-visibility', 'hidden')
     }
 
     // Add event listeners
@@ -141,13 +141,13 @@ const SmoothVideoBackground = () => {
           // Enhanced performance optimizations
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
-          webkitBackfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
           perspective: '1000px',
-          webkitPerspective: '1000px',
+          WebkitPerspective: '1000px',
           willChange: 'transform',
           // Prevent flickering
-          webkitTransform: 'translateZ(0)',
-          webkitTransformStyle: 'preserve-3d',
+          WebkitTransform: 'translateZ(0)',
+          WebkitTransformStyle: 'preserve-3d',
         } as React.CSSProperties}
         // Additional video optimization attributes
         webkit-playsinline="true"
