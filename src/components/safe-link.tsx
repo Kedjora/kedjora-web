@@ -1,27 +1,16 @@
 "use client"
 
-import Link from "next/link"
-import { forwardRef } from "react"
-
-interface SafeLinkProps {
-  href: string
-  children: React.ReactNode
-  className?: string
-  onClick?: () => void
-  [key: string]: any
+import Link, { LinkProps } from "next/link"
+import { forwardRef, AnchorHTMLAttributes, ReactNode } from "react"
+interface SafeLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href">, LinkProps {
+  children: ReactNode
 }
 
 export const SafeLink = forwardRef<HTMLAnchorElement, SafeLinkProps>(
-  ({ href, children, className, onClick, ...props }, ref) => {
+  ({ children, ...props }, ref) => {
     return (
-      <Link href={href} {...props}>
-        <span 
-          className={className}
-          onClick={onClick}
-          suppressHydrationWarning
-        >
-          {children}
-        </span>
+      <Link {...props} ref={ref}>
+        {children}
       </Link>
     )
   }
