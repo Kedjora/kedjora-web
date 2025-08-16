@@ -1,10 +1,9 @@
 "use client"
 
 import type React from "react"
-
+import Image from "next/image"
 import type { ReactElement } from "react"
 import { DashboardChart } from "@/components/dashboard-chart"
-
 import { useRef, useEffect, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import {
@@ -117,7 +116,7 @@ export function ExpertiseSection(): ReactElement {
               </div>
 
               <h3 className="text-3xl sm:text-4xl font-bold leading-tight">
-                We help brands grow with strategic design that's thoughtful, visually bold, and built to make an
+                We help brands grow with strategic design that&apos;s thoughtful, visually bold, and built to make an
                 impression.
               </h3>
             </motion.div>
@@ -157,7 +156,7 @@ export function ExpertiseSection(): ReactElement {
                     <div className="flex items-start space-x-2">
                       <ThumbsUp className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
                       <p className="text-xs text-muted-foreground italic">
-                        "Their expertise in web development and business systems transformed our operations completely."
+                        {'"Their expertise in web development and business systems transformed our operations completely."'}
                       </p>
                     </div>
                   </div>
@@ -245,7 +244,7 @@ export function ExpertiseSection(): ReactElement {
 
                   <div className="space-y-2">
                     <h3 className="text-xl font-bold text-white">
-                      $2M raised: the strategy behind Glass Patch's growth
+                      $2M raised: the strategy behind Glass Patch&apos;s growth
                     </h3>
                     <button className="text-primary flex items-center text-sm group-hover:underline">
                       <ChevronRight className="w-4 h-4 mr-1" />
@@ -302,11 +301,13 @@ export function ExpertiseSection(): ReactElement {
                     <div>
                       <p className="text-sm text-muted-foreground">Fact 02</p>
                       <ViewportTriggeredCountUp />
-                      <p className="text-muted-foreground">Raised by the brands we've partnered with</p>
+                      <p className="text-muted-foreground">Raised by the brands we&apos;ve partnered with</p>
                     </div>
                     <div className="flex items-center space-x-2 px-3 py-2 bg-background/50 backdrop-blur-sm border border-border/30 rounded-full self-start lg:self-center">
                       <span className="text-xs text-muted-foreground">powered by</span>
-                      <img src="/images/weltivation-logo.png" alt="Weltivation" className="h-6" />
+                      <span className="text-sm font-bold bg-gradient-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent">
+                        Kedjora
+                      </span>
                     </div>
                   </div>
 
@@ -419,7 +420,7 @@ function AnimatedTimelineChart(): ReactElement {
       setActiveStage((prev) => (prev + 1) % stages.length)
     }, 2000)
     return () => clearInterval(interval)
-  }, [])
+  }, [stages.length])
 
   return (
     <div className="relative h-32 bg-gradient-to-r from-muted/10 to-muted/5 rounded-lg p-4">
@@ -491,88 +492,112 @@ function CompanyLogoTicker(): ReactElement {
         }}
       >
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/images/weltivation-logo.png"
             alt="Weltivation"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/placeholder-jo7vj.png"
             alt="NVIDIA"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/images/nicfound-logo.png"
             alt="NicFound"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/google-search-results.png"
             alt="Google"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/fisher-labs-sign.png"
             alt="Fisher Labs"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/bevel-razors.png"
             alt="Bevel Razers"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/images/weltivation-logo.png"
             alt="Weltivation"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/chatchill-generic.png"
             alt="Chatchill"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
 
         {/* Duplicate set for seamless looping */}
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/images/weltivation-logo.png"
             alt="Weltivation"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/placeholder-jo7vj.png"
             alt="NVIDIA"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/images/nicfound-logo.png"
             alt="NicFound"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/google-search-results.png"
             alt="Google"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
@@ -593,88 +618,112 @@ function CompanyLogoTicker(): ReactElement {
         }}
       >
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/images/pufftrak-logo.png"
             alt="PuffTrak"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/fisher-labs-sign.png"
             alt="Fisher Labs"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/bevel-razors.png"
             alt="Bevel Razers"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/images/weltivation-logo.png"
             alt="Weltivation"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/google-search-results.png"
             alt="Google"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/images/pufftrak-logo.png"
             alt="PuffTrak"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/chatchill-generic.png"
             alt="Chatchill"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/images/nicfound-logo.png"
             alt="NicFound"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
 
         {/* Duplicate set for seamless looping */}
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/images/pufftrak-logo.png"
             alt="PuffTrak"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/fisher-labs-sign.png"
             alt="Fisher Labs"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/bevel-razors.png"
             alt="Bevel Razers"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="h-5 w-auto">
-          <img
+          <Image
             src="/images/weltivation-logo.png"
             alt="Weltivation"
+            width={80}
+            height={20}
             className="h-5 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity"
           />
         </div>
@@ -947,7 +996,7 @@ Submitted at: ${new Date().toLocaleString()}
           </div>
           <h3 className="text-xl font-bold">Thank you!</h3>
           <p className="text-gray-400 text-sm">
-            Your inquiry has been sent to our team. We'll get back to you within 24 hours with a customized
+            Your inquiry has been sent to our team. We&apos;ll get back to you within 24 hours with a customized
             consultation.
           </p>
           <div className="pt-4">
@@ -979,7 +1028,7 @@ Submitted at: ${new Date().toLocaleString()}
       <div className="space-y-4">
         <div>
           <h3 className="text-2xl font-bold mb-2">Select a Service</h3>
-          <p className="text-muted-foreground">Choose the service you're interested in to start a consultation</p>
+          <p className="text-muted-foreground">Choose the service you&apos;re interested in to start a consultation</p>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
