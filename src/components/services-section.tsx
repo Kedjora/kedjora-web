@@ -1,157 +1,149 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
-import { motion, useInView, AnimatePresence } from "framer-motion"
+import { useRef, useState, useEffect, ReactNode } from "react"
+import { motion, useInView, AnimatePresence, Variants } from "framer-motion"
 import {
-  Globe,
-  Cog,
-  Smartphone,
-  Code,
-  Database,
-  Palette,
-  ArrowRight,
-  Star,
-  Users,
-  CheckCircle,
-  Target,
-  TrendingUp,
-  Play,
-  Pause,
-  ChevronLeft,
-  ChevronRight,
-  Sparkles,
-  Rocket,
-  Shield,
-  Award,
+  Globe, Cog, Smartphone, Code, Database, Palette, ArrowRight, Star, Users,
+  CheckCircle, Target, TrendingUp, Play, Pause, ChevronLeft, ChevronRight,
+  Sparkles, Rocket, Shield, Award,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+
+type Service = {
+  id: string
+  title: string
+  shortTitle: string
+  tagline: string
+  description: string
+  icon: ReactNode
+  gradient: string
+  bgGradient: string
+  accentColor: string
+  price: string
+  timeline: string
+  rating: number
+  projects: number
+  keyFeatures: string[]
+  results: string
+  technologies: string[]
+}
+
+const services: Service[] = [
+  {
+    id: "web",
+    title: "Enterprise Web Development",
+    shortTitle: "Web Development",
+    tagline: "Digital Excellence",
+    description: "Fortune 500-grade applications with enterprise security and scalability that drive real business results",
+    icon: <Globe className="w-12 h-12" />,
+    gradient: "from-blue-500 via-cyan-400 to-blue-600",
+    bgGradient: "from-blue-500/20 via-cyan-400/10 to-blue-600/20",
+    accentColor: "text-blue-400",
+    price: "$15K - $200K",
+    timeline: "8-16 weeks",
+    rating: 4.9,
+    projects: 150,
+    keyFeatures: ["Scalable Cloud Architecture", "24/7 Monitoring & Support", "Advanced API Integration", "Performance Optimization"],
+    results: "3x faster time to market • 40% increase in customer acquisition • 99.9% system reliability",
+    technologies: ["Next.js", "React", "Node.js", "AWS", "PostgreSQL"],
+  },
+  {
+    id: "mobile",
+    title: "Mobile App Development",
+    shortTitle: "Mobile Apps",
+    tagline: "Mobile Innovation",
+    description: "Native iOS & Android applications that users love, with seamless experiences and cutting-edge functionality",
+    icon: <Smartphone className="w-12 h-12" />,
+    gradient: "from-purple-500 via-pink-400 to-purple-600",
+    bgGradient: "from-purple-500/20 via-pink-400/10 to-purple-600/20",
+    accentColor: "text-purple-400",
+    price: "$25K - $150K",
+    timeline: "10-20 weeks",
+    rating: 4.8,
+    projects: 85,
+    keyFeatures: ["Native Performance", "App Store Optimization", "Push Notifications", "Offline Functionality"],
+    results: "4.8+ App Store ratings • 1M+ downloads • ROI within 6 months",
+    technologies: ["React Native", "Swift", "Kotlin", "Firebase"],
+  },
+  {
+    id: "engineering",
+    title: "Precision Engineering",
+    shortTitle: "Engineering",
+    tagline: "Mechanical Mastery",
+    description: "NASA-grade mechanical engineering solutions for mission-critical applications with zero-defect precision",
+    icon: <Cog className="w-12 h-12" />,
+    gradient: "from-orange-500 via-red-400 to-orange-600",
+    bgGradient: "from-orange-500/20 via-red-400/10 to-orange-600/20",
+    accentColor: "text-orange-400",
+    price: "$10K - $100K",
+    timeline: "6-12 weeks",
+    rating: 5.0,
+    projects: 45,
+    keyFeatures: ["Advanced CAD/CAM", "FEA Analysis", "Rapid Prototyping", "Quality Assurance"],
+    results: "99.8% precision accuracy • Zero defect rate • 50% cost reduction",
+    technologies: ["SolidWorks", "ANSYS", "AutoCAD", "3D Printing"],
+  },
+  {
+    id: "software",
+    title: "Custom Software Solutions",
+    shortTitle: "Software",
+    tagline: "Tailored Solutions",
+    description: "Bespoke software solutions designed specifically for your business needs and operational requirements",
+    icon: <Code className="w-12 h-12" />,
+    gradient: "from-emerald-500 via-teal-400 to-emerald-600",
+    bgGradient: "from-emerald-500/20 via-teal-400/10 to-emerald-600/20",
+    accentColor: "text-emerald-400",
+    price: "$20K - $180K",
+    timeline: "12-24 weeks",
+    rating: 4.9,
+    projects: 120,
+    keyFeatures: ["Custom Business Logic", "Legacy Modernization", "Workflow Automation", "Real-time Dashboards"],
+    results: "80% process automation • 60% efficiency gain • 90% user satisfaction",
+    technologies: ["Python", "Java", ".NET", "Microservices"],
+  },
+  {
+    id: "database",
+    title: "Database Solutions",
+    shortTitle: "Database",
+    tagline: "Data Architecture",
+    description: "Robust database design and optimization for enterprise applications with lightning-fast performance",
+    icon: <Database className="w-12 h-12" />,
+    gradient: "from-indigo-500 via-purple-400 to-indigo-600",
+    bgGradient: "from-indigo-500/20 via-purple-400/10 to-indigo-600/20",
+    accentColor: "text-indigo-400",
+    price: "$8K - $75K",
+    timeline: "4-10 weeks",
+    rating: 4.9,
+    projects: 95,
+    keyFeatures: ["Architecture Design", "Performance Tuning", "Cloud Migration", "Real-time Analytics"],
+    results: "10x query performance • 99.99% uptime • 70% storage optimization",
+    technologies: ["PostgreSQL", "MongoDB", "Redis", "BigQuery"],
+  },
+  {
+    id: "design",
+    title: "UI/UX Design",
+    shortTitle: "Design",
+    tagline: "User Experience",
+    description: "User-centered design that converts visitors into customers with beautiful, intuitive interfaces",
+    icon: <Palette className="w-12 h-12" />,
+    gradient: "from-pink-500 via-rose-400 to-pink-600",
+    bgGradient: "from-pink-500/20 via-rose-400/10 to-pink-600/20",
+    accentColor: "text-pink-400",
+    price: "$5K - $50K",
+    timeline: "3-8 weeks",
+    rating: 4.8,
+    projects: 200,
+    keyFeatures: ["User Research", "Interactive Prototyping", "Design Systems", "Conversion Optimization"],
+    results: "150% conversion increase • 95% user satisfaction • 40% bounce reduction",
+    technologies: ["Figma", "Adobe XD", "Framer", "Principle"],
+  },
+]
 
 export function ServicesSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
   const [activeService, setActiveService] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-
-  const services = [
-    {
-      id: "web",
-      title: "Enterprise Web Development",
-      shortTitle: "Web Development",
-      tagline: "Digital Excellence",
-      description:
-        "Fortune 500-grade applications with enterprise security and scalability that drive real business results",
-      icon: <Globe className="w-12 h-12" />,
-      gradient: "from-blue-500 via-cyan-400 to-blue-600",
-      bgGradient: "from-blue-500/20 via-cyan-400/10 to-blue-600/20",
-      accentColor: "text-blue-400",
-      price: "$15K - $200K",
-      timeline: "8-16 weeks",
-      rating: 4.9,
-      projects: 150,
-      keyFeatures: [
-        "Scalable Cloud Architecture",
-        "24/7 Monitoring & Support",
-        "Advanced API Integration",
-        "Performance Optimization",
-      ],
-      results: "3x faster time to market • 40% increase in customer acquisition • 99.9% system reliability",
-      technologies: ["Next.js", "React", "Node.js", "AWS", "PostgreSQL"],
-    },
-    {
-      id: "mobile",
-      title: "Mobile App Development",
-      shortTitle: "Mobile Apps",
-      tagline: "Mobile Innovation",
-      description:
-        "Native iOS & Android applications that users love, with seamless experiences and cutting-edge functionality",
-      icon: <Smartphone className="w-12 h-12" />,
-      gradient: "from-purple-500 via-pink-400 to-purple-600",
-      bgGradient: "from-purple-500/20 via-pink-400/10 to-purple-600/20",
-      accentColor: "text-purple-400",
-      price: "$25K - $150K",
-      timeline: "10-20 weeks",
-      rating: 4.8,
-      projects: 85,
-      keyFeatures: ["Native Performance", "App Store Optimization", "Push Notifications", "Offline Functionality"],
-      results: "4.8+ App Store ratings • 1M+ downloads • ROI within 6 months",
-      technologies: ["React Native", "Swift", "Kotlin", "Firebase"],
-    },
-    {
-      id: "engineering",
-      title: "Precision Engineering",
-      shortTitle: "Engineering",
-      tagline: "Mechanical Mastery",
-      description:
-        "NASA-grade mechanical engineering solutions for mission-critical applications with zero-defect precision",
-      icon: <Cog className="w-12 h-12" />,
-      gradient: "from-orange-500 via-red-400 to-orange-600",
-      bgGradient: "from-orange-500/20 via-red-400/10 to-orange-600/20",
-      accentColor: "text-orange-400",
-      price: "$10K - $100K",
-      timeline: "6-12 weeks",
-      rating: 5.0,
-      projects: 45,
-      keyFeatures: ["Advanced CAD/CAM", "FEA Analysis", "Rapid Prototyping", "Quality Assurance"],
-      results: "99.8% precision accuracy • Zero defect rate • 50% cost reduction",
-      technologies: ["SolidWorks", "ANSYS", "AutoCAD", "3D Printing"],
-    },
-    {
-      id: "software",
-      title: "Custom Software Solutions",
-      shortTitle: "Software",
-      tagline: "Tailored Solutions",
-      description:
-        "Bespoke software solutions designed specifically for your business needs and operational requirements",
-      icon: <Code className="w-12 h-12" />,
-      gradient: "from-emerald-500 via-teal-400 to-emerald-600",
-      bgGradient: "from-emerald-500/20 via-teal-400/10 to-emerald-600/20",
-      accentColor: "text-emerald-400",
-      price: "$20K - $180K",
-      timeline: "12-24 weeks",
-      rating: 4.9,
-      projects: 120,
-      keyFeatures: ["Custom Business Logic", "Legacy Modernization", "Workflow Automation", "Real-time Dashboards"],
-      results: "80% process automation • 60% efficiency gain • 90% user satisfaction",
-      technologies: ["Python", "Java", ".NET", "Microservices"],
-    },
-    {
-      id: "database",
-      title: "Database Solutions",
-      shortTitle: "Database",
-      tagline: "Data Architecture",
-      description:
-        "Robust database design and optimization for enterprise applications with lightning-fast performance",
-      icon: <Database className="w-12 h-12" />,
-      gradient: "from-indigo-500 via-purple-400 to-indigo-600",
-      bgGradient: "from-indigo-500/20 via-purple-400/10 to-indigo-600/20",
-      accentColor: "text-indigo-400",
-      price: "$8K - $75K",
-      timeline: "4-10 weeks",
-      rating: 4.9,
-      projects: 95,
-      keyFeatures: ["Architecture Design", "Performance Tuning", "Cloud Migration", "Real-time Analytics"],
-      results: "10x query performance • 99.99% uptime • 70% storage optimization",
-      technologies: ["PostgreSQL", "MongoDB", "Redis", "BigQuery"],
-    },
-    {
-      id: "design",
-      title: "UI/UX Design",
-      shortTitle: "Design",
-      tagline: "User Experience",
-      description: "User-centered design that converts visitors into customers with beautiful, intuitive interfaces",
-      icon: <Palette className="w-12 h-12" />,
-      gradient: "from-pink-500 via-rose-400 to-pink-600",
-      bgGradient: "from-pink-500/20 via-rose-400/10 to-pink-600/20",
-      accentColor: "text-pink-400",
-      price: "$5K - $50K",
-      timeline: "3-8 weeks",
-      rating: 4.8,
-      projects: 200,
-      keyFeatures: ["User Research", "Interactive Prototyping", "Design Systems", "Conversion Optimization"],
-      results: "150% conversion increase • 95% user satisfaction • 40% bounce reduction",
-      technologies: ["Figma", "Adobe XD", "Framer", "Principle"],
-    },
-  ]
 
   // Auto-play functionality
   useEffect(() => {
@@ -162,17 +154,19 @@ export function ServicesSection() {
     }, 4000)
 
     return () => clearInterval(interval)
-  }, [isAutoPlaying, services.length])
+  }, [isAutoPlaying])
 
   const nextService = () => {
+    setIsAutoPlaying(false)
     setActiveService((prev) => (prev + 1) % services.length)
   }
 
   const prevService = () => {
+    setIsAutoPlaying(false)
     setActiveService((prev) => (prev - 1 + services.length) % services.length)
   }
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -182,7 +176,7 @@ export function ServicesSection() {
     },
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 50, opacity: 0 },
     visible: {
       y: 0,
@@ -253,7 +247,7 @@ export function ServicesSection() {
                     <div
                       className={`${index === activeService ? "text-white" : service.accentColor} transition-colors duration-300`}
                     >
-                      {service.icon}
+                      <div className="w-6 h-6 flex items-center justify-center">{service.icon}</div>
                     </div>
                     <span className="font-semibold">{service.shortTitle}</span>
                   </div>
@@ -377,7 +371,7 @@ export function ServicesSection() {
                   >
                     {/* Large icon */}
                     <div
-                      className={`flex justify-center mb-8 text-gradient bg-gradient-to-r ${currentService.gradient} p-8 rounded-2xl bg-white/10`}
+                      className={`flex justify-center mb-8 bg-white/10 p-8 rounded-2xl`}
                     >
                       <div className={`${currentService.accentColor}`}>{currentService.icon}</div>
                     </div>
@@ -449,7 +443,10 @@ export function ServicesSection() {
                   {services.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => setActiveService(index)}
+                      onClick={() => {
+                          setActiveService(index);
+                          setIsAutoPlaying(false);
+                      }}
                       className={`w-2 h-2 rounded-full transition-all duration-300 ${
                         index === activeService
                           ? `bg-gradient-to-r ${currentService.gradient} w-8`
