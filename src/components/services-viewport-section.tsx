@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, ReactNode } from "react"
 import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 import {
@@ -31,7 +31,33 @@ import {
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
-const services = [
+// Tipe spesifik untuk data service untuk menggantikan 'any'
+type ServiceFeature = {
+  icon: ReactNode
+  text: string
+}
+
+type ServiceStat = {
+  label: string
+  value: string
+}
+
+type Service = {
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  icon: ReactNode
+  features: ServiceFeature[]
+  stats: ServiceStat[]
+  technologies: string[]
+  gradient: string
+  bgGradient: string
+  accentColor: string
+}
+
+// Data konstan dipindahkan ke luar komponen untuk efisiensi
+const services: Service[] = [
   {
     id: "website",
     title: "Website Development",
@@ -178,7 +204,6 @@ export function ServicesViewportSection() {
   const serviceRefs = useRef<(HTMLDivElement | null)[]>([])
   const router = useRouter()
 
-  // Intersection observer for section visibility
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -194,11 +219,16 @@ export function ServicesViewportSection() {
       { threshold: 0.3, rootMargin: "-20% 0px -20% 0px" },
     )
 
-    serviceRefs.current.forEach((ref) => {
+    const currentRefs = serviceRefs.current
+    currentRefs.forEach((ref) => {
       if (ref) observer.observe(ref)
     })
 
-    return () => observer.disconnect()
+    return () => {
+      currentRefs.forEach((ref) => {
+        if (ref) observer.unobserve(ref)
+      })
+    }
   }, [])
 
   const handleNavigateToProjects = () => {
@@ -229,7 +259,6 @@ export function ServicesViewportSection() {
           }}
           transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
         />
-        {/* Subtle Grid Background */}
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
           <div
             className="absolute inset-0 bg-repeat"
@@ -254,7 +283,6 @@ export function ServicesViewportSection() {
                   : "bg-white/30 hover:bg-white/60 hover:scale-110"
               }`}
             >
-              {/* Tooltip */}
               <div className="absolute left-6 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                 <div className="bg-black/90 text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap border border-white/20">
                   {service.title}
@@ -298,7 +326,9 @@ export function ServicesViewportSection() {
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
-                ref={(el) => (serviceRefs.current[index] = el)}
+                ref={(el) => {
+                  serviceRefs.current[index] = el
+                }}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -323,9 +353,7 @@ export function ServicesViewportSection() {
                         <div className={service.accentColor}>{service.icon}</div>
                         <span className={`text-sm font-medium ${service.accentColor}`}>{service.subtitle}</span>
                       </motion.div>
-
                       <h3 className="text-4xl sm:text-5xl font-bold text-white mb-4 leading-tight">{service.title}</h3>
-
                       <p className="text-lg text-gray-300 leading-relaxed mb-8">{service.description}</p>
                     </div>
 
@@ -413,7 +441,7 @@ export function ServicesViewportSection() {
                     transition={{ duration: 0.8 }}
                     viewport={{ once: false, amount: 0.3 }}
                   >
-                    <ServiceUIGraphic service={service} index={index} />
+                    <ServiceUIGraphic service={service} />
                   </motion.div>
                 </div>
               </motion.div>
@@ -426,23 +454,23 @@ export function ServicesViewportSection() {
 }
 
 // Enhanced UI Graphics Components
-function ServiceUIGraphic({ service, index }: { service: any; index: number }) {
+function ServiceUIGraphic({ service }: { service: Service }) {
   const getServiceGraphic = () => {
     switch (service.id) {
       case "website":
-        return <WebsiteUIGraphic service={service} />
+        return <WebsiteUIGraphic />
       case "mobile":
         return <MobileUIGraphic service={service} />
       case "digital":
-        return <DigitalSystemsUIGraphic service={service} />
+        return <DigitalSystemsUIGraphic />
       case "mechanical":
-        return <MechanicalUIGraphic service={service} />
+        return <MechanicalUIGraphic />
       case "product":
-        return <ProductUIGraphic service={service} />
+        return <ProductUIGraphic />
       case "architecture":
-        return <ArchitectureUIGraphic service={service} />
+        return <ArchitectureUIGraphic />
       default:
-        return <WebsiteUIGraphic service={service} />
+        return <WebsiteUIGraphic />
     }
   }
 
@@ -456,17 +484,17 @@ function ServiceUIGraphic({ service, index }: { service: any; index: number }) {
       />
 
       {/* Main UI Container */}
-      <div className="relative bg-white/95 backdrop-blur-xl border border-gray-300 rounded-3xl p-8 overflow-hidden shadow-2xl">
+      <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 overflow-hidden shadow-2xl">
         {getServiceGraphic()}
       </div>
     </div>
   )
 }
 
-function WebsiteUIGraphic({ service }: { service: any }) {
+// Komponen-komponen di bawah ini sekarang menggunakan tipe yang benar atau tidak ada prop jika tidak digunakan
+function WebsiteUIGraphic() {
   return (
     <div className="space-y-6">
-      {/* Enhanced Browser Window */}
       <div className="bg-gray-100 rounded-lg overflow-hidden shadow-xl">
         <div className="flex items-center space-x-2 px-4 py-3 bg-gray-200">
           <div className="w-3 h-3 bg-gray-500 rounded-full animate-pulse"></div>
@@ -503,7 +531,6 @@ function WebsiteUIGraphic({ service }: { service: any }) {
         </div>
       </div>
 
-      {/* Enhanced Performance Metrics */}
       <div className="grid grid-cols-2 gap-4">
         <motion.div className="bg-gray-50 rounded-lg p-4 border border-gray-200 shadow-md" whileHover={{ scale: 1.05 }}>
           <div className="flex items-center justify-between mb-2">
@@ -540,14 +567,12 @@ function WebsiteUIGraphic({ service }: { service: any }) {
   )
 }
 
-function MobileUIGraphic({ service }: { service: any }) {
+function MobileUIGraphic({ service }: { service: Service }) {
   return (
     <div className="flex justify-center items-center space-x-6">
-      {/* Enhanced Phone Mockup */}
       <div className="relative">
         <div className="w-48 h-80 bg-gray-900 rounded-3xl p-2 shadow-2xl">
           <div className="w-full h-full bg-white rounded-2xl overflow-hidden relative">
-            {/* Status Bar */}
             <div className="flex justify-between items-center px-4 py-2 bg-gray-50 text-xs">
               <span className="font-medium">9:41</span>
               <div className="flex space-x-1">
@@ -556,8 +581,6 @@ function MobileUIGraphic({ service }: { service: any }) {
                 <div className="w-4 h-2 bg-gray-300 rounded-sm"></div>
               </div>
             </div>
-
-            {/* App Content */}
             <div className="p-4 space-y-4">
               <motion.div
                 className="h-4 bg-gradient-to-r from-gray-700 to-gray-800 rounded w-3/4 shadow-sm"
@@ -568,8 +591,6 @@ function MobileUIGraphic({ service }: { service: any }) {
                 <div className="h-2 bg-gray-300 rounded w-full shadow-sm"></div>
                 <div className="h-2 bg-gray-300 rounded w-2/3 shadow-sm"></div>
               </div>
-
-              {/* Interactive Cards */}
               <div className="space-y-3 mt-6">
                 {[0, 1, 2].map((i) => (
                   <motion.div
@@ -589,8 +610,6 @@ function MobileUIGraphic({ service }: { service: any }) {
                 ))}
               </div>
             </div>
-
-            {/* Bottom Navigation */}
             <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-3">
               <div className="flex justify-around">
                 {[0, 1, 2, 3].map((i) => (
@@ -606,10 +625,8 @@ function MobileUIGraphic({ service }: { service: any }) {
           </div>
         </div>
       </div>
-
-      {/* Enhanced App Features */}
       <div className="space-y-4">
-        {service.features.slice(0, 3).map((feature: any, index: number) => (
+        {service.features.slice(0, 3).map((feature, index) => (
           <motion.div
             key={index}
             className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg border border-gray-200 shadow-md"
@@ -626,13 +643,11 @@ function MobileUIGraphic({ service }: { service: any }) {
   )
 }
 
-function DigitalSystemsUIGraphic({ service }: { service: any }) {
+function DigitalSystemsUIGraphic() {
   return (
     <div className="space-y-6">
-      {/* Enhanced System Architecture */}
       <div className="bg-gray-50 rounded-lg p-6 border border-gray-200 shadow-lg">
         <div className="grid grid-cols-3 gap-4">
-          {/* Data Sources */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Data Sources</h4>
             {[0, 1, 2].map((i) => (
@@ -647,8 +662,6 @@ function DigitalSystemsUIGraphic({ service }: { service: any }) {
               </motion.div>
             ))}
           </div>
-
-          {/* Processing */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Processing</h4>
             <motion.div
@@ -660,8 +673,6 @@ function DigitalSystemsUIGraphic({ service }: { service: any }) {
               <Cog className="w-8 h-8 text-white animate-spin" style={{ animationDuration: "3s" }} />
             </motion.div>
           </div>
-
-          {/* Outputs */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Outputs</h4>
             {[0, 1, 2].map((i) => (
@@ -677,8 +688,6 @@ function DigitalSystemsUIGraphic({ service }: { service: any }) {
             ))}
           </div>
         </div>
-
-        {/* Data Flow Arrows */}
         <div className="flex justify-center items-center mt-4 space-x-4">
           <motion.div animate={{ x: [0, 10, 0] }} transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}>
             <ArrowRight className="w-5 h-5 text-gray-600" />
@@ -691,8 +700,6 @@ function DigitalSystemsUIGraphic({ service }: { service: any }) {
           </motion.div>
         </div>
       </div>
-
-      {/* Enhanced Performance Dashboard */}
       <div className="grid grid-cols-2 gap-4">
         <motion.div className="bg-gray-50 rounded-lg p-4 border border-gray-200 shadow-md" whileHover={{ scale: 1.05 }}>
           <div className="flex items-center justify-between mb-2">
@@ -729,10 +736,9 @@ function DigitalSystemsUIGraphic({ service }: { service: any }) {
   )
 }
 
-function MechanicalUIGraphic({ service }: { service: any }) {
+function MechanicalUIGraphic() {
   return (
     <div className="space-y-6">
-      {/* Enhanced 3D Model Viewer */}
       <div className="bg-gray-50 rounded-lg p-6 border border-gray-200 shadow-lg">
         <div className="flex items-center justify-between mb-4">
           <h4 className="text-sm font-semibold text-gray-700">3D Model Viewer</h4>
@@ -741,8 +747,6 @@ function MechanicalUIGraphic({ service }: { service: any }) {
             <div className="w-3 h-3 bg-gray-600 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }}></div>
           </div>
         </div>
-
-        {/* 3D Viewport */}
         <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-40 flex items-center justify-center relative overflow-hidden shadow-inner">
           <motion.div
             className="w-24 h-24 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg shadow-xl"
@@ -761,8 +765,6 @@ function MechanicalUIGraphic({ service }: { service: any }) {
           >
             <div className="absolute inset-2 bg-gradient-to-br from-gray-500 to-gray-700 rounded shadow-inner"></div>
           </motion.div>
-
-          {/* Grid Background */}
           <div className="absolute inset-0 opacity-20 pointer-events-none">
             <div
               className="w-full h-full bg-repeat"
@@ -772,8 +774,6 @@ function MechanicalUIGraphic({ service }: { service: any }) {
             />
           </div>
         </div>
-
-        {/* Enhanced Controls */}
         <div className="flex justify-between items-center mt-4">
           <div className="flex space-x-2">
             {["Rotate", "Zoom", "Pan"].map((tool, index) => (
@@ -794,8 +794,6 @@ function MechanicalUIGraphic({ service }: { service: any }) {
           <div className="text-xs text-gray-500">Precision: 0.01mm</div>
         </div>
       </div>
-
-      {/* Enhanced Specifications */}
       <div className="grid grid-cols-2 gap-4">
         <motion.div className="bg-gray-50 rounded-lg p-4 border border-gray-200 shadow-md" whileHover={{ scale: 1.05 }}>
           <div className="flex items-center justify-between mb-2">
@@ -818,10 +816,9 @@ function MechanicalUIGraphic({ service }: { service: any }) {
   )
 }
 
-function ProductUIGraphic({ service }: { service: any }) {
+function ProductUIGraphic() {
   return (
     <div className="space-y-6">
-      {/* Enhanced Product Development Pipeline */}
       <div className="bg-gray-50 rounded-lg p-6 border border-gray-200 shadow-lg">
         <h4 className="text-sm font-semibold text-gray-700 mb-4">Development Pipeline</h4>
         <div className="space-y-4">
@@ -871,8 +868,6 @@ function ProductUIGraphic({ service }: { service: any }) {
           ))}
         </div>
       </div>
-
-      {/* Enhanced Success Metrics */}
       <div className="grid grid-cols-2 gap-4">
         <motion.div className="bg-gray-50 rounded-lg p-4 border border-gray-200 shadow-md" whileHover={{ scale: 1.05 }}>
           <div className="flex items-center justify-between mb-2">
@@ -902,10 +897,9 @@ function ProductUIGraphic({ service }: { service: any }) {
   )
 }
 
-function ArchitectureUIGraphic({ service }: { service: any }) {
+function ArchitectureUIGraphic() {
   return (
     <div className="space-y-6">
-      {/* Enhanced Blueprint Viewer */}
       <div className="bg-gray-50 rounded-lg p-6 border border-gray-200 shadow-lg">
         <div className="flex items-center justify-between mb-4">
           <h4 className="text-sm font-semibold text-gray-700">Blueprint Viewer</h4>
@@ -914,10 +908,7 @@ function ArchitectureUIGraphic({ service }: { service: any }) {
             <div className="w-3 h-3 bg-gray-600 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }}></div>
           </div>
         </div>
-
-        {/* Blueprint Canvas */}
         <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-40 flex items-center justify-center relative overflow-hidden shadow-inner border border-gray-300">
-          {/* Grid Background */}
           <div className="absolute inset-0 opacity-30">
             <div
               className="w-full h-full bg-repeat"
@@ -926,34 +917,26 @@ function ArchitectureUIGraphic({ service }: { service: any }) {
               }}
             />
           </div>
-
-          {/* Building Structure */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
           >
-            {/* Foundation */}
             <motion.div
               className="w-32 h-4 bg-gradient-to-r from-gray-600 to-gray-700 rounded-sm shadow-md"
               animate={{ opacity: [0.7, 1, 0.7] }}
               transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
             ></motion.div>
-
-            {/* Walls */}
             <motion.div
               className="w-28 h-16 bg-gradient-to-br from-gray-500 to-gray-600 rounded-t-sm mx-auto -mt-1 shadow-lg relative"
               animate={{ y: [0, -1, 0] }}
               transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
             >
-              {/* Windows */}
               <div className="absolute top-2 left-2 w-4 h-4 bg-gray-300 rounded-sm shadow-inner"></div>
               <div className="absolute top-2 right-2 w-4 h-4 bg-gray-300 rounded-sm shadow-inner"></div>
               <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-6 h-8 bg-gray-200 rounded-sm shadow-inner"></div>
             </motion.div>
-
-            {/* Roof */}
             <motion.div
               className="w-32 h-8 bg-gradient-to-r from-gray-600 to-gray-700 transform -skew-y-12 -mt-2 shadow-lg"
               animate={{ rotateZ: [0, 1, 0] }}
@@ -962,8 +945,6 @@ function ArchitectureUIGraphic({ service }: { service: any }) {
             ></motion.div>
           </motion.div>
         </div>
-
-        {/* Enhanced Tools */}
         <div className="flex justify-between items-center mt-4">
           <div className="flex space-x-2">
             {["2D", "3D", "VR"].map((view, index) => (
@@ -984,8 +965,6 @@ function ArchitectureUIGraphic({ service }: { service: any }) {
           <div className="text-xs text-gray-500">Scale: 1:100</div>
         </div>
       </div>
-
-      {/* Enhanced Project Stats */}
       <div className="grid grid-cols-2 gap-4">
         <motion.div className="bg-gray-50 rounded-lg p-4 border border-gray-200 shadow-md" whileHover={{ scale: 1.05 }}>
           <div className="flex items-center justify-between mb-2">
