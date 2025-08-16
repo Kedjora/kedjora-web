@@ -16,6 +16,21 @@ type ProfileData = {
   email?: string
 }
 
+interface CustomEventDetail {
+  service?: string
+  businessName?: string
+  businessType?: string
+  companySize?: string
+  budget?: string
+  timeline?: string
+  contactName?: string
+  email?: string
+}
+
+interface ProfileCustomEvent extends Event {
+  detail?: CustomEventDetail
+}
+
 export function BusinessProfileHeader() {
   const [isVisible, setIsVisible] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
@@ -23,12 +38,12 @@ export function BusinessProfileHeader() {
   const [pulseAnimation, setPulseAnimation] = useState(false)
 
   useEffect(() => {
-    const handleShow = (e: any) => {
+    const handleShow = (e: ProfileCustomEvent) => {
       setIsVisible(true)
       setPulseAnimation(true)
       setTimeout(() => setPulseAnimation(false), 1000)
       if (e.detail?.service) {
-        setProfileData((prev) => ({ ...prev, service: e.detail.service }))
+        setProfileData((prev) => ({ ...prev, service: e.detail?.service }))
       }
     }
 
@@ -37,7 +52,7 @@ export function BusinessProfileHeader() {
       setIsExpanded(false)
     }
 
-    const handleUpdate = (e: any) => {
+    const handleUpdate = (e: ProfileCustomEvent) => {
       setProfileData((prev) => ({ ...prev, ...e.detail }))
       setPulseAnimation(true)
       setTimeout(() => setPulseAnimation(false), 500)
