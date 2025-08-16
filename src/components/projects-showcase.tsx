@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useRef } from "react"
-import { motion, AnimatePresence, useInView } from "framer-motion"
+import Image from "next/image"
+import { motion, AnimatePresence, useInView, Variants } from "framer-motion"
 import { Code, Globe, Lock, Shield, Terminal, ExternalLink, X, ChevronRight, Tag, Play } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
@@ -19,140 +20,123 @@ type Project = {
   featured?: boolean
 }
 
+const projects: Project[] = [
+    {
+    id: "dreambox",
+    title: "DreamBox AI",
+    description: "Revolutionary AI-powered video generation platform transforming scripts into cinematic episodes",
+    longDescription:
+      "DreamBox represents the cutting edge of AI video generation technology. This platform transforms simple scripts into professional-quality 20-45 minute animated episodes using advanced machine learning algorithms. The system features an intuitive interface that makes professional video production accessible to creators worldwide, democratizing content creation through AI innovation.",
+    image: "/images/dreambox-logo.png",
+    category: "ai",
+    technologies: ["AI/ML", "Video Processing", "React", "Python", "Cloud Computing", "Neural Networks"],
+    link: "https://v0-advanced-ai-video-app.vercel.app/",
+    achievements: [
+      "Developed breakthrough AI video generation algorithms with 95% accuracy",
+      "Created intuitive script-to-video conversion interface used by 10,000+ creators",
+      "Implemented real-time rendering pipeline processing 1TB+ of video daily",
+      "Built scalable cloud infrastructure supporting millions of video generations",
+      "Achieved 4.8/5 user satisfaction rating with 90% user retention",
+    ],
+    featured: true,
+  },
+  {
+    id: "pufftrak",
+    title: "PuffTrak",
+    description: "Next-generation smart vaping device with advanced tracking and health monitoring",
+    longDescription:
+      "PuffTrak is a revolutionary smart vaping device that combines cutting-edge hardware design with intelligent software to provide users with comprehensive usage tracking and health insights. The device features precision sensors, real-time data collection, and a companion mobile app that helps users make informed decisions about their vaping habits.",
+    image: "/images/pufftrak-device-1.png",
+    category: "product",
+    technologies: ["IoT", "Mobile App", "Bluetooth", "Sensors", "3D Design", "Manufacturing"],
+    achievements: [
+      "Designed precision IoT sensors with 99.9% accuracy for usage tracking",
+      "Developed companion mobile app with 4.7/5 App Store rating",
+      "Created sleek industrial design with premium materials and finishes",
+      "Implemented advanced battery management for 7-day usage cycles",
+      "Achieved FDA compliance and safety certifications",
+    ],
+    featured: true,
+  },
+  {
+    id: "motionrecords",
+    title: "MotionRecords",
+    description: "Comprehensive digital music distribution and artist management platform",
+    longDescription:
+      "MotionRecords is a full-service digital music platform that empowers artists with professional-grade tools for music distribution, analytics, and fan engagement. The platform streamlines the entire music release process while providing detailed insights into audience engagement, revenue optimization, and career growth opportunities for independent artists and labels.",
+    image: "/images/motionrecords-logo.png",
+    category: "platform",
+    technologies: ["React", "Node.js", "Audio Processing", "Analytics", "Payment Systems", "API Integration"],
+    link: "https://motionrecords.us",
+    achievements: [
+      "Built comprehensive music distribution pipeline reaching 150+ platforms",
+      "Developed advanced analytics dashboard tracking 50M+ streams monthly",
+      "Implemented secure payment and royalty systems processing $2M+ annually",
+      "Created fan engagement tools increasing artist-fan interaction by 300%",
+      "Achieved 98% artist satisfaction rate with 95% retention",
+    ],
+    featured: true,
+  },
+  {
+    id: "glasspatch",
+    title: "GlassPatch",
+    description: "Advanced glass repair and replacement management system for service businesses",
+    longDescription:
+      "GlassPatch is a specialized business management platform designed specifically for glass repair and replacement companies. The system provides comprehensive job management, customer relationship tools, inventory tracking, and automated scheduling to streamline operations, improve efficiency, and enhance customer satisfaction in the glass services industry.",
+    image: "/images/glasspatch-logo.png",
+    category: "web",
+    technologies: ["React", "Node.js", "Scheduling APIs", "CRM Integration", "Mobile Apps", "GPS Tracking"],
+    achievements: [
+      "Developed comprehensive job management system reducing admin time by 60%",
+      "Built automated scheduling and dispatch tools improving efficiency by 45%",
+      "Implemented real-time inventory tracking preventing stockouts by 90%",
+      "Created customer portal increasing satisfaction scores by 40%",
+      "Achieved 99.9% uptime with enterprise-grade reliability",
+    ],
+  },
+  {
+    id: "nicfound",
+    title: "NicFound",
+    description: "AI-powered nicotine tracking and cessation support platform",
+    longDescription:
+      "NicFound leverages artificial intelligence to help users track their nicotine consumption and provides personalized support for cessation efforts. The platform combines behavioral analytics, health monitoring, and community support to create a comprehensive solution for those looking to reduce or eliminate nicotine dependency.",
+    image: "/images/nicfound-logo.png",
+    category: "mobile",
+    technologies: ["React Native", "AI/ML", "Health APIs", "Analytics", "Push Notifications"],
+    achievements: [
+      "Developed AI algorithms with 85% accuracy in predicting cessation success",
+      "Created personalized intervention system reducing relapse by 40%",
+      "Built community platform with 50,000+ active users",
+      "Implemented health tracking integration with major fitness platforms",
+      "Achieved clinical validation through partnership with health institutions",
+    ],
+  },
+  {
+    id: "chatchill",
+    title: "ChatChill",
+    description: "Next-generation social communication platform with advanced privacy features",
+    longDescription:
+      "ChatChill redefines social communication with a focus on privacy, security, and meaningful connections. The platform features end-to-end encryption, ephemeral messaging, and innovative social features that prioritize user privacy while fostering genuine community building and authentic conversations.",
+    image: "/images/chatchill-logo.png",
+    category: "mobile",
+    technologies: ["React Native", "Encryption", "Real-time Messaging", "Privacy Tech", "Social Features"],
+    achievements: [
+      "Implemented military-grade end-to-end encryption for all communications",
+      "Developed innovative ephemeral messaging with custom disappearing timers",
+      "Created privacy-first social features protecting user data",
+      "Built real-time messaging system supporting 1M+ concurrent users",
+      "Achieved zero data breaches with advanced security architecture",
+    ],
+  },
+]
+
 export function ProjectsShowcase() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
   const [filter, setFilter] = useState<string | null>(null)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
-  const projects: Project[] = [
-    {
-      id: "dreambox",
-      title: "DreamBox AI",
-      description: "Revolutionary AI-powered video generation platform transforming scripts into cinematic episodes",
-      longDescription:
-        "DreamBox represents the cutting edge of AI video generation technology. This platform transforms simple scripts into professional-quality 20-45 minute animated episodes using advanced machine learning algorithms. The system features an intuitive interface that makes professional video production accessible to creators worldwide, democratizing content creation through AI innovation.",
-      image: "/images/dreambox-logo.png",
-      category: "ai",
-      technologies: ["AI/ML", "Video Processing", "React", "Python", "Cloud Computing", "Neural Networks"],
-      link: "https://v0-advanced-ai-video-app.vercel.app/",
-      achievements: [
-        "Developed breakthrough AI video generation algorithms with 95% accuracy",
-        "Created intuitive script-to-video conversion interface used by 10,000+ creators",
-        "Implemented real-time rendering pipeline processing 1TB+ of video daily",
-        "Built scalable cloud infrastructure supporting millions of video generations",
-        "Achieved 4.8/5 user satisfaction rating with 90% user retention",
-      ],
-      featured: true,
-    },
-    {
-      id: "pufftrak",
-      title: "PuffTrak",
-      description: "Next-generation smart vaping device with advanced tracking and health monitoring",
-      longDescription:
-        "PuffTrak is a revolutionary smart vaping device that combines cutting-edge hardware design with intelligent software to provide users with comprehensive usage tracking and health insights. The device features precision sensors, real-time data collection, and a companion mobile app that helps users make informed decisions about their vaping habits.",
-      image: "/images/pufftrak-device-1.png",
-      category: "product",
-      technologies: ["IoT", "Mobile App", "Bluetooth", "Sensors", "3D Design", "Manufacturing"],
-      achievements: [
-        "Designed precision IoT sensors with 99.9% accuracy for usage tracking",
-        "Developed companion mobile app with 4.7/5 App Store rating",
-        "Created sleek industrial design with premium materials and finishes",
-        "Implemented advanced battery management for 7-day usage cycles",
-        "Achieved FDA compliance and safety certifications",
-      ],
-      featured: true,
-    },
-    {
-      id: "motionrecords",
-      title: "MotionRecords",
-      description: "Comprehensive digital music distribution and artist management platform",
-      longDescription:
-        "MotionRecords is a full-service digital music platform that empowers artists with professional-grade tools for music distribution, analytics, and fan engagement. The platform streamlines the entire music release process while providing detailed insights into audience engagement, revenue optimization, and career growth opportunities for independent artists and labels.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: "platform",
-      technologies: ["React", "Node.js", "Audio Processing", "Analytics", "Payment Systems", "API Integration"],
-      link: "https://motionrecords.us",
-      achievements: [
-        "Built comprehensive music distribution pipeline reaching 150+ platforms",
-        "Developed advanced analytics dashboard tracking 50M+ streams monthly",
-        "Implemented secure payment and royalty systems processing $2M+ annually",
-        "Created fan engagement tools increasing artist-fan interaction by 300%",
-        "Achieved 98% artist satisfaction rate with 95% retention",
-      ],
-      featured: true,
-    },
-    {
-      id: "glasspatch",
-      title: "GlassPatch",
-      description: "Advanced glass repair and replacement management system for service businesses",
-      longDescription:
-        "GlassPatch is a specialized business management platform designed specifically for glass repair and replacement companies. The system provides comprehensive job management, customer relationship tools, inventory tracking, and automated scheduling to streamline operations, improve efficiency, and enhance customer satisfaction in the glass services industry.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: "web",
-      technologies: ["React", "Node.js", "Scheduling APIs", "CRM Integration", "Mobile Apps", "GPS Tracking"],
-      achievements: [
-        "Developed comprehensive job management system reducing admin time by 60%",
-        "Built automated scheduling and dispatch tools improving efficiency by 45%",
-        "Implemented real-time inventory tracking preventing stockouts by 90%",
-        "Created customer portal increasing satisfaction scores by 40%",
-        "Achieved 99.9% uptime with enterprise-grade reliability",
-      ],
-    },
-    {
-      id: "nicfound",
-      title: "NicFound",
-      description: "AI-powered nicotine tracking and cessation support platform",
-      longDescription:
-        "NicFound leverages artificial intelligence to help users track their nicotine consumption and provides personalized support for cessation efforts. The platform combines behavioral analytics, health monitoring, and community support to create a comprehensive solution for those looking to reduce or eliminate nicotine dependency.",
-      image: "/images/nicfound-logo.png",
-      category: "mobile",
-      technologies: ["React Native", "AI/ML", "Health APIs", "Analytics", "Push Notifications"],
-      achievements: [
-        "Developed AI algorithms with 85% accuracy in predicting cessation success",
-        "Created personalized intervention system reducing relapse by 40%",
-        "Built community platform with 50,000+ active users",
-        "Implemented health tracking integration with major fitness platforms",
-        "Achieved clinical validation through partnership with health institutions",
-      ],
-    },
-    {
-      id: "chatchill",
-      title: "ChatChill",
-      description: "Next-generation social communication platform with advanced privacy features",
-      longDescription:
-        "ChatChill redefines social communication with a focus on privacy, security, and meaningful connections. The platform features end-to-end encryption, ephemeral messaging, and innovative social features that prioritize user privacy while fostering genuine community building and authentic conversations.",
-      image: "/images/chatchill-logo.png",
-      category: "mobile",
-      technologies: ["React Native", "Encryption", "Real-time Messaging", "Privacy Tech", "Social Features"],
-      achievements: [
-        "Implemented military-grade end-to-end encryption for all communications",
-        "Developed innovative ephemeral messaging with custom disappearing timers",
-        "Created privacy-first social features protecting user data",
-        "Built real-time messaging system supporting 1M+ concurrent users",
-        "Achieved zero data breaches with advanced security architecture",
-      ],
-    },
-  ]
-
   const filteredProjects = filter ? projects.filter((project) => project.category === filter) : projects
-
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case "web":
-        return <Globe className="w-5 h-5" />
-      case "mobile":
-        return <Terminal className="w-5 h-5" />
-      case "product":
-        return <Code className="w-5 h-5" />
-      case "ai":
-        return <Shield className="w-5 h-5" />
-      case "platform":
-        return <Lock className="w-5 h-5" />
-      default:
-        return <Code className="w-5 h-5" />
-    }
-  }
 
   const getCategoryName = (category: string) => {
     switch (category) {
@@ -188,7 +172,7 @@ export function ProjectsShowcase() {
     }
   }
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -198,7 +182,7 @@ export function ProjectsShowcase() {
     },
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -231,72 +215,73 @@ export function ProjectsShowcase() {
 
           {/* Filter tabs */}
           <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3">
-            <button
-              onClick={() => setFilter(null)}
-              className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
-                filter === null
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
-              }`}
-            >
-              <Lock className="w-4 h-4" />
-              All Projects
-            </button>
-            <button
-              onClick={() => setFilter("ai")}
-              className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
-                filter === "ai"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
-              }`}
-            >
-              <Shield className="w-4 h-4" />
-              AI Platforms
-            </button>
-            <button
-              onClick={() => setFilter("web")}
-              className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
-                filter === "web"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
-              }`}
-            >
-              <Globe className="w-4 h-4" />
-              Web Apps
-            </button>
-            <button
-              onClick={() => setFilter("mobile")}
-              className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
-                filter === "mobile"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
-              }`}
-            >
-              <Terminal className="w-4 h-4" />
-              Mobile Apps
-            </button>
-            <button
-              onClick={() => setFilter("product")}
-              className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
-                filter === "product"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
-              }`}
-            >
-              <Code className="w-4 h-4" />
-              Products
-            </button>
-            <button
-              onClick={() => setFilter("platform")}
-              className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
-                filter === "platform"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
-              }`}
-            >
-              <Lock className="w-4 h-4" />
-              Platforms
-            </button>
+              {/* Tombol filter tidak berubah, jadi saya singkat */}
+              <button
+                onClick={() => setFilter(null)}
+                className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
+                    filter === null
+                    ? "bg-primary text-primary-foreground shadow-lg"
+                    : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
+                }`}
+                >
+                <Lock className="w-4 h-4" />
+                All Projects
+                </button>
+                <button
+                onClick={() => setFilter("ai")}
+                className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
+                    filter === "ai"
+                    ? "bg-primary text-primary-foreground shadow-lg"
+                    : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
+                }`}
+                >
+                <Shield className="w-4 h-4" />
+                AI Platforms
+                </button>
+                <button
+                onClick={() => setFilter("web")}
+                className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
+                    filter === "web"
+                    ? "bg-primary text-primary-foreground shadow-lg"
+                    : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
+                }`}
+                >
+                <Globe className="w-4 h-4" />
+                Web Apps
+                </button>
+                <button
+                onClick={() => setFilter("mobile")}
+                className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
+                    filter === "mobile"
+                    ? "bg-primary text-primary-foreground shadow-lg"
+                    : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
+                }`}
+                >
+                <Terminal className="w-4 h-4" />
+                Mobile Apps
+                </button>
+                <button
+                onClick={() => setFilter("product")}
+                className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
+                    filter === "product"
+                    ? "bg-primary text-primary-foreground shadow-lg"
+                    : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
+                }`}
+                >
+                <Code className="w-4 h-4" />
+                Products
+                </button>
+                <button
+                onClick={() => setFilter("platform")}
+                className={`px-6 py-3 rounded-full text-sm transition-all duration-300 flex items-center gap-2 font-medium ${
+                    filter === "platform"
+                    ? "bg-primary text-primary-foreground shadow-lg"
+                    : "bg-muted/30 text-muted-foreground border border-border hover:bg-muted/50 hover:text-foreground"
+                }`}
+                >
+                <Lock className="w-4 h-4" />
+                Platforms
+                </button>
           </motion.div>
 
           {/* Projects grid */}
@@ -313,7 +298,6 @@ export function ProjectsShowcase() {
                   transition={{ duration: 0.3 }}
                   className="group relative rounded-xl border border-border bg-background/50 overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20"
                 >
-                  {/* Featured badge */}
                   {project.featured && (
                     <div className="absolute top-4 left-4 z-20">
                       <Badge className="bg-gradient-to-r from-emerald-500 to-green-500 text-white font-bold">
@@ -322,18 +306,16 @@ export function ProjectsShowcase() {
                     </div>
                   )}
 
-                  {/* Project image */}
                   <div className="relative h-48 overflow-hidden">
-                    <img
+                    <Image
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div
                       className={`absolute inset-0 bg-gradient-to-t ${getCategoryColor(project.category)} opacity-20`}
                     ></div>
-
-                    {/* Play button for video demos */}
                     {project.link && (
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
@@ -409,24 +391,22 @@ export function ProjectsShowcase() {
 
           {selectedProject && (
             <div className="space-y-8">
-              {/* Project image */}
               <div className="relative h-64 rounded-xl overflow-hidden">
-                <img
+                <Image
                   src={selectedProject.image || "/placeholder.svg"}
                   alt={selectedProject.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
                 <div
                   className={`absolute inset-0 bg-gradient-to-t ${getCategoryColor(selectedProject.category)} opacity-20`}
                 ></div>
               </div>
 
-              {/* Description */}
               <DialogDescription className="text-foreground text-lg leading-relaxed">
                 {selectedProject.longDescription}
               </DialogDescription>
 
-              {/* Technologies */}
               <div>
                 <h4 className="text-xl font-semibold mb-4 text-primary">Technologies Used</h4>
                 <div className="flex flex-wrap gap-3">
@@ -442,7 +422,6 @@ export function ProjectsShowcase() {
                 </div>
               </div>
 
-              {/* Key achievements */}
               <div>
                 <h4 className="text-xl font-semibold mb-4 text-primary">Key Achievements</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -455,7 +434,6 @@ export function ProjectsShowcase() {
                 </div>
               </div>
 
-              {/* Action buttons */}
               <div className="flex gap-4 pt-4">
                 {selectedProject.link && (
                   <a
