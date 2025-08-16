@@ -1,8 +1,85 @@
 "use client"
 
-import { useState } from "react"
+import { useState, ComponentType } from "react"
+import Image from "next/image"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowUp, X, Mail, Phone, MapPin, ChevronDown, ChevronUp, ExternalLink } from "lucide-react"
+
+type SectionItem = {
+  label: string
+  href: string
+}
+
+type Section = {
+  id: string
+  title: string
+  items: SectionItem[]
+}
+
+type ContactInfo = {
+  icon: ComponentType<{ className: string }>
+  label: string
+  value: string
+  href: string
+}
+
+const sections: Section[] = [
+    {
+    id: "services",
+    title: "Services",
+    items: [
+      { label: "Enterprise Web Development", href: "/services/web-development" },
+      { label: "Mobile App Development", href: "/services/mobile-apps" },
+      { label: "Physical Product Development", href: "/services/physical-products" },
+      { label: "SEO Optimization", href: "/services/seo" },
+      { label: "Google Ads Management", href: "/services/google-ads" },
+      { label: "Patent Services", href: "/services/patents" },
+    ],
+  },
+  {
+    id: "company",
+    title: "Company",
+    items: [
+      { label: "About Us", href: "/about" },
+      { label: "Our Process", href: "/process" },
+      { label: "Portfolio", href: "/portfolio" },
+      { label: "Careers", href: "/careers" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    id: "resources",
+    title: "Resources",
+    items: [
+      { label: "Documentation", href: "/docs" },
+      { label: "Case Studies", href: "/case-studies" },
+      { label: "White Papers", href: "/white-papers" },
+      { label: "Technical Guides", href: "/guides" },
+      { label: "API Reference", href: "/api" },
+      { label: "Downloads", href: "/downloads" },
+    ],
+  },
+  {
+    id: "support",
+    title: "Support",
+    items: [
+      { label: "Help Center", href: "/help" },
+      { label: "Free Consultation", href: "/consultation" },
+      { label: "Technical Support", href: "/tech-support" },
+      { label: "Training", href: "/training" },
+      { label: "Community", href: "/community" },
+      { label: "System Status", href: "/status" },
+    ],
+  },
+]
+
+const contactInfo: ContactInfo[] = [
+  { icon: Mail, label: "Email", value: "hello@weltivation.com", href: "mailto:hello@weltivation.com" },
+  { icon: Phone, label: "Phone", value: "+1 (555) 123-4567", href: "tel:+15551234567" },
+  { icon: MapPin, label: "Location", value: "San Francisco, CA", href: "#" },
+]
 
 export function FooterPopup() {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,66 +89,8 @@ export function FooterPopup() {
     setExpandedSection(expandedSection === sectionId ? null : sectionId)
   }
 
-  const sections = [
-    {
-      id: "services",
-      title: "Services",
-      items: [
-        { label: "Enterprise Web Development", href: "/services/web-development" },
-        { label: "Mobile App Development", href: "/services/mobile-apps" },
-        { label: "Physical Product Development", href: "/services/physical-products" },
-        { label: "SEO Optimization", href: "/services/seo" },
-        { label: "Google Ads Management", href: "/services/google-ads" },
-        { label: "Patent Services", href: "/services/patents" },
-      ],
-    },
-    {
-      id: "company",
-      title: "Company",
-      items: [
-        { label: "About Us", href: "/about" },
-        { label: "Our Process", href: "/process" },
-        { label: "Portfolio", href: "/portfolio" },
-        { label: "Careers", href: "/careers" },
-        { label: "Blog", href: "/blog" },
-        { label: "Contact", href: "/contact" },
-      ],
-    },
-    {
-      id: "resources",
-      title: "Resources",
-      items: [
-        { label: "Documentation", href: "/docs" },
-        { label: "Case Studies", href: "/case-studies" },
-        { label: "White Papers", href: "/white-papers" },
-        { label: "Technical Guides", href: "/guides" },
-        { label: "API Reference", href: "/api" },
-        { label: "Downloads", href: "/downloads" },
-      ],
-    },
-    {
-      id: "support",
-      title: "Support",
-      items: [
-        { label: "Help Center", href: "/help" },
-        { label: "Free Consultation", href: "/consultation" },
-        { label: "Technical Support", href: "/tech-support" },
-        { label: "Training", href: "/training" },
-        { label: "Community", href: "/community" },
-        { label: "System Status", href: "/status" },
-      ],
-    },
-  ]
-
-  const contactInfo = [
-    { icon: Mail, label: "Email", value: "hello@weltivation.com", href: "mailto:hello@weltivation.com" },
-    { icon: Phone, label: "Phone", value: "+1 (555) 123-4567", href: "tel:+15551234567" },
-    { icon: MapPin, label: "Location", value: "San Francisco, CA", href: "#" },
-  ]
-
   return (
     <div className="relative">
-      {/* Trigger button */}
       <button
         onClick={() => setIsOpen(true)}
         onMouseEnter={() => setIsOpen(true)}
@@ -80,11 +99,9 @@ export function FooterPopup() {
         <ArrowUp className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
       </button>
 
-      {/* Popup */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -93,7 +110,6 @@ export function FooterPopup() {
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Popup content */}
             <motion.div
               initial={{ y: "100%", opacity: 0, scale: 0.95 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
@@ -103,10 +119,9 @@ export function FooterPopup() {
               className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-t border-border/50 max-h-[85vh] overflow-y-auto shadow-2xl"
             >
               <div className="max-w-7xl mx-auto px-4 py-8">
-                {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
                   <div className="flex items-center space-x-4">
-                    <img src="/images/weltivation-logo.png" alt="Weltivation" className="h-12" />
+                    <Image src="/images/weltivation-logo.png" alt="Weltivation" width={160} height={48} />
                     <div>
                       <p className="text-sm text-muted-foreground">Ready to build the future together?</p>
                     </div>
@@ -119,28 +134,26 @@ export function FooterPopup() {
                   </button>
                 </div>
 
-                {/* Desktop: Grid layout, Mobile: Collapsible sections */}
                 <div className="hidden md:grid md:grid-cols-4 gap-8 mb-8">
                   {sections.map((section) => (
                     <div key={section.id} className="space-y-4">
                       <h4 className="font-semibold text-primary text-lg">{section.title}</h4>
                       <div className="space-y-3">
                         {section.items.map((item, index) => (
-                          <a
+                          <Link
                             key={index}
                             href={item.href}
-                            className="block text-sm text-muted-foreground hover:text-primary transition-colors py-1 hover:pl-2 group flex items-center"
+                            className="text-sm text-muted-foreground hover:text-primary transition-colors py-1 hover:pl-2 group flex items-center"
                           >
                             <span>{item.label}</span>
                             <ExternalLink className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
                   ))}
                 </div>
 
-                {/* Mobile: Collapsible sections */}
                 <div className="md:hidden space-y-2 mb-8">
                   {sections.map((section) => (
                     <div key={section.id} className="bg-muted/10 rounded-lg overflow-hidden border border-border/30">
@@ -167,17 +180,17 @@ export function FooterPopup() {
                           >
                             <div className="p-4 pt-0 space-y-3 border-t border-border/30">
                               {section.items.map((item, index) => (
-                                <motion.a
-                                  key={index}
-                                  href={item.href}
-                                  className="block text-sm text-muted-foreground hover:text-primary transition-colors py-2 hover:pl-2 flex items-center group"
-                                  initial={{ x: -10, opacity: 0 }}
-                                  animate={{ x: 0, opacity: 1 }}
-                                  transition={{ delay: index * 0.05 }}
-                                >
-                                  <span>{item.label}</span>
-                                  <ExternalLink className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                </motion.a>
+                                <Link key={index} href={item.href} passHref>
+                                    <motion.div
+                                    className="text-sm text-muted-foreground hover:text-primary transition-colors py-2 hover:pl-2 flex items-center group"
+                                    initial={{ x: -10, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: index * 0.05 }}
+                                    >
+                                    <span>{item.label}</span>
+                                    <ExternalLink className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    </motion.div>
+                                </Link>
                               ))}
                             </div>
                           </motion.div>
@@ -187,7 +200,6 @@ export function FooterPopup() {
                   ))}
                 </div>
 
-                {/* Contact Information */}
                 <div className="pt-6 border-t border-border/50">
                   <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
                     <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
@@ -195,7 +207,7 @@ export function FooterPopup() {
                         <span className="inline-block w-2 h-2 rounded-full bg-green-500"></span>
                         <span>All systems operational</span>
                       </div>
-                      <span className="text-sm text-muted-foreground">© 2025 Weltivation. All rights reserved.</span>
+                      <span className="text-sm text-muted-foreground">© {new Date().getFullYear()} Weltivation. All rights reserved.</span>
                     </div>
 
                     <div className="flex flex-wrap justify-center lg:justify-end gap-6">
