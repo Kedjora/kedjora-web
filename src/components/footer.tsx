@@ -1,11 +1,42 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown, ChevronUp, MessageSquare } from "lucide-react"
 import { NewsletterForm } from "./newsletter-form"
 import { FooterPopup } from "./footer-popup"
 import { Button } from "@/components/ui/button"
+
+type FooterSection = {
+  id: string
+  title: string
+  items: string[]
+}
+
+const footerSections: FooterSection[] = [
+  {
+    id: "services",
+    title: "Services",
+    items: ["Web Development", "Mobile Apps", "Physical Products", "SEO", "Google Ads", "Patent Services"],
+  },
+  {
+    id: "company",
+    title: "Company",
+    items: ["About", "Portfolio", "Projects", "Process", "Careers", "Blog"],
+  },
+  {
+    id: "resources",
+    title: "Resources",
+    items: ["Documentation", "Support", "API", "Status", "Security", "Downloads"],
+  },
+  {
+    id: "legal",
+    title: "Legal",
+    items: ["Privacy", "Terms", "Cookies", "GDPR", "Accessibility", "Licenses"],
+  },
+]
 
 export function Footer() {
   const [expandedSection, setExpandedSection] = useState<string | null>(null)
@@ -14,33 +45,13 @@ export function Footer() {
     setExpandedSection(expandedSection === sectionId ? null : sectionId)
   }
 
-  const footerSections = [
-    {
-      id: "services",
-      title: "Services",
-      items: ["Web Development", "Mobile Apps", "Physical Products", "SEO", "Google Ads", "Patent Services"],
-    },
-    {
-      id: "company",
-      title: "Company",
-      items: ["About", "Portfolio", "Projects", "Process", "Careers", "Blog"],
-    },
-    {
-      id: "resources",
-      title: "Resources",
-      items: ["Documentation", "Support", "API", "Status", "Security", "Downloads"],
-    },
-    {
-      id: "legal",
-      title: "Legal",
-      items: ["Privacy", "Terms", "Cookies", "GDPR", "Accessibility", "Licenses"],
-    },
-  ]
+  // Helper untuk membuat URL dari nama item
+  const createLinkHref = (item: string) => `/${item.toLowerCase().replace(/\s+/g, "-")}`
 
   return (
     <footer className="py-8 px-4 sm:px-6 border-t border-border/50 relative overflow-hidden">
       {/* Code background */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
         <pre className="text-xs text-primary/30 font-mono leading-relaxed transform rotate-6 scale-150 absolute -top-20 -left-20">
           {`function innovate() {
   const solutions = [];
@@ -68,7 +79,7 @@ export function Footer() {
         {/* Desktop Footer */}
         <div className="hidden md:flex flex-col sm:flex-row justify-between items-center gap-8">
           <div className="flex items-center space-x-4">
-            <img src="/images/weltivation-logo.png" alt="Weltivation" className="h-14" />
+            <Image src="/images/weltivation-logo.png" alt="Weltivation" width={180} height={56} />
             <FooterPopup />
           </div>
 
@@ -96,15 +107,19 @@ export function Footer() {
 
         {/* Mobile Footer - Stacked with collapsible sections */}
         <div className="md:hidden space-y-6">
-          {/* Logo and main info */}
           <div className="text-center space-y-4">
-            <img src="/images/weltivation-logo.png" alt="Weltivation" className="h-12 mx-auto" />
+            <Image
+              src="/images/weltivation-logo.png"
+              alt="Weltivation"
+              width={160}
+              height={48}
+              className="mx-auto"
+            />
             <div className="text-muted-foreground text-xs">
               &copy; {new Date().getFullYear()} Weltivation. All rights reserved.
             </div>
           </div>
 
-          {/* Collapsible sections */}
           <div className="space-y-2">
             {footerSections.map((section) => (
               <div key={section.id} className="border border-border/30 rounded-lg overflow-hidden">
@@ -131,15 +146,16 @@ export function Footer() {
                     >
                       <div className="p-4 pt-0 space-y-2 border-t border-border/30">
                         {section.items.map((item, index) => (
-                          <motion.div
-                            key={index}
-                            className="text-sm text-muted-foreground hover:text-primary transition-colors py-1"
-                            initial={{ x: -10, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: index * 0.05 }}
-                          >
-                            {item}
-                          </motion.div>
+                          <Link href={createLinkHref(item)} key={index} passHref>
+                            <motion.div
+                              className="text-sm text-muted-foreground hover:text-primary transition-colors py-1 cursor-pointer"
+                              initial={{ x: -10, opacity: 0 }}
+                              animate={{ x: 0, opacity: 1 }}
+                              transition={{ delay: index * 0.05 }}
+                            >
+                              {item}
+                            </motion.div>
+                          </Link>
                         ))}
                       </div>
                     </motion.div>
@@ -149,7 +165,6 @@ export function Footer() {
             ))}
           </div>
 
-          {/* Newsletter signup and chat button */}
           <div className="text-center space-y-4 pt-4 border-t border-border/30">
             <span className="text-sm text-muted-foreground">Stay updated</span>
             <div className="px-4">
