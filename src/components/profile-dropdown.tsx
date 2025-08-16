@@ -3,6 +3,7 @@
 import type React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Building, DollarSign, Users, Target, X, ChevronDown, ChevronUp } from "lucide-react"
 
 type ProfileData = {
@@ -28,10 +29,11 @@ export function ProfileDropdown() {
   const [profileData, setProfileData] = useState<ProfileData>({})
 
   useEffect(() => {
-    const handleShow = (e: any) => {
+    const handleShow = (e: Event) => {
+      const customEvent = e as CustomEvent<{ service?: string }>
       setIsVisible(true)
-      if (e.detail?.service) {
-        setProfileData((prev) => ({ ...prev, projectType: e.detail.service }))
+      if (customEvent.detail?.service) {
+        setProfileData((prev) => ({ ...prev, projectType: customEvent.detail.service }))
       }
     }
 
@@ -40,8 +42,9 @@ export function ProfileDropdown() {
       setIsExpanded(false)
     }
 
-    const handleUpdate = (e: any) => {
-      setProfileData((prev) => ({ ...prev, ...e.detail }))
+    const handleUpdate = (e: Event) => {
+      const customEvent = e as CustomEvent<Partial<ProfileData>>
+      setProfileData((prev) => ({ ...prev, ...customEvent.detail }))
     }
 
     const handleScroll = () => {
@@ -51,15 +54,16 @@ export function ProfileDropdown() {
       }
     }
 
-    window.addEventListener("showProfileDropdown", handleShow)
+    // Cast handler ke EventListener untuk kompatibilitas tipe dengan addEventListener
+    window.addEventListener("showProfileDropdown", handleShow as EventListener)
     window.addEventListener("hideProfileDropdown", handleHide)
-    window.addEventListener("updateProfileDropdown", handleUpdate)
+    window.addEventListener("updateProfileDropdown", handleUpdate as EventListener)
     window.addEventListener("scroll", handleScroll)
 
     return () => {
-      window.removeEventListener("showProfileDropdown", handleShow)
+      window.removeEventListener("showProfileDropdown", handleShow as EventListener)
       window.removeEventListener("hideProfileDropdown", handleHide)
-      window.removeEventListener("updateProfileDropdown", handleUpdate)
+      window.removeEventListener("updateProfileDropdown", handleUpdate as EventListener)
       window.removeEventListener("scroll", handleScroll)
     }
   }, [])
@@ -84,7 +88,7 @@ export function ProfileDropdown() {
             {/* Header - Always Visible */}
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center space-x-2">
-                <img src="/images/weltivation-logo.png" alt="Weltivation" className="w-6 h-6" />
+                <Image src="/images/weltivation-logo.png" alt="Weltivation" width={24} height={24} />
                 <div>
                   <h3 className="text-sm font-bold text-white">Business Profile</h3>
                   <p className="text-xs text-gray-400">
@@ -112,9 +116,11 @@ export function ProfileDropdown() {
 
             {/* Progress Bar */}
             <div className="w-full bg-gray-800 rounded-full h-1.5 mb-3">
-              <div
-                className="bg-primary h-1.5 rounded-full transition-all duration-300"
-                style={{ width: `${getCompletionPercentage()}%` }}
+              <motion.div
+                className="bg-primary h-1.5 rounded-full"
+                initial={{ width: "0%" }}
+                animate={{ width: `${getCompletionPercentage()}%` }}
+                transition={{ duration: 0.3 }}
               />
             </div>
 
