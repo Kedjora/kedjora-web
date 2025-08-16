@@ -1,7 +1,7 @@
 "use client"
 
-import { useRef, useState } from "react"
-import { motion, useInView } from "framer-motion"
+import { useRef, useState, ReactNode } from "react"
+import { motion, useInView, Variants } from "framer-motion"
 import {
   Globe,
   Smartphone,
@@ -24,123 +24,136 @@ import {
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 
+type Service = {
+  title: string
+  description: string
+  icon: ReactNode
+  gradient: string
+  price: string
+  timeline: string
+  rating: string
+  projects: string
+  features: string[]
+  size: "large" | "medium" | "small"
+}
+
+const services: Service[] = [
+    {
+    title: "Web Development",
+    description: "Custom web applications that scale with your business growth",
+    icon: <Globe className="w-6 h-6" />,
+    gradient: "from-emerald-500 to-green-600",
+    price: "$15K+",
+    timeline: "6-16 weeks",
+    rating: "4.9",
+    projects: "500+",
+    features: ["React/Next.js", "Cloud Hosting", "API Integration", "SEO Ready"],
+    size: "large", // Takes 2 columns
+  },
+  {
+    title: "Mobile Apps",
+    description: "Native iOS & Android applications",
+    icon: <Smartphone className="w-6 h-6" />,
+    gradient: "from-blue-500 to-cyan-600",
+    price: "$25K+",
+    timeline: "8-20 weeks",
+    rating: "4.8",
+    projects: "200+",
+    features: ["React Native", "App Store Ready"],
+    size: "medium",
+  },
+  {
+    title: "Product Development",
+    description: "Physical products from concept to manufacturing",
+    icon: <Cog className="w-6 h-6" />,
+    gradient: "from-orange-500 to-red-600",
+    price: "$30K+",
+    timeline: "12-32 weeks",
+    rating: "5.0",
+    projects: "150+",
+    features: ["3D Design", "Prototyping"],
+    size: "medium",
+  },
+  {
+    title: "Custom Software",
+    description: "Enterprise software solutions tailored to your needs",
+    icon: <Code className="w-6 h-6" />,
+    gradient: "from-purple-500 to-indigo-600",
+    price: "$20K+",
+    timeline: "10-24 weeks",
+    rating: "4.9",
+    projects: "300+",
+    features: ["Custom Logic", "Automation", "Integrations", "Scalable Architecture"],
+    size: "large",
+  },
+  {
+    title: "Database Solutions",
+    description: "High-performance data architecture",
+    icon: <Database className="w-6 h-6" />,
+    gradient: "from-indigo-500 to-purple-600",
+    price: "$10K+",
+    timeline: "6-16 weeks",
+    rating: "4.9",
+    projects: "250+",
+    features: ["Performance Tuning", "Analytics"],
+    size: "small",
+  },
+  {
+    title: "UI/UX Design",
+    description: "User-centered design that converts",
+    icon: <Palette className="w-6 h-6" />,
+    gradient: "from-pink-500 to-rose-600",
+    price: "$8K+",
+    timeline: "4-12 weeks",
+    rating: "4.8",
+    projects: "400+",
+    features: ["User Research", "Prototyping"],
+    size: "small",
+  },
+  {
+    title: "AI & Automation",
+    description: "Intelligent automation solutions",
+    icon: <Zap className="w-6 h-6" />,
+    gradient: "from-yellow-500 to-orange-600",
+    price: "$25K+",
+    timeline: "8-20 weeks",
+    rating: "4.9",
+    projects: "100+",
+    features: ["Machine Learning", "Process Automation"],
+    size: "medium",
+  },
+  {
+    title: "Cybersecurity",
+    description: "Enterprise-grade security",
+    icon: <Shield className="w-6 h-6" />,
+    gradient: "from-red-500 to-orange-600",
+    price: "$15K+",
+    timeline: "6-18 weeks",
+    rating: "5.0",
+    projects: "180+",
+    features: ["Threat Detection", "Compliance"],
+    size: "small",
+  },
+  {
+    title: "Cloud Solutions",
+    description: "Scalable cloud infrastructure and deployment",
+    icon: <Cloud className="w-6 h-6" />,
+    gradient: "from-cyan-500 to-blue-600",
+    price: "$12K+",
+    timeline: "4-12 weeks",
+    rating: "4.9",
+    projects: "220+",
+    features: ["AWS/Azure", "Auto-scaling", "Monitoring", "Cost Optimization"],
+    size: "large",
+  },
+]
+
 export function ServicesBrickLayout() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
 
-  const services = [
-    {
-      title: "Web Development",
-      description: "Custom web applications that scale with your business growth",
-      icon: <Globe className="w-6 h-6" />,
-      gradient: "from-emerald-500 to-green-600",
-      price: "$15K+",
-      timeline: "6-16 weeks",
-      rating: "4.9",
-      projects: "500+",
-      features: ["React/Next.js", "Cloud Hosting", "API Integration", "SEO Ready"],
-      size: "large", // Takes 2 columns
-    },
-    {
-      title: "Mobile Apps",
-      description: "Native iOS & Android applications",
-      icon: <Smartphone className="w-6 h-6" />,
-      gradient: "from-blue-500 to-cyan-600",
-      price: "$25K+",
-      timeline: "8-20 weeks",
-      rating: "4.8",
-      projects: "200+",
-      features: ["React Native", "App Store Ready"],
-      size: "medium",
-    },
-    {
-      title: "Product Development",
-      description: "Physical products from concept to manufacturing",
-      icon: <Cog className="w-6 h-6" />,
-      gradient: "from-orange-500 to-red-600",
-      price: "$30K+",
-      timeline: "12-32 weeks",
-      rating: "5.0",
-      projects: "150+",
-      features: ["3D Design", "Prototyping"],
-      size: "medium",
-    },
-    {
-      title: "Custom Software",
-      description: "Enterprise software solutions tailored to your needs",
-      icon: <Code className="w-6 h-6" />,
-      gradient: "from-purple-500 to-indigo-600",
-      price: "$20K+",
-      timeline: "10-24 weeks",
-      rating: "4.9",
-      projects: "300+",
-      features: ["Custom Logic", "Automation", "Integrations", "Scalable Architecture"],
-      size: "large",
-    },
-    {
-      title: "Database Solutions",
-      description: "High-performance data architecture",
-      icon: <Database className="w-6 h-6" />,
-      gradient: "from-indigo-500 to-purple-600",
-      price: "$10K+",
-      timeline: "6-16 weeks",
-      rating: "4.9",
-      projects: "250+",
-      features: ["Performance Tuning", "Analytics"],
-      size: "small",
-    },
-    {
-      title: "UI/UX Design",
-      description: "User-centered design that converts",
-      icon: <Palette className="w-6 h-6" />,
-      gradient: "from-pink-500 to-rose-600",
-      price: "$8K+",
-      timeline: "4-12 weeks",
-      rating: "4.8",
-      projects: "400+",
-      features: ["User Research", "Prototyping"],
-      size: "small",
-    },
-    {
-      title: "AI & Automation",
-      description: "Intelligent automation solutions",
-      icon: <Zap className="w-6 h-6" />,
-      gradient: "from-yellow-500 to-orange-600",
-      price: "$25K+",
-      timeline: "8-20 weeks",
-      rating: "4.9",
-      projects: "100+",
-      features: ["Machine Learning", "Process Automation"],
-      size: "medium",
-    },
-    {
-      title: "Cybersecurity",
-      description: "Enterprise-grade security",
-      icon: <Shield className="w-6 h-6" />,
-      gradient: "from-red-500 to-orange-600",
-      price: "$15K+",
-      timeline: "6-18 weeks",
-      rating: "5.0",
-      projects: "180+",
-      features: ["Threat Detection", "Compliance"],
-      size: "small",
-    },
-    {
-      title: "Cloud Solutions",
-      description: "Scalable cloud infrastructure and deployment",
-      icon: <Cloud className="w-6 h-6" />,
-      gradient: "from-cyan-500 to-blue-600",
-      price: "$12K+",
-      timeline: "4-12 weeks",
-      rating: "4.9",
-      projects: "220+",
-      features: ["AWS/Azure", "Auto-scaling", "Monitoring", "Cost Optimization"],
-      size: "large",
-    },
-  ]
-
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -150,7 +163,7 @@ export function ServicesBrickLayout() {
     },
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 50, opacity: 0, scale: 0.9 },
     visible: {
       y: 0,
@@ -233,16 +246,16 @@ export function ServicesBrickLayout() {
                 variants={itemVariants}
                 className={`group relative ${
                   service.size === "large"
-                    ? "md:col-span-2"
+                    ? "lg:col-span-2 md:col-span-2" // Large takes full width on md, half on lg
                     : service.size === "medium"
-                      ? "md:col-span-1 lg:col-span-2"
-                      : "md:col-span-1"
+                    ? "lg:col-span-2 md:col-span-1" // Medium takes half on lg, half on md
+                    : "lg:col-span-1 md:col-span-1" // Small takes quarter on lg, half on md
                 }`}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
                 whileHover={{
                   scale: 1.02,
-                  z: 50,
+                  zIndex: 10,
                 }}
                 transition={{
                   type: "spring",
@@ -255,11 +268,10 @@ export function ServicesBrickLayout() {
                     service.size === "large"
                       ? "min-h-[320px]"
                       : service.size === "medium"
-                        ? "min-h-[280px]"
-                        : "min-h-[240px]"
+                      ? "min-h-[280px]"
+                      : "min-h-[280px]" // Made small cards same height as medium for grid consistency
                   }`}
                 >
-                  {/* Gradient overlay */}
                   <motion.div
                     className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5 transition-opacity duration-500`}
                     animate={{
@@ -268,7 +280,6 @@ export function ServicesBrickLayout() {
                   />
 
                   <CardContent className="relative z-10 p-6 h-full flex flex-col">
-                    {/* Header */}
                     <div className="flex items-center justify-between mb-4">
                       <motion.div
                         className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${service.gradient} text-white shadow-lg`}
@@ -290,7 +301,6 @@ export function ServicesBrickLayout() {
                       </div>
                     </div>
 
-                    {/* Content */}
                     <div className="flex-1 space-y-4">
                       <div>
                         <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors duration-300 mb-2">
@@ -299,7 +309,6 @@ export function ServicesBrickLayout() {
                         <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
                       </div>
 
-                      {/* Stats for larger cards */}
                       {service.size === "large" && (
                         <div className="grid grid-cols-3 gap-2">
                           <div className="text-center p-2 bg-gray-800/30 rounded">
@@ -317,7 +326,6 @@ export function ServicesBrickLayout() {
                         </div>
                       )}
 
-                      {/* Features */}
                       <div className="space-y-2">
                         {service.features.slice(0, service.size === "large" ? 4 : 2).map((feature, featureIndex) => (
                           <motion.div
@@ -333,7 +341,6 @@ export function ServicesBrickLayout() {
                         ))}
                       </div>
 
-                      {/* Pricing for smaller cards */}
                       {service.size !== "large" && (
                         <div className="flex items-center justify-between text-sm">
                           <div className="flex items-center space-x-1">
@@ -348,7 +355,6 @@ export function ServicesBrickLayout() {
                       )}
                     </div>
 
-                    {/* CTA Button */}
                     <div className="mt-4">
                       <Button
                         variant="ghost"
