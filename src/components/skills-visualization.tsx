@@ -12,75 +12,74 @@ type Skill = {
   description: string
 }
 
+const skills: Skill[] = [
+  {
+    name: "Penetration Testing",
+    level: 95,
+    category: "Offensive Security",
+    description: "Expert in identifying and exploiting vulnerabilities in networks, applications, and systems",
+  },
+  {
+    name: "Network Security",
+    level: 90,
+    category: "Defensive Security",
+    description: "Advanced knowledge of securing network infrastructure and detecting intrusions",
+  },
+  {
+    name: "Exploit Development",
+    level: 85,
+    category: "Offensive Security",
+    description: "Creation of custom exploits for various platforms and vulnerability types",
+  },
+  {
+    name: "Reverse Engineering",
+    level: 88,
+    category: "Analysis",
+    description: "Disassembly and analysis of binaries to understand functionality and identify vulnerabilities",
+  },
+  {
+    name: "Malware Analysis",
+    level: 82,
+    category: "Analysis",
+    description: "Static and dynamic analysis of malicious code to determine behavior and origin",
+  },
+  {
+    name: "Cryptography",
+    level: 78,
+    category: "Defensive Security",
+    description: "Implementation and analysis of encryption systems and cryptographic protocols",
+  },
+  {
+    name: "Social Engineering",
+    level: 80,
+    category: "Offensive Security",
+    description: "Psychological manipulation techniques to gain access to systems or information",
+  },
+  {
+    name: "Incident Response",
+    level: 87,
+    category: "Defensive Security",
+    description: "Rapid identification, containment, and remediation of security breaches",
+  },
+  {
+    name: "OSINT",
+    level: 92,
+    category: "Intelligence",
+    description: "Open-source intelligence gathering and analysis for target reconnaissance",
+  },
+  {
+    name: "Digital Forensics",
+    level: 84,
+    category: "Analysis",
+    description: "Recovery and investigation of material found in digital devices",
+  },
+]
+
 export function SkillsVisualization() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
   const [activeSkill, setActiveSkill] = useState<Skill | null>(null)
   const [activeTab, setActiveTab] = useState("terminal")
-
-  // Skills data with categories
-  const skills: Skill[] = [
-    {
-      name: "Penetration Testing",
-      level: 95,
-      category: "Offensive Security",
-      description: "Expert in identifying and exploiting vulnerabilities in networks, applications, and systems",
-    },
-    {
-      name: "Network Security",
-      level: 90,
-      category: "Defensive Security",
-      description: "Advanced knowledge of securing network infrastructure and detecting intrusions",
-    },
-    {
-      name: "Exploit Development",
-      level: 85,
-      category: "Offensive Security",
-      description: "Creation of custom exploits for various platforms and vulnerability types",
-    },
-    {
-      name: "Reverse Engineering",
-      level: 88,
-      category: "Analysis",
-      description: "Disassembly and analysis of binaries to understand functionality and identify vulnerabilities",
-    },
-    {
-      name: "Malware Analysis",
-      level: 82,
-      category: "Analysis",
-      description: "Static and dynamic analysis of malicious code to determine behavior and origin",
-    },
-    {
-      name: "Cryptography",
-      level: 78,
-      category: "Defensive Security",
-      description: "Implementation and analysis of encryption systems and cryptographic protocols",
-    },
-    {
-      name: "Social Engineering",
-      level: 80,
-      category: "Offensive Security",
-      description: "Psychological manipulation techniques to gain access to systems or information",
-    },
-    {
-      name: "Incident Response",
-      level: 87,
-      category: "Defensive Security",
-      description: "Rapid identification, containment, and remediation of security breaches",
-    },
-    {
-      name: "OSINT",
-      level: 92,
-      category: "Intelligence",
-      description: "Open-source intelligence gathering and analysis for target reconnaissance",
-    },
-    {
-      name: "Digital Forensics",
-      level: 84,
-      category: "Analysis",
-      description: "Recovery and investigation of material found in digital devices",
-    },
-  ]
 
   // Group skills by category
   const categories = Array.from(new Set(skills.map((skill) => skill.category)))
@@ -93,8 +92,7 @@ export function SkillsVisualization() {
   )
 
   // Radar chart data preparation
-  const radarCategories = categories
-  const radarData = radarCategories.map((category) => {
+  const radarData = categories.map((category) => {
     const categorySkills = skillsByCategory[category]
     const averageLevel = categorySkills.reduce((sum, skill) => sum + skill.level, 0) / categorySkills.length
     return {
@@ -137,7 +135,7 @@ export function SkillsVisualization() {
       }, 200)
       return () => clearTimeout(timer)
     }
-  }, [isInView, displayedSkills, skills, activeTab])
+  }, [isInView, displayedSkills, activeTab])
 
   useEffect(() => {
     if (activeTab === "terminal") {
@@ -270,7 +268,7 @@ export function SkillsVisualization() {
   )
 }
 
-// Radar Chart Component
+// Radar Chart Component (Tidak ada perubahan di sini)
 function RadarChart({
   data,
   setActiveSkill,
@@ -382,7 +380,6 @@ function RadarChart({
             const labelX = centerX + labelRadius * Math.cos(point.angle)
             const labelY = centerY + labelRadius * Math.sin(point.angle)
 
-            // Adjust text anchor based on position
             let textAnchor = "middle"
             if (point.angle > -Math.PI * 0.25 && point.angle < Math.PI * 0.25) textAnchor = "start"
             else if (point.angle > Math.PI * 0.75 || point.angle < -Math.PI * 0.75) textAnchor = "end"
