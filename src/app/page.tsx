@@ -1,5 +1,6 @@
 "use client"
 
+import { useRef, useEffect, useState } from "react"
 import Link from "next/link"
 import { CodeRain } from "@/components/code-rain"
 import { NavBar } from "@/components/nav-bar"
@@ -12,6 +13,173 @@ import { motion } from "framer-motion"
 import { Zap } from "lucide-react"
 import { ProfileDropdown } from "@/components/profile-dropdown"
 import { ServicesViewportSection } from "@/components/services-viewport-section"
+
+// Enhanced Video Loop Component
+const SmoothVideoBackground = () => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    // Enhanced smooth looping handler
+    const handleTimeUpdate = () => {
+      // Restart video slightly before it ends to eliminate gap
+      if (video.currentTime >= video.duration - 0.15) {
+        video.currentTime = 0.05 // Start slightly after beginning to avoid black frame
+      }
+    }
+
+    // Handle video loaded and ready to play
+    const handleLoadedData = () => {
+      setIsLoaded(true)
+      video.currentTime = 0.05 // Start slightly after beginning
+      
+      // Ensure video plays smoothly
+      const playPromise = video.play()
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true)
+          })
+          .catch((error) => {
+            console.warn("Video autoplay failed:", error)
+          })
+      }
+    }
+
+    // Handle ended event as fallback
+    const handleEnded = () => {
+      video.currentTime = 0.05
+      video.play().catch(() => {
+        // Handle play failure silently
+      })
+    }
+
+    // Handle play event
+    const handlePlay = () => {
+      setIsPlaying(true)
+    }
+
+    // Handle pause event
+    const handlePause = () => {
+      setIsPlaying(false)
+    }
+
+    // Optimize video playback
+    const optimizeVideo = () => {
+      video.playbackRate = 1
+      video.defaultPlaybackRate = 1
+      
+      // Force hardware acceleration
+      video.style.transform = 'translateZ(0)'
+      video.style.backfaceVisibility = 'hidden'
+      video.style.webkitBackfaceVisibility = 'hidden'
+    }
+
+    // Add event listeners
+    video.addEventListener('timeupdate', handleTimeUpdate)
+    video.addEventListener('loadeddata', handleLoadedData)
+    video.addEventListener('ended', handleEnded)
+    video.addEventListener('play', handlePlay)
+    video.addEventListener('pause', handlePause)
+    video.addEventListener('loadstart', optimizeVideo)
+
+    // Handle if video is already loaded
+    if (video.readyState >= 3) {
+      handleLoadedData()
+    }
+
+    // Cleanup
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate)
+      video.removeEventListener('loadeddata', handleLoadedData)
+      video.removeEventListener('ended', handleEnded)
+      video.removeEventListener('play', handlePlay)
+      video.removeEventListener('pause', handlePause)
+      video.removeEventListener('loadstart', optimizeVideo)
+    }
+  }, [])
+
+  // Handle visibility change to pause/resume video
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const video = videoRef.current
+      if (!video) return
+
+      if (document.hidden) {
+        video.pause()
+      } else if (isLoaded) {
+        video.play().catch(() => {
+          // Handle play failure silently
+        })
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [isLoaded])
+
+  return (
+    <div className="fixed inset-0 z-[1] pointer-events-none">
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-out ${
+          isLoaded && isPlaying ? 'opacity-25' : 'opacity-0'
+        }`}
+        style={{
+          filter: "contrast(1.2) brightness(0.7) grayscale(100%)",
+          // Enhanced performance optimizations
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          webkitBackfaceVisibility: 'hidden',
+          perspective: '1000px',
+          webkitPerspective: '1000px',
+          willChange: 'transform',
+          // Prevent flickering
+          webkitTransform: 'translateZ(0)',
+          webkitTransformStyle: 'preserve-3d',
+        } as React.CSSProperties}
+        // Additional video optimization attributes
+        webkit-playsinline="true"
+        x5-video-player-type="h5"
+        x5-video-player-fullscreen="true"
+        x5-video-orientation="portraint"
+      >
+        <source src="https://nkrj90wrdnyn9pae.public.blob.vercel-storage.com/Kedjora.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      
+      {/* Loading indicator */}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-black flex items-center justify-center">
+          <div className="relative">
+            {/* Spinning loader */}
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white/30"></div>
+            {/* Pulse effect */}
+            <div className="absolute inset-0 animate-ping rounded-full h-12 w-12 border border-white/10"></div>
+          </div>
+        </div>
+      )}
+
+      {/* Fade overlay for smooth loading transition */}
+      <div 
+        className={`absolute inset-0 bg-black transition-opacity duration-2000 ease-out pointer-events-none ${
+          isLoaded && isPlaying ? 'opacity-0' : 'opacity-100'
+        }`}
+      />
+    </div>
+  )
+}
 
 export default function Home() {
   return (
@@ -28,22 +196,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Hero Video - Full screen background */}
-      <div className="fixed inset-0 z-[1] pointer-events-none">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-25"
-          style={{
-            filter: "contrast(1.2) brightness(0.7) grayscale(100%)",
-          }}
-        >
-          <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20video%20-%20Made%20with%20Clipchamp%20%283%29%20%281%29%20%282%29%20%282%29-i8U3zTcWrQss8nKM5ekseP7qFR5KVP.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      {/* Enhanced Hero Video with Smooth Loop */}
+      <SmoothVideoBackground />
 
       {/* Content container */}
       <div className="relative z-10">
@@ -136,7 +290,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Lets discuss how we can transform your vision into reality with cutting-edge technology and strategic
+                Let&apos;s discuss how we can transform your vision into reality with cutting-edge technology and strategic
                 innovation.
               </motion.p>
             </div>
