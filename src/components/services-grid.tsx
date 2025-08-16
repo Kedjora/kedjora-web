@@ -1,7 +1,7 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { useRef, ReactNode } from "react"
+import { motion, useInView, Variants } from "framer-motion"
 import { Code, Cog, Search, Shield, Zap, Globe, ArrowUpRight, CheckCircle } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -13,104 +13,114 @@ import {
   DigitalTransformationGraphic,
 } from "./animated-service-graphics"
 
+type Service = {
+  title: string
+  description: string
+  icon: ReactNode
+  features: string[]
+  gradient: string
+  badge: string
+  graphic: ReactNode
+}
+
+const services: Service[] = [
+  {
+    title: "Web Development",
+    description: "Transform your ideas into powerful web solutions that drive growth.",
+    icon: <Code className="w-8 h-8" />,
+    features: [
+      "Increased online visibility",
+      "Improved customer engagement",
+      "Higher conversion rates",
+      "Scalable architecture",
+      "Mobile-first design",
+    ],
+    gradient: "from-blue-500 to-cyan-500",
+    badge: "Core Service",
+    graphic: <WebDevGraphic />,
+  },
+  {
+    title: "Mechanical Engineering",
+    description: "Innovative mechanical designs that optimize performance and reduce costs.",
+    icon: <Cog className="w-8 h-8" />,
+    features: [
+      "Enhanced product functionality",
+      "Reduced manufacturing costs",
+      "Improved product lifespan",
+      "Faster time to market",
+      "Sustainable designs",
+    ],
+    gradient: "from-orange-500 to-red-500",
+    badge: "Core Service",
+    graphic: <MechanicalGraphic />,
+  },
+  {
+    title: "SEO Optimization",
+    description: "Dominate search rankings and attract more qualified leads to your business.",
+    icon: <Search className="w-8 h-8" />,
+    features: [
+      "Increased organic traffic",
+      "Higher search engine rankings",
+      "Improved brand awareness",
+      "More qualified leads",
+      "Data-driven insights",
+    ],
+    gradient: "from-green-500 to-emerald-500",
+    badge: "Digital Marketing",
+    graphic: <SEOGraphic />,
+  },
+  {
+    title: "Patent Services",
+    description: "Secure your innovations and gain a competitive edge in the market.",
+    icon: <Shield className="w-8 h-8" />,
+    features: [
+      "Exclusive market rights",
+      "Stronger investment opportunities",
+      "Increased company valuation",
+      "Protection against infringement",
+      "Strategic IP portfolio",
+    ],
+    gradient: "from-purple-500 to-pink-500",
+    badge: "Patent Pending",
+    graphic: <PatentGraphic />,
+  },
+  {
+    title: "IoT Solutions",
+    description: "Connect your business and unlock new opportunities with smart IoT solutions.",
+    icon: <Zap className="w-8 h-8" />,
+    features: [
+      "Real-time data insights",
+      "Improved operational efficiency",
+      "Enhanced customer experiences",
+      "New revenue streams",
+      "Predictive maintenance",
+    ],
+    gradient: "from-yellow-500 to-orange-500",
+    badge: "Innovation",
+    graphic: <IoTGraphic />,
+  },
+  {
+    title: "Digital Transformation",
+    description: "Modernize your business and achieve sustainable growth in the digital age.",
+    icon: <Globe className="w-8 h-8" />,
+    features: [
+      "Streamlined business processes",
+      "Improved data security",
+      "Enhanced customer satisfaction",
+      "Increased agility and innovation",
+      "Better decision-making",
+    ],
+    gradient: "from-indigo-500 to-blue-500",
+    badge: "Consulting",
+    graphic: <DigitalTransformationGraphic />,
+  },
+]
+
 export function ServicesGrid() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
 
-  const services = [
-    {
-      title: "Web Development",
-      description: "Transform your ideas into powerful web solutions that drive growth.",
-      icon: <Code className="w-8 h-8" />,
-      features: [
-        "Increased online visibility",
-        "Improved customer engagement",
-        "Higher conversion rates",
-        "Scalable architecture",
-        "Mobile-first design",
-      ],
-      gradient: "from-blue-500 to-cyan-500",
-      badge: "Core Service",
-      graphic: <WebDevGraphic />,
-    },
-    {
-      title: "Mechanical Engineering",
-      description: "Innovative mechanical designs that optimize performance and reduce costs.",
-      icon: <Cog className="w-8 h-8" />,
-      features: [
-        "Enhanced product functionality",
-        "Reduced manufacturing costs",
-        "Improved product lifespan",
-        "Faster time to market",
-        "Sustainable designs",
-      ],
-      gradient: "from-orange-500 to-red-500",
-      badge: "Core Service",
-      graphic: <MechanicalGraphic />,
-    },
-    {
-      title: "SEO Optimization",
-      description: "Dominate search rankings and attract more qualified leads to your business.",
-      icon: <Search className="w-8 h-8" />,
-      features: [
-        "Increased organic traffic",
-        "Higher search engine rankings",
-        "Improved brand awareness",
-        "More qualified leads",
-        "Data-driven insights",
-      ],
-      gradient: "from-green-500 to-emerald-500",
-      badge: "Digital Marketing",
-      graphic: <SEOGraphic />,
-    },
-    {
-      title: "Patent Services",
-      description: "Secure your innovations and gain a competitive edge in the market.",
-      icon: <Shield className="w-8 h-8" />,
-      features: [
-        "Exclusive market rights",
-        "Stronger investment opportunities",
-        "Increased company valuation",
-        "Protection against infringement",
-        "Strategic IP portfolio",
-      ],
-      gradient: "from-purple-500 to-pink-500",
-      badge: "Patent Pending",
-      graphic: <PatentGraphic />,
-    },
-    {
-      title: "IoT Solutions",
-      description: "Connect your business and unlock new opportunities with smart IoT solutions.",
-      icon: <Zap className="w-8 h-8" />,
-      features: [
-        "Real-time data insights",
-        "Improved operational efficiency",
-        "Enhanced customer experiences",
-        "New revenue streams",
-        "Predictive maintenance",
-      ],
-      gradient: "from-yellow-500 to-orange-500",
-      badge: "Innovation",
-      graphic: <IoTGraphic />,
-    },
-    {
-      title: "Digital Transformation",
-      description: "Modernize your business and achieve sustainable growth in the digital age.",
-      icon: <Globe className="w-8 h-8" />,
-      features: [
-        "Streamlined business processes",
-        "Improved data security",
-        "Enhanced customer satisfaction",
-        "Increased agility and innovation",
-        "Better decision-making",
-      ],
-      gradient: "from-indigo-500 to-blue-500",
-      badge: "Consulting",
-      graphic: <DigitalTransformationGraphic />,
-    },
-  ]
-
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -120,7 +130,7 @@ export function ServicesGrid() {
     },
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
