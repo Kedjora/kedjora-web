@@ -1,47 +1,144 @@
 'use client';
 
-import React from 'react';
-import { motion, Variants } from 'framer-motion';
-import { Globe, Smartphone, Bot, Palette, ArrowRight, Zap } from 'lucide-react';
+import React, { ReactNode } from 'react';
+import { motion } from 'framer-motion';
+import { Globe, Smartphone, Bot, Palette } from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { BentoGrid, BentoCard } from '@/components/ui/bento-grid';
+
+// Background untuk Web Development - Browser mockup dengan code
+const WebBackground = () => (
+  <div className="absolute top-4 right-4 w-[60%] h-32 opacity-20 group-hover:opacity-40 transition-opacity duration-500">
+    <div className="relative w-full h-full bg-slate-800 rounded-lg overflow-hidden border border-slate-700">
+      {/* Browser header */}
+      <div className="flex items-center gap-1.5 px-3 py-2 bg-slate-700/50 border-b border-slate-600">
+        <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+        <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+        <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+        <div className="ml-2 flex-1 h-4 bg-slate-600 rounded text-[8px] text-slate-400 flex items-center px-2">kedjora.com</div>
+      </div>
+      {/* Code lines */}
+      <div className="p-2 space-y-1.5">
+        <div className="flex gap-2">
+          <span className="text-primary-400 text-[10px]">{"<div>"}</span>
+          <div className="h-2 w-16 bg-slate-600 rounded" />
+        </div>
+        <div className="flex gap-2 ml-3">
+          <span className="text-blue-400 text-[10px]">{"<h1>"}</span>
+          <div className="h-2 w-20 bg-primary-500/30 rounded" />
+        </div>
+        <div className="flex gap-2 ml-3">
+          <div className="h-2 w-24 bg-slate-600 rounded" />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+// Background untuk Mobile - Phone mockup
+const MobileBackground = () => (
+  <div className="absolute top-4 right-4 w-20 h-36 opacity-20 group-hover:opacity-40 transition-opacity duration-500">
+    <div className="relative w-full h-full bg-slate-800 rounded-2xl overflow-hidden border-2 border-slate-700">
+      {/* Phone notch */}
+      <div className="absolute top-1 left-1/2 -translate-x-1/2 w-10 h-1.5 bg-slate-700 rounded-full" />
+      {/* App content */}
+      <div className="mt-4 p-2 space-y-2">
+        <div className="w-full h-8 bg-primary-500/20 rounded-lg" />
+        <div className="flex gap-1">
+          <div className="w-6 h-6 bg-slate-700 rounded" />
+          <div className="flex-1 space-y-1">
+            <div className="h-2 w-full bg-slate-700 rounded" />
+            <div className="h-2 w-2/3 bg-slate-700 rounded" />
+          </div>
+        </div>
+        <div className="flex gap-1">
+          <div className="w-6 h-6 bg-slate-700 rounded" />
+          <div className="flex-1 space-y-1">
+            <div className="h-2 w-full bg-slate-700 rounded" />
+            <div className="h-2 w-1/2 bg-slate-700 rounded" />
+          </div>
+        </div>
+      </div>
+      {/* Bottom bar */}
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-10 h-1 bg-slate-600 rounded-full" />
+    </div>
+  </div>
+);
+
+// Background untuk Bot - Chat bubbles
+const BotBackground = () => (
+  <div className="absolute top-4 right-4 w-28 h-32 opacity-20 group-hover:opacity-40 transition-opacity duration-500">
+    <div className="space-y-2">
+      {/* Bot message */}
+      <div className="flex gap-2 items-start">
+        <div className="w-6 h-6 rounded-full bg-primary-500/50 flex items-center justify-center">
+          <Bot size={12} className="text-primary-300" />
+        </div>
+        <div className="bg-slate-700 rounded-lg rounded-tl-none px-2 py-1.5 max-w-20">
+          <div className="h-1.5 w-12 bg-slate-500 rounded mb-1" />
+          <div className="h-1.5 w-8 bg-slate-500 rounded" />
+        </div>
+      </div>
+      {/* User message */}
+      <div className="flex gap-2 items-start justify-end">
+        <div className="bg-primary-500/30 rounded-lg rounded-tr-none px-2 py-1.5 max-w-[60px]">
+          <div className="h-1.5 w-10 bg-primary-400/50 rounded" />
+        </div>
+      </div>
+      {/* Bot typing */}
+      <div className="flex gap-2 items-start">
+        <div className="w-6 h-6 rounded-full bg-primary-500/50 flex items-center justify-center">
+          <Bot size={12} className="text-primary-300" />
+        </div>
+        <div className="bg-slate-700 rounded-lg rounded-tl-none px-3 py-2 flex gap-1">
+          <div className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-pulse" />
+          <div className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-pulse delay-75" />
+          <div className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-pulse delay-150" />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+// Background untuk Design - Layers/shapes
+const DesignBackground = () => (
+  <div className="absolute top-4 right-4 w-[55%] h-28 opacity-20 group-hover:opacity-40 transition-opacity duration-500">
+    <div className="relative w-full h-full">
+      {/* Floating shapes */}
+      <div className="absolute top-0 left-0 w-12 h-12 border-2 border-pink-500/50 rounded-lg rotate-12" />
+      <div className="absolute top-4 left-8 w-16 h-16 bg-linear-to-br from-purple-500/30 to-pink-500/30 rounded-2xl -rotate-6" />
+      <div className="absolute top-2 right-8 w-10 h-10 bg-linear-to-br from-primary-500/40 to-blue-500/40 rounded-full" />
+      <div className="absolute bottom-0 left-16 w-14 h-8 bg-slate-700 rounded-lg flex items-center justify-center gap-1">
+        <div className="w-2 h-4 bg-primary-500/50 rounded-sm" />
+        <div className="w-2 h-6 bg-pink-500/50 rounded-sm" />
+        <div className="w-2 h-3 bg-blue-500/50 rounded-sm" />
+      </div>
+      {/* Color palette */}
+      <div className="absolute bottom-2 right-0 flex gap-1">
+        <div className="w-4 h-4 rounded-full bg-primary-500/60" />
+        <div className="w-4 h-4 rounded-full bg-pink-500/60" />
+        <div className="w-4 h-4 rounded-full bg-blue-500/60" />
+        <div className="w-4 h-4 rounded-full bg-purple-500/60" />
+      </div>
+    </div>
+  </div>
+);
 
 interface ServiceConfig {
   id: string;
   key: 'web' | 'mobile' | 'bot' | 'design';
   icon: LucideIcon;
+  className: string;
+  background: ReactNode;
 }
 
 const serviceConfigs: ServiceConfig[] = [
-  { id: 'web', key: 'web', icon: Globe },
-  { id: 'mobile', key: 'mobile', icon: Smartphone },
-  { id: 'bot', key: 'bot', icon: Bot },
-  { id: 'design', key: 'design', icon: Palette }
+  { id: 'web', key: 'web', icon: Globe, className: 'md:col-span-2', background: <WebBackground /> },
+  { id: 'mobile', key: 'mobile', icon: Smartphone, className: 'md:col-span-1', background: <MobileBackground /> },
+  { id: 'bot', key: 'bot', icon: Bot, className: 'md:col-span-1', background: <BotBackground /> },
+  { id: 'design', key: 'design', icon: Palette, className: 'md:col-span-2', background: <DesignBackground /> }
 ];
-
-const container: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
-    }
-  }
-};
-
-const item: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 40,
-      damping: 15
-    }
-  }
-};
 
 const ServicesSection: React.FC = () => {
   const t = useTranslations('services');
@@ -93,60 +190,20 @@ const ServicesSection: React.FC = () => {
             </motion.p>
         </div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {serviceConfigs.map((service) => {
-            const features = t.raw(`items.${service.key}.features`) as string[];
-            return (
-              <motion.div
-                key={service.id}
-                variants={item}
-                className="group relative p-8 h-full rounded-4xl bg-slate-900 border border-slate-800 transition-all duration-500 hover:shadow-2xl hover:shadow-primary-500/10 hover:-translate-y-2"
-              >
-                {/* Hover Gradient Border Effect */}
-                <div className="absolute inset-0 rounded-4xl bg-linear-to-br from-primary-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                <div className="relative z-10 flex flex-col h-full">
-                  {/* Icon Container */}
-                  <div className="mb-8 relative inline-flex">
-                      <div className="absolute inset-0 bg-primary-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-150"></div>
-                      <div className="w-16 h-16 rounded-2xl bg-slate-800 group-hover:bg-primary-500 transition-colors duration-500 flex items-center justify-center text-white group-hover:text-white shadow-sm">
-                          <service.icon size={32} strokeWidth={1.5} />
-                      </div>
-                  </div>
-
-                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-primary-500 transition-colors duration-300">
-                    {t(`items.${service.key}.title`)}
-                  </h3>
-
-                  <p className="text-slate-400 leading-relaxed mb-8 grow">
-                    {t(`items.${service.key}.description`)}
-                  </p>
-
-                  <div className="space-y-3 mb-8">
-                      {features.map((feature: string, i: number) => (
-                          <div key={i} className="flex items-center text-sm text-slate-300">
-                              <Zap size={14} className="text-primary-500 mr-2 shrink-0 fill-primary-500/20" />
-                              {feature}
-                          </div>
-                      ))}
-                  </div>
-
-                  {/* Arrow Button */}
-                  <div className="pt-6 border-t border-slate-800 flex items-center text-primary-500 font-semibold group/btn cursor-pointer">
-                      <span className="mr-2">{tCommon('learnMore')}</span>
-                      <ArrowRight size={18} className="transform transition-transform duration-300 group-hover/btn:translate-x-1" />
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        <BentoGrid className="grid-cols-1 md:grid-cols-3 auto-rows-[20rem]">
+          {serviceConfigs.map((service) => (
+            <BentoCard
+              key={service.id}
+              name={t(`items.${service.key}.title`)}
+              description={t(`items.${service.key}.description`)}
+              Icon={service.icon}
+              className={service.className}
+              href="#contact"
+              cta={tCommon('learnMore')}
+              background={service.background}
+            />
+          ))}
+        </BentoGrid>
       </div>
     </section>
   );
