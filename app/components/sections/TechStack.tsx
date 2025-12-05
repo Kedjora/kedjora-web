@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Cpu } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 // SVG Logo Components
 const ReactLogo = () => (
@@ -99,13 +100,15 @@ const technologies = [
 ];
 
 const TechStack: React.FC = () => {
+  const t = useTranslations('techStack');
+
   return (
     <section className="py-10 bg-slate-950 border-b border-slate-800 overflow-hidden">
       <div className="container mx-auto px-6 mb-8 text-center">
         <div className="inline-flex items-center gap-2 text-slate-400">
              <Cpu size={16} />
              <p className="text-xs font-bold uppercase tracking-widest">
-               Didukung Teknologi Modern
+               {t('title')}
              </p>
         </div>
       </div>

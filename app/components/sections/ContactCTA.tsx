@@ -4,8 +4,13 @@ import React from 'react';
 import Link from 'next/link';
 import { Phone, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslations, useLocale } from 'next-intl';
 
 const ContactCTA: React.FC = () => {
+  const t = useTranslations('contactCTA');
+  const tCommon = useTranslations('common');
+  const locale = useLocale();
+
   return (
     <section className="py-20 px-6 bg-slate-950 flex justify-center items-center overflow-hidden">
         {/* Large Container */}
@@ -34,10 +39,7 @@ const ContactCTA: React.FC = () => {
                         transition={{ delay: 0.3 }}
                         className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight"
                     >
-                        Siap Menyalakan <br />
-                        <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-300 via-white to-blue-300">
-                            Potensi Digital Anda?
-                        </span>
+                        {t('title')}
                     </motion.h2>
 
                     <motion.p
@@ -47,7 +49,7 @@ const ContactCTA: React.FC = () => {
                         transition={{ delay: 0.4 }}
                         className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed"
                     >
-                        Bergabunglah dengan para visioner yang mempercayai KEDJORA. Dari konsep hingga peluncuran, kami adalah mesin di balik terobosan besar Anda berikutnya.
+                        {t('description')}
                     </motion.p>
 
                     <motion.div
@@ -65,14 +67,14 @@ const ContactCTA: React.FC = () => {
                         >
                             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></div>
                             <Phone size={20} className="fill-current" />
-                            <span>Chat via WhatsApp</span>
+                            <span>{tCommon('chatWhatsApp')}</span>
                         </a>
 
                         <Link
-                            href="/contact"
+                            href={`/${locale}/contact`}
                             className="group/btn px-8 py-4 bg-white text-slate-900 font-bold rounded-full transition-all hover:scale-105 shadow-xl shadow-white/10 flex items-center gap-3 w-full sm:w-auto justify-center"
                         >
-                            <span>Mulai Project</span>
+                            <span>{tCommon('startProject')}</span>
                             <ArrowRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
                         </Link>
                     </motion.div>
@@ -84,7 +86,7 @@ const ContactCTA: React.FC = () => {
                         transition={{ delay: 0.6 }}
                         className="mt-8 text-sm text-slate-500"
                     >
-                        Waktu respons: <span className="text-slate-300 font-semibold">Kurang dari 1 jam</span>
+                        {t('responseTime')}
                     </motion.p>
                 </div>
             </motion.div>

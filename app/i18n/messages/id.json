@@ -1,0 +1,503 @@
+{
+  "common": {
+    "learnMore": "Selengkapnya",
+    "viewAll": "Lihat Semua",
+    "contactUs": "Hubungi Kami",
+    "getStarted": "Mulai Sekarang",
+    "startProject": "Mulai Project",
+    "chatWhatsApp": "Chat via WhatsApp",
+    "viewPortfolio": "Lihat Portfolio",
+    "subscribe": "Berlangganan",
+    "sendMessage": "Kirim Pesan",
+    "loading": "Memuat...",
+    "searchPlaceholder": "Cari...",
+    "noResults": "Tidak ada hasil ditemukan",
+    "all": "Semua",
+    "monthly": "Bulanan",
+    "yearly": "Tahunan",
+    "save": "Hemat",
+    "custom": "Kustom",
+    "contactSales": "Hubungi Sales",
+    "optional": "Opsional",
+    "mostPopular": "Paling Populer",
+    "viewCaseStudy": "Lihat Studi Kasus",
+    "viewDetails": "Lihat Detail",
+    "loadMore": "Muat Lebih Banyak",
+    "askQuestion": "Ajukan Pertanyaan"
+  },
+  "nav": {
+    "home": "Beranda",
+    "services": "Layanan",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "about": "Tentang",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "badge": "Menerima Project Baru",
+    "title1": "Kami Membangun",
+    "title2": "Keunggulan Digital",
+    "description": "Transformasi bisnis Anda bersama KEDJORA. Kami memadukan desain premium dengan kode mutakhir untuk membangun website, aplikasi, dan bot yang mendorong pertumbuhan nyata.",
+    "cta": {
+      "startProject": "Mulai Project",
+      "viewPortfolio": "Lihat Portfolio"
+    },
+    "stats": {
+      "projects": "Project Selesai",
+      "satisfaction": "Kepuasan Klien"
+    }
+  },
+  "techStack": {
+    "title": "Didukung Teknologi Modern"
+  },
+  "services": {
+    "badge": "Keahlian Kami",
+    "title1": "Kami Membangun",
+    "title2": "Mahakarya Digital",
+    "description": "Solusi digital komprehensif yang dirancang untuk mengangkat bisnis Anda di era modern.",
+    "items": {
+      "web": {
+        "title": "Pengembangan Website",
+        "description": "Kami membuat website berkinerja tinggi yang memikat audiens Anda. Dari landing page hingga aplikasi web kompleks.",
+        "features": ["React & Next.js", "Optimasi SEO", "UI Interaktif", "Integrasi CMS"]
+      },
+      "mobile": {
+        "title": "Aplikasi Mobile",
+        "description": "Performa setara native dengan efisiensi cross-platform. Bangun sekali, deploy di mana saja dengan Flutter.",
+        "features": ["iOS & Android", "Framework Flutter", "Animasi Halus", "Mode Offline"]
+      },
+      "bot": {
+        "title": "Automasi & Bot",
+        "description": "Berhenti melakukan tugas berulang. Kami membangun bot cerdas untuk menangani layanan pelanggan dan alur kerja Anda.",
+        "features": ["WhatsApp & Telegram", "Data Scraping", "Automasi Workflow", "Integrasi API"]
+      },
+      "design": {
+        "title": "Desain Kreatif",
+        "description": "Visual storytelling yang mendefinisikan brand Anda. Kami membuat logo dan aset yang meninggalkan kesan mendalam.",
+        "features": ["Identitas Brand", "Desain UI/UX", "Media Sosial", "Motion Graphics"]
+      }
+    }
+  },
+  "process": {
+    "badge": "Alur Kerja",
+    "title1": "Dari Konsep ke",
+    "title2": "Realita",
+    "description": "Proses 4 langkah kami yang terbukti memastikan transparansi, efisiensi, dan hasil luar biasa untuk setiap project yang kami kerjakan.",
+    "step": "Langkah",
+    "cta": "Siap memulai Langkah 01?",
+    "steps": {
+      "discuss": {
+        "title": "Diskusi",
+        "description": "Kami mendalami kebutuhan, tujuan bisnis, dan target audiens Anda untuk membangun fondasi yang kuat."
+      },
+      "design": {
+        "title": "Strategi & Desain",
+        "description": "Desainer kami membuat prototipe intuitif dan sistem visual yang selaras sempurna dengan identitas brand Anda."
+      },
+      "develop": {
+        "title": "Pengembangan",
+        "description": "Kami menulis kode yang bersih dan skalabel menggunakan framework modern untuk mewujudkan desain dengan performa tinggi."
+      },
+      "launch": {
+        "title": "Peluncuran & Skalasi",
+        "description": "Setelah pengujian ketat, kami meluncurkan produk Anda dan memberikan dukungan berkelanjutan untuk memastikan pertumbuhan."
+      }
+    }
+  },
+  "portfolio": {
+    "badge": "Portfolio Kami",
+    "title1": "Karya",
+    "title2": "Pilihan",
+    "description": "Koleksi produk digital terkurasi yang memadukan estetika, performa, dan inovasi.",
+    "viewAllProjects": "Lihat Semua Project",
+    "featuredCaseStudy": "Studi Kasus Unggulan",
+    "viewCaseStudy": "Lihat Studi Kasus",
+    "viewDetail": "Lihat Detail",
+    "technology": "Teknologi",
+    "categories": {
+      "all": "Semua",
+      "website": "Website",
+      "mobile": "Aplikasi Mobile",
+      "bot": "Bot Automasi",
+      "design": "Desain"
+    },
+    "stats": {
+      "projects": "Project Selesai",
+      "awards": "Penghargaan",
+      "coffees": "Kopi Diminum"
+    },
+    "projects": {
+      "neon": {
+        "title": "Neon E-Commerce",
+        "description": "Pengalaman belanja futuristik dengan preview produk 3D, rekomendasi berbasis AI, dan arsitektur headless CMS."
+      },
+      "fitpulse": {
+        "title": "FitPulse Tracker",
+        "description": "Pendamping kesehatan cross-platform dibangun dengan Flutter. Fitur sinkronisasi biometrik real-time dan tantangan sosial."
+      },
+      "signalmaster": {
+        "title": "SignalMaster Bot",
+        "description": "Bot trading crypto frekuensi tinggi terintegrasi dengan Telegram untuk alert beli/jual instan dan manajemen portfolio."
+      },
+      "aura": {
+        "title": "Aura Branding",
+        "description": "Perombakan identitas visual lengkap untuk startup energi terbarukan di Bali, fokus pada keberlanjutan dan teknologi modern."
+      },
+      "urban": {
+        "title": "Urban Estates",
+        "description": "Portal real estate mewah dengan pencarian peta interaktif, tur virtual, dan sistem booking otomatis."
+      },
+      "tasty": {
+        "title": "TastyExpress",
+        "description": "Ekosistem pengiriman makanan hyper-local menghubungkan 500+ vendor. Termasuk aplikasi driver, dashboard merchant, dan aplikasi konsumen."
+      },
+      "findash": {
+        "title": "FinDash Pro",
+        "description": "Dashboard SaaS untuk analitik keuangan dengan visualisasi data real-time dan kemampuan ekspor."
+      },
+      "autoresponder": {
+        "title": "AutoResponder AI",
+        "description": "Agen AI layanan pelanggan yang menangani 80% pertanyaan support masuk secara otomatis melalui WhatsApp dan Email."
+      }
+    }
+  },
+  "pricing": {
+    "badge": "Harga Transparan",
+    "title1": "Investasi yang",
+    "title2": "Masuk Akal",
+    "description": "Tanpa biaya tersembunyi. Pilih paket yang sesuai dengan kebutuhan dan anggaran Anda.",
+    "perMonth": "/bulan",
+    "perYear": "/tahun",
+    "startingFrom": "Mulai dari",
+    "billedYearly": "Ditagih tahunan",
+    "tiers": {
+      "starter": {
+        "name": "Starter",
+        "description": "Sempurna untuk bisnis kecil dan startup yang baru memulai perjalanan digital.",
+        "priceMonthly": "Rp 7,5jt",
+        "priceYearly": "Rp 6jt",
+        "features": ["Landing Page (1 halaman)", "Desain Responsif", "Optimasi SEO Dasar", "Formulir Kontak", "Revisi 2x", "Waktu Pengerjaan 7 Hari"]
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "Untuk bisnis yang berkembang dan membutuhkan solusi digital yang lebih komprehensif.",
+        "priceMonthly": "Rp 19,5jt",
+        "priceYearly": "Rp 15,6jt",
+        "features": ["Website Multi-halaman (5 halaman)", "Desain UI/UX Kustom", "Optimasi SEO Lanjutan", "Integrasi CMS", "Animasi Interaktif", "Revisi 5x", "Waktu Pengerjaan 14 Hari", "Support 30 Hari"]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Solusi lengkap untuk perusahaan besar dengan kebutuhan kompleks dan skalabilitas tinggi.",
+        "features": ["Aplikasi Web Kustom", "Aplikasi Mobile (iOS & Android)", "Integrasi API & Backend", "Dashboard Admin", "Automasi & Bot", "Revisi Unlimited", "Dedicated Project Manager", "Support & Maintenance 90 Hari"]
+      }
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title1": "Pertanyaan yang",
+    "title2": "Sering Diajukan",
+    "description": "Semua yang perlu Anda ketahui tentang bekerja sama dengan KEDJORA. Tidak menemukan jawaban yang dicari? Hubungi tim kami.",
+    "stillHaveQuestions": "Masih punya pertanyaan?",
+    "contactTeam": "Tim kami siap membantu menjawab pertanyaan spesifik Anda.",
+    "items": {
+      "timeline": {
+        "question": "Berapa lama waktu pengerjaan project?",
+        "answer": "Waktu pengerjaan bervariasi tergantung kompleksitas project. Landing page sederhana bisa selesai dalam 7-14 hari, website multi-halaman 2-4 minggu, dan aplikasi mobile 1-3 bulan. Kami akan memberikan timeline detail setelah diskusi kebutuhan Anda."
+      },
+      "pricing": {
+        "question": "Bagaimana sistem pembayaran?",
+        "answer": "Kami menerapkan sistem pembayaran bertahap: 50% di awal sebagai DP, dan 50% setelah project selesai. Untuk project besar, bisa dibagi menjadi beberapa milestone pembayaran."
+      },
+      "revision": {
+        "question": "Apakah ada batasan revisi?",
+        "answer": "Setiap paket memiliki jumlah revisi yang berbeda. Paket Starter 2x revisi, Professional 5x revisi, dan Enterprise unlimited revisi. Revisi di luar kuota akan dikenakan biaya tambahan."
+      },
+      "support": {
+        "question": "Bagaimana dengan support setelah project selesai?",
+        "answer": "Kami menyediakan support gratis sesuai paket yang dipilih (1-3 bulan). Setelah masa support berakhir, Anda bisa berlangganan maintenance bulanan atau menghubungi kami untuk perbaikan dengan biaya terpisah."
+      },
+      "payment": {
+        "question": "Metode pembayaran apa saja yang diterima?",
+        "answer": "Kami menerima transfer bank (BCA, Mandiri, BNI), e-wallet (GoPay, OVO, Dana), dan untuk klien internasional bisa menggunakan PayPal atau Wise."
+      }
+    }
+  },
+  "contactCTA": {
+    "title": "Siap Menyalakan Potensi Digital Anda?",
+    "description": "Bergabunglah dengan para visioner yang mempercayai KEDJORA. Dari konsep hingga peluncuran, kami adalah mesin di balik terobosan besar Anda berikutnya.",
+    "scheduleCall": "Jadwalkan Panggilan",
+    "orWhatsApp": "atau langsung",
+    "responseTime": "Waktu respons: Kurang dari 1 jam"
+  },
+  "testimonials": {
+    "trustedBy": "Dipercaya oleh Perusahaan Inovatif",
+    "title1": "Jangan hanya percaya",
+    "title2": "kata-kata kami",
+    "description": "Kami bangga membangun kemitraan yang langgeng. Berikut apa yang klien kami katakan tentang bekerja sama dengan KEDJORA.",
+    "items": {
+      "sarah": {
+        "name": "Sarah Jenkins",
+        "role": "CTO",
+        "company": "TechStart Inc.",
+        "content": "UI aplikasi mobile yang mereka desain berkelas dunia. Bersih, modern, dan persis yang kami butuhkan untuk mengamankan pendanaan Series A. Perhatian tim terhadap detail tidak tertandingi."
+      },
+      "budi": {
+        "name": "Budi Santoso",
+        "role": "Founder",
+        "company": "Kediri Kuliner",
+        "content": "KEDJORA mengubah proses pemesanan manual kami menjadi bot Telegram yang mulus. Efisiensi meningkat 40% hanya dalam dua minggu. Sangat direkomendasikan untuk bisnis lokal!"
+      },
+      "marcus": {
+        "name": "Marcus Chen",
+        "role": "Product Lead",
+        "company": "Nexus Finance",
+        "content": "Kami membutuhkan dashboard web berkinerja tinggi untuk platform trading crypto kami. KEDJORA menghadirkan aplikasi React yang menangani data real-time dengan sempurna. Engineering yang benar-benar mengesankan."
+      }
+    }
+  },
+  "footer": {
+    "description": "Agensi digital yang berfokus pada pembuatan website, aplikasi mobile, dan solusi automasi yang mendorong pertumbuhan bisnis.",
+    "quickLinks": "Tautan Cepat",
+    "services": "Layanan",
+    "contact": "Kontak",
+    "copyright": "Hak Cipta",
+    "allRightsReserved": "Seluruh hak dilindungi.",
+    "address": {
+      "line1": "Jl. Imam Bonjol No. 218, Kediri,",
+      "line2": "Jawa Timur, Indonesia 64122"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Berlangganan untuk mendapatkan tren teknologi terbaru dan update KEDJORA. Tanpa spam, selamanya."
+    },
+    "serviceLinks": {
+      "webDev": "Pengembangan Web",
+      "mobileApp": "Aplikasi Mobile",
+      "automation": "Automasi & Bot",
+      "design": "Desain Kreatif"
+    }
+  },
+  "chatWidget": {
+    "supportTeam": "Tim Support",
+    "onlineNow": "Online Sekarang",
+    "greeting": "Halo! 👋 Terima kasih telah mengunjungi KEDJORA. Bagaimana kami bisa membantu Anda membangun produk digital hari ini?",
+    "startChat": "Mulai Chat",
+    "responseTime": "Waktu respons: Beberapa menit",
+    "tooltip": "Butuh bantuan? Chat dengan kami! 👋"
+  },
+  "about": {
+    "badge": "Cerita & Budaya Kami",
+    "title1": "Kami Adalah",
+    "title2": "Arsitek Digital",
+    "description": "KEDJORA lebih dari sekadar agensi pengembang. Kami adalah kolektif pemimpi, pemikir, dan pembuat yang berdedikasi untuk menciptakan masa depan web.",
+    "stats": {
+      "experience": "Tahun Pengalaman",
+      "projects": "Project Selesai",
+      "clients": "Klien Puas",
+      "coffee": "Kopi Diseduh"
+    },
+    "origin": {
+      "title": "Asal Mula",
+      "paragraph1": "<strong>KEDJORA</strong> (berasal dari \"Kediri Jorah\") dimulai sebagai kolektif kecil pengembang yang bersemangat di Jawa Timur. \"Jorah\" menyiratkan keunggulan dan menjadi juara—semangat yang kami tanamkan dalam setiap baris kode yang kami tulis.",
+      "paragraph2": "Kami melihat celah di industri: agensi terlalu fokus pada desain tanpa substansi, atau terlalu teknis tanpa jiwa. Kami bertekad untuk menjembatani celah itu.",
+      "paragraph3": "Saat ini, kami membantu bisnis di seluruh dunia menavigasi lanskap digital yang kompleks, mengubah ide-ide samar menjadi produk yang kuat, skalabel, dan indah."
+    },
+    "mission": {
+      "title": "Misi Kami",
+      "description": "Mendemokratisasi rekayasa digital kelas atas. Kami percaya setiap bisnis ambisius berhak mendapatkan teknologi kelas dunia, terlepas dari ukuran mereka."
+    },
+    "values": {
+      "title": "Filosofi Kami",
+      "description": "Prinsip-prinsip panduan yang mendorong keputusan kami dan membentuk budaya kami.",
+      "items": {
+        "innovation": {
+          "title": "Inovasi Utama",
+          "description": "Kami tidak puas dengan \"cukup baik\". Kami terus mengeksplorasi teknologi baru untuk memberi Anda keunggulan."
+        },
+        "transparency": {
+          "title": "Transparansi Radikal",
+          "description": "Tanpa biaya tersembunyi, tanpa jargon teknis. Kami memberi informasi di setiap langkah."
+        },
+        "userObsession": {
+          "title": "Obsesi Pengguna",
+          "description": "Kami mendesain untuk manusia, bukan robot. Setiap piksel memiliki tujuan untuk pengguna akhir."
+        }
+      }
+    },
+    "team": {
+      "title": "Kenali Tim Kami",
+      "description": "Individu-individu berbakat yang bekerja di balik layar untuk mewujudkan visi Anda.",
+      "joinTeam": "Bergabung dengan Tim",
+      "members": {
+        "alex": "Lead Developer",
+        "sarah": "Desainer UI/UX",
+        "budi": "Mobile Developer",
+        "maya": "Manajer Proyek"
+      }
+    },
+    "timeline": {
+      "title": "Perjalanan Kami",
+      "events": {
+        "founding": { "year": "2023", "title": "Awal Mula", "description": "KEDJORA didirikan di garasi kecil di Kediri oleh dua teman kuliah." },
+        "firstClient": { "year": "2023", "title": "Klien Besar Pertama", "description": "Mendapatkan kontrak internasional pertama, memperluas jangkauan kami ke luar Indonesia." },
+        "expansion": { "year": "2024", "title": "Ekspansi Tim", "description": "Berkembang menjadi tim 10 spesialis penuh waktu di bidang desain, mobile, dan web." },
+        "present": { "year": "Kini", "title": "Berkembang Pesat", "description": "Meluncurkan produk SaaS sendiri sambil melayani klien enterprise secara global." }
+      }
+    }
+  },
+  "blog": {
+    "badge": "Wawasan & Pemikiran",
+    "title1": "Jurnal",
+    "title2": "KEDJORA",
+    "description": "Pembahasan mendalam tentang teknologi, filosofi desain, dan masa depan pengembangan produk digital.",
+    "featured": "Unggulan",
+    "searchPlaceholder": "Cari artikel...",
+    "noArticles": "Tidak ada artikel ditemukan",
+    "adjustSearch": "Coba sesuaikan pencarian atau filter kategori Anda.",
+    "readTime": "menit baca",
+    "loadMore": "Muat Lebih Banyak",
+    "categories": {
+      "all": "Semua",
+      "engineering": "Rekayasa",
+      "design": "Desain",
+      "automation": "Automasi",
+      "mobile": "Mobile",
+      "business": "Bisnis",
+      "marketing": "Marketing"
+    },
+    "newsletter": {
+      "title": "Tetap selangkah lebih maju",
+      "description": "Bergabung dengan 5.000+ developer dan founder yang mendapatkan wawasan terbaru tentang teknologi, desain, dan automasi langsung ke inbox mereka.",
+      "placeholder": "Masukkan email Anda",
+      "subscribe": "Berlangganan",
+      "disclaimer": "Tanpa spam. Berhenti berlangganan kapan saja."
+    },
+    "posts": {
+      "nextjs": {
+        "title": "Masa Depan Web: Mengapa Kami Beralih ke Next.js 14",
+        "excerpt": "Server actions, partial prerendering, dan compiler baru. Inilah mengapa agensi kami sepenuhnya mengadopsi ekosistem Next.js terbaru untuk klien enterprise.",
+        "date": "10 Mar 2025"
+      },
+      "glassmorphism": {
+        "title": "Mendesain untuk Kepercayaan: Psikologi Glassmorphism",
+        "excerpt": "Bagaimana efek transparansi dan blur dalam desain UI dapat meningkatkan kepercayaan pengguna dan nilai premium yang dirasakan dari aplikasi Anda.",
+        "date": "08 Mar 2025"
+      },
+      "automation": {
+        "title": "Mengotomatisasi Dukungan Pelanggan dengan Python & Telegram",
+        "excerpt": "Panduan langkah demi langkah membangun bot tangguh yang menangani 80% pertanyaan pelanggan Anda tanpa intervensi manusia.",
+        "date": "05 Mar 2025"
+      },
+      "flutter": {
+        "title": "Flutter vs React Native di 2025",
+        "excerpt": "Debat abadi berlanjut. Kami menguraikan metrik performa, pengalaman developer, dan dukungan komunitas untuk kedua raksasa ini.",
+        "date": "28 Feb 2025"
+      },
+      "seo": {
+        "title": "Mengoptimalkan SEO untuk Single Page Applications",
+        "excerpt": "SPA sering kesulitan dengan SEO. Pelajari teknik yang kami gunakan untuk memastikan aplikasi React kami ranking #1 di Google.",
+        "date": "20 Feb 2025"
+      },
+      "nocode": {
+        "title": "Kebangkitan Tools No-Code di Agensi Profesional",
+        "excerpt": "Mengapa kami terkadang memilih Framer atau Webflow daripada kode kustom untuk situs marketing, dan mengapa ini menguntungkan klien.",
+        "date": "15 Feb 2025"
+      }
+    }
+  },
+  "contact": {
+    "badge": "Mulai Percakapan",
+    "title1": "Mari Bangun yang",
+    "title2": "Luar Biasa",
+    "description": "Punya proyek dalam pikiran? Kami ingin mendengarnya.",
+    "info": {
+      "title": "Informasi Kontak",
+      "description": "Isi formulir dan tim kami akan menghubungi Anda dalam 24 jam.",
+      "email": "Email",
+      "phone": "Telepon / WhatsApp",
+      "location": "Lokasi",
+      "connectWithUs": "Terhubung dengan kami"
+    },
+    "form": {
+      "name": "Nama",
+      "email": "Email",
+      "interestedIn": "Saya tertarik dengan...",
+      "budget": "Budget Proyek",
+      "message": "Pesan",
+      "messagePlaceholder": "Ceritakan sedikit tentang tujuan proyek Anda...",
+      "submit": "Kirim Pesan",
+      "services": {
+        "web": "Pengembangan Web",
+        "mobile": "Aplikasi Mobile",
+        "automation": "Bot Automasi",
+        "design": "Desain UI/UX",
+        "other": "Lainnya"
+      },
+      "budgets": {
+        "tier1": "< Rp 15jt",
+        "tier2": "Rp 15jt - 75jt",
+        "tier3": "Rp 75jt - 150jt",
+        "tier4": "Rp 150jt+"
+      }
+    },
+    "steps": {
+      "title": "Apa yang terjadi selanjutnya?",
+      "description": "Proses onboarding kami yang mulus memastikan Anda tidak pernah dibiarkan dalam kegelapan.",
+      "items": {
+        "submission": { "title": "1. Pengiriman", "description": "Anda mengirim formulir. Kami menerimanya secara instan." },
+        "scheduling": { "title": "2. Penjadwalan", "description": "Kami menghubungi dalam 24 jam untuk menjadwalkan panggilan discovery." },
+        "proposal": { "title": "3. Proposal", "description": "Kami menilai kebutuhan Anda dan mengirim rencana yang disesuaikan." }
+      }
+    },
+    "faq": {
+      "title": "FAQ Kerjasama",
+      "items": {
+        "nda": { "question": "Apakah Anda menandatangani NDA?", "answer": "Tentu saja. Kami menghormati kekayaan intelektual Anda dan dengan senang hati menandatangani NDA sebelum membahas detail sensitif proyek Anda." },
+        "budget": { "question": "Berapa kisaran budget tipikal Anda?", "answer": "Proyek kami biasanya dimulai dari Rp 25 juta untuk website dasar dan bisa mencapai Rp 750 juta+ untuk aplikasi enterprise kompleks. Kami menawarkan tier fleksibel untuk berbagai kebutuhan." },
+        "international": { "question": "Apakah Anda bekerja dengan klien internasional?", "answer": "Ya! 80% klien kami berasal dari AS, Eropa, dan Australia. Kami terbiasa bekerja lintas zona waktu menggunakan komunikasi asinkron." }
+      }
+    }
+  },
+  "servicesPage": {
+    "badge": "Solusi End-to-End",
+    "title1": "Kami Menciptakan",
+    "title2": "Pengalaman Digital",
+    "description": "Dari desain pixel-perfect hingga sistem backend kompleks, kami menyediakan spektrum penuh layanan digital untuk membantu bisnis Anda berkembang di era modern.",
+    "services": {
+      "web": {
+        "title": "Pengembangan Web Performa Tinggi",
+        "subtitle": "Kami membangun aplikasi web yang cepat, SEO-optimized, dan skalabel sesuai tujuan bisnis Anda.",
+        "description": "Dari landing page sederhana hingga platform SaaS kompleks, solusi web kami direkayasa untuk performa dan konversi. Kami menggunakan framework terbaru seperti Next.js dan React untuk memastikan situs Anda siap masa depan, aksesibel, dan sangat cepat.",
+        "features": ["Pengembangan React.js / Next.js Kustom", "Integrasi Headless CMS (Sanity, Strapi)", "Solusi E-Commerce", "Progressive Web Apps (PWA)"]
+      },
+      "mobile": {
+        "title": "Aplikasi Mobile Cross-Platform",
+        "subtitle": "Performa setara native di iOS dan Android dengan satu codebase.",
+        "description": "Jangkau pelanggan Anda di setiap perangkat. Tim pengembangan mobile kami spesialis Flutter untuk menghasilkan aplikasi yang mulus, indah, dan sangat fungsional secara efisien. Kami menangani semuanya dari desain UI hingga deployment App Store.",
+        "features": ["Pengembangan Aplikasi iOS & Android", "Solusi Cross-Platform Flutter", "Deployment App Store & Play Store", "Fitur Real-time & Mode Offline"]
+      },
+      "automation": {
+        "title": "Automasi Bisnis & Bot",
+        "subtitle": "Sederhanakan operasi Anda dan hemat jam kerja manual setiap hari.",
+        "description": "Kami membangun bot cerdas dan skrip automasi yang menangani tugas berulang, pertanyaan pelanggan, dan pemrosesan data. Baik itu bot notifikasi Telegram atau scraper data kompleks, kami mengotomatisasi hal-hal membosankan agar Anda bisa fokus pada pertumbuhan.",
+        "features": ["Bot Telegram & WhatsApp Kustom", "Web Scraping & Ekstraksi Data", "Automasi Workflow Internal", "Integrasi API & Middleware"]
+      },
+      "design": {
+        "title": "Desain UI/UX & Branding",
+        "subtitle": "Storytelling visual yang beresonansi dengan audiens Anda dan membangun kepercayaan.",
+        "description": "Desain bukan hanya tentang tampilan; ini tentang cara kerjanya. Kami menciptakan antarmuka pengguna yang intuitif dan identitas brand yang menarik yang membedakan Anda dari kompetitor. Proses desain kami berbasis data dan berpusat pada pengguna.",
+        "features": ["Desain User Interface (UI)", "Riset User Experience (UX)", "Design Systems & Prototyping", "Logo & Identitas Brand"]
+      }
+    },
+    "standards": {
+      "title": "Standar Rekayasa Kami",
+      "description": "Kami tidak hanya menulis kode; kami menjunjung standar kualitas yang ketat.",
+      "items": {
+        "speed": { "title": "Super Cepat", "description": "Dioptimalkan untuk skor Google PageSpeed 90+." },
+        "security": { "title": "Aman Secara Default", "description": "Praktik terbaik untuk perlindungan data & enkripsi." },
+        "scalable": { "title": "Arsitektur Skalabel", "description": "Dibangun untuk menangani pertumbuhan sejak hari pertama." }
+      }
+    }
+  }
+}
+

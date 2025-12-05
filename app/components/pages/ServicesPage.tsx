@@ -2,60 +2,34 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Smartphone, Bot, Palette, Check, Zap, Shield, Cpu, Sparkles, Layers } from 'lucide-react';
+import { Globe, Smartphone, Bot, Palette, Check, Zap, Shield, Cpu, Sparkles, Layers, type LucideIcon } from 'lucide-react';
 import Pricing from '@/components/sections/Pricing';
 import ContactCTA from '@/components/sections/ContactCTA';
+import { useTranslations } from 'next-intl';
 
-const detailedServices = [
-  {
-    id: 'web',
-    title: 'Pengembangan Web Performa Tinggi',
-    subtitle: 'Kami membangun aplikasi web yang cepat, SEO-optimized, dan skalabel sesuai tujuan bisnis Anda.',
-    description: 'Dari landing page sederhana hingga platform SaaS kompleks, solusi web kami direkayasa untuk performa dan konversi. Kami menggunakan framework terbaru seperti Next.js dan React untuk memastikan situs Anda siap masa depan, aksesibel, dan sangat cepat.',
-    icon: Globe,
-    color: 'from-blue-400 to-cyan-400',
-    features: ['Pengembangan React.js / Next.js Kustom', 'Integrasi Headless CMS (Sanity, Strapi)', 'Solusi E-Commerce', 'Progressive Web Apps (PWA)'],
-    visual: 'browser' as const
-  },
-  {
-    id: 'mobile',
-    title: 'Aplikasi Mobile Cross-Platform',
-    subtitle: 'Performa setara native di iOS dan Android dengan satu codebase.',
-    description: 'Jangkau pelanggan Anda di setiap perangkat. Tim pengembangan mobile kami spesialis Flutter untuk menghasilkan aplikasi yang mulus, indah, dan sangat fungsional secara efisien. Kami menangani semuanya dari desain UI hingga deployment App Store.',
-    icon: Smartphone,
-    color: 'from-indigo-400 to-purple-400',
-    features: ['Pengembangan Aplikasi iOS & Android', 'Solusi Cross-Platform Flutter', 'Deployment App Store & Play Store', 'Fitur Real-time & Mode Offline'],
-    visual: 'phone' as const
-  },
-  {
-    id: 'automation',
-    title: 'Automasi Bisnis & Bot',
-    subtitle: 'Sederhanakan operasi Anda dan hemat jam kerja manual setiap hari.',
-    description: "Kami membangun bot cerdas dan skrip automasi yang menangani tugas berulang, pertanyaan pelanggan, dan pemrosesan data. Baik itu bot notifikasi Telegram atau scraper data kompleks, kami mengotomatisasi hal-hal membosankan agar Anda bisa fokus pada pertumbuhan.",
-    icon: Bot,
-    color: 'from-emerald-400 to-green-500',
-    features: ['Bot Telegram & WhatsApp Kustom', 'Web Scraping & Ekstraksi Data', 'Automasi Workflow Internal', 'Integrasi API & Middleware'],
-    visual: 'terminal' as const
-  },
-  {
-    id: 'design',
-    title: 'Desain UI/UX & Branding',
-    subtitle: 'Storytelling visual yang beresonansi dengan audiens Anda dan membangun kepercayaan.',
-    description: 'Desain bukan hanya tentang tampilan; ini tentang cara kerjanya. Kami menciptakan antarmuka pengguna yang intuitif dan identitas brand yang menarik yang membedakan Anda dari kompetitor. Proses desain kami berbasis data dan berpusat pada pengguna.',
-    icon: Palette,
-    color: 'from-pink-400 to-rose-500',
-    features: ['Desain User Interface (UI)', 'Riset User Experience (UX)', 'Design Systems & Prototyping', 'Logo & Identitas Brand'],
-    visual: 'layers' as const
-  }
+interface ServiceConfig {
+  id: string;
+  icon: LucideIcon;
+  color: string;
+  visual: 'browser' | 'phone' | 'terminal' | 'layers';
+  featuresCount: number;
+}
+
+const serviceConfigs: ServiceConfig[] = [
+  { id: 'web', icon: Globe, color: 'from-blue-400 to-cyan-400', visual: 'browser', featuresCount: 4 },
+  { id: 'mobile', icon: Smartphone, color: 'from-indigo-400 to-purple-400', visual: 'phone', featuresCount: 4 },
+  { id: 'automation', icon: Bot, color: 'from-emerald-400 to-green-500', visual: 'terminal', featuresCount: 4 },
+  { id: 'design', icon: Palette, color: 'from-pink-400 to-rose-500', visual: 'layers', featuresCount: 4 }
 ];
 
-const standards = [
-  { title: 'Super Cepat', desc: 'Dioptimalkan untuk skor Google PageSpeed 90+.', icon: Zap, color: 'text-yellow-500' },
-  { title: 'Aman Secara Default', desc: 'Praktik terbaik untuk perlindungan data & enkripsi.', icon: Shield, color: 'text-green-500' },
-  { title: 'Arsitektur Skalabel', desc: 'Dibangun untuk menangani pertumbuhan sejak hari pertama.', icon: Cpu, color: 'text-blue-500' }
+const standardConfigs = [
+  { key: 'speed', icon: Zap, color: 'text-yellow-500' },
+  { key: 'security', icon: Shield, color: 'text-green-500' },
+  { key: 'scalable', icon: Cpu, color: 'text-blue-500' }
 ];
 
 export default function ServicesPageContent() {
+  const t = useTranslations('servicesPage');
   return (
     <div className="bg-slate-950 min-h-screen">
       {/* 1. Services Hero - Optimized */}
@@ -73,7 +47,7 @@ export default function ServicesPageContent() {
           >
             <Sparkles size={14} className="text-primary-500" />
             <span className="text-xs font-bold tracking-wide uppercase text-slate-300">
-              Solusi End-to-End
+              {t('badge')}
             </span>
           </motion.div>
 
@@ -83,8 +57,8 @@ export default function ServicesPageContent() {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight"
           >
-            Kami Menciptakan <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-blue-600">Pengalaman Digital</span>
+            {t('title1')} <br />
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-blue-600">{t('title2')}</span>
           </motion.h1>
 
           <motion.p
@@ -93,7 +67,7 @@ export default function ServicesPageContent() {
             transition={{ delay: 0.2 }}
             className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
           >
-            Dari desain pixel-perfect hingga sistem backend kompleks, kami menyediakan spektrum penuh layanan digital untuk membantu bisnis Anda berkembang di era modern.
+            {t('description')}
           </motion.p>
         </div>
       </section>
@@ -102,7 +76,7 @@ export default function ServicesPageContent() {
       <section className="py-24 relative">
         <div className="container mx-auto px-6">
           <div className="space-y-32">
-            {detailedServices.map((service, index) => (
+            {serviceConfigs.map((service, index) => (
               <div key={service.id} className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-16`}>
                 <motion.div
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
@@ -114,17 +88,17 @@ export default function ServicesPageContent() {
                   <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${service.color} flex items-center justify-center text-white shadow-lg mb-6`}>
                     <service.icon size={28} />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{service.title}</h2>
-                  <p className="text-lg font-medium text-primary-400 mb-6">{service.subtitle}</p>
-                  <p className="text-slate-400 leading-relaxed mb-8 text-lg">{service.description}</p>
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t(`services.${service.id}.title`)}</h2>
+                  <p className="text-lg font-medium text-primary-400 mb-6">{t(`services.${service.id}.subtitle`)}</p>
+                  <p className="text-slate-400 leading-relaxed mb-8 text-lg">{t(`services.${service.id}.description`)}</p>
 
                   <ul className="grid sm:grid-cols-2 gap-4">
-                    {service.features.map((feature, i) => (
+                    {Array.from({ length: service.featuresCount }, (_, i) => (
                       <li key={i} className="flex items-center gap-3 text-slate-300">
                         <div className="w-6 h-6 rounded-full bg-primary-900/30 flex items-center justify-center shrink-0 text-primary-500">
                           <Check size={14} strokeWidth={3} />
                         </div>
-                        <span className="text-sm font-medium">{feature}</span>
+                        <span className="text-sm font-medium">{t(`services.${service.id}.features.${i}`)}</span>
                       </li>
                     ))}
                   </ul>
@@ -152,18 +126,18 @@ export default function ServicesPageContent() {
       <section className="py-20 bg-slate-900 border-y border-slate-800">
         <div className="container mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-white mb-4">Standar Rekayasa Kami</h2>
-            <p className="text-slate-400">Kami tidak hanya menulis kode; kami menjunjung standar kualitas yang ketat.</p>
+            <h2 className="text-3xl font-bold text-white mb-4">{t('standards.title')}</h2>
+            <p className="text-slate-400">{t('standards.description')}</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {standards.map((item, i) => (
+            {standardConfigs.map((item, i) => (
               <div key={i} className="p-8 rounded-2xl bg-slate-950 border border-slate-800 text-center hover:border-primary-500/50 transition-colors">
                 <div className={`w-12 h-12 mx-auto mb-4 rounded-full bg-slate-900 shadow-sm flex items-center justify-center ${item.color}`}>
                   <item.icon size={24} />
                 </div>
-                <h3 className="font-bold text-white text-xl mb-2">{item.title}</h3>
-                <p className="text-slate-400 text-sm">{item.desc}</p>
+                <h3 className="font-bold text-white text-xl mb-2">{t(`standards.items.${item.key}.title`)}</h3>
+                <p className="text-slate-400 text-sm">{t(`standards.items.${item.key}.description`)}</p>
               </div>
             ))}
           </div>

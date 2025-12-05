@@ -4,68 +4,63 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Sparkles, Eye } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface PortfolioItem {
   id: string;
-  title: string;
-  category: string;
+  projectKey: string;
+  categoryKey: 'website' | 'mobile' | 'bot' | 'design';
   image: string;
-  description: string;
 }
 
 const projects: PortfolioItem[] = [
   {
     id: '1',
-    title: 'Neon E-Commerce',
-    category: 'Website',
-    image: 'https://picsum.photos/800/800?random=101',
-    description: 'Pengalaman belanja futuristik dengan preview produk 3D dan rekomendasi AI.'
+    projectKey: 'neon',
+    categoryKey: 'website',
+    image: 'https://picsum.photos/800/800?random=101'
   },
   {
     id: '2',
-    title: 'FitPulse Tracker',
-    category: 'Aplikasi Mobile',
-    image: 'https://picsum.photos/800/800?random=102',
-    description: 'Aplikasi kesehatan cross-platform dibangun dengan Flutter, dilengkapi biometrik real-time.'
+    projectKey: 'fitpulse',
+    categoryKey: 'mobile',
+    image: 'https://picsum.photos/800/800?random=102'
   },
   {
     id: '3',
-    title: 'SignalMaster Bot',
-    category: 'Bot Automasi',
-    image: 'https://picsum.photos/800/800?random=103',
-    description: 'Bot trading crypto frekuensi tinggi terintegrasi dengan Telegram untuk notifikasi instan.'
+    projectKey: 'signalmaster',
+    categoryKey: 'bot',
+    image: 'https://picsum.photos/800/800?random=103'
   },
   {
     id: '4',
-    title: 'Aura Branding',
-    category: 'Desain',
-    image: 'https://picsum.photos/800/800?random=104',
-    description: 'Perombakan identitas visual lengkap untuk startup energi terbarukan di Bali.'
+    projectKey: 'aura',
+    categoryKey: 'design',
+    image: 'https://picsum.photos/800/800?random=104'
   },
   {
     id: '5',
-    title: 'Urban Estates',
-    category: 'Website',
-    image: 'https://picsum.photos/800/800?random=105',
-    description: 'Portal properti mewah dengan pencarian peta interaktif dan tur virtual.'
+    projectKey: 'urban',
+    categoryKey: 'website',
+    image: 'https://picsum.photos/800/800?random=105'
   },
   {
     id: '6',
-    title: 'TastyExpress',
-    category: 'Aplikasi Mobile',
-    image: 'https://picsum.photos/800/800?random=106',
-    description: 'Ekosistem pengiriman makanan yang menghubungkan 500+ vendor lokal dengan pelanggan.'
+    projectKey: 'tasty',
+    categoryKey: 'mobile',
+    image: 'https://picsum.photos/800/800?random=106'
   }
 ];
 
-const categories = ['Semua', 'Website', 'Aplikasi Mobile', 'Bot Automasi', 'Desain'];
+const categoryKeys = ['all', 'website', 'mobile', 'bot', 'design'] as const;
 
 const PortfolioSection: React.FC = () => {
-  const [filter, setFilter] = useState('Semua');
+  const t = useTranslations('portfolio');
+  const [filter, setFilter] = useState<string>('all');
 
-  const filteredProjects = filter === 'Semua'
+  const filteredProjects = filter === 'all'
     ? projects
-    : projects.filter(p => p.category === filter);
+    : projects.filter(p => p.categoryKey === filter);
 
   return (
     <section className="py-32 bg-slate-950 relative overflow-hidden" id="portfolio">
@@ -84,7 +79,7 @@ const PortfolioSection: React.FC = () => {
             className="flex items-center justify-center gap-2 mb-4"
           >
             <Sparkles size={16} className="text-primary-500" />
-            <span className="text-primary-500 font-bold tracking-wider uppercase text-sm">Karya Pilihan</span>
+            <span className="text-primary-500 font-bold tracking-wider uppercase text-sm">{t('badge')}</span>
           </motion.div>
 
           <motion.h2
@@ -94,8 +89,8 @@ const PortfolioSection: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-bold text-white mb-8"
           >
-            Menampilkan <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-blue-600">Karya Digital Kami</span>
+            {t('title1')} <br />
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-blue-600">{t('title2')}</span>
           </motion.h2>
 
           {/* Filter Dock */}
@@ -106,7 +101,7 @@ const PortfolioSection: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="inline-flex flex-wrap justify-center gap-1 p-1.5 bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-full shadow-lg shadow-black/20"
           >
-            {categories.map((cat) => (
+            {categoryKeys.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
@@ -121,7 +116,7 @@ const PortfolioSection: React.FC = () => {
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
-                {cat}
+                {t(`categories.${cat}`)}
               </button>
             ))}
           </motion.div>
@@ -146,7 +141,7 @@ const PortfolioSection: React.FC = () => {
                 <div className="absolute inset-0 w-full h-full">
                     <Image
                         src={project.image}
-                        alt={project.title}
+                        alt={t(`projects.${project.projectKey}.title`)}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
@@ -159,7 +154,7 @@ const PortfolioSection: React.FC = () => {
                     <div className="bg-slate-900/40 backdrop-blur-xl border border-white/20 p-6 rounded-3xl transform translate-y-0 transition-transform duration-500 group-hover:-translate-y-2 group-hover:bg-slate-900/60">
                         <div className="flex justify-between items-start mb-2">
                              <span className="inline-block px-3 py-1 rounded-full bg-primary-500/20 border border-primary-500/30 text-primary-200 text-xs font-bold uppercase tracking-wider">
-                                {project.category}
+                                {t(`categories.${project.categoryKey}`)}
                             </span>
                              <div className="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300 shadow-lg">
                                 <ArrowUpRight size={20} />
@@ -167,12 +162,12 @@ const PortfolioSection: React.FC = () => {
                         </div>
 
                         <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
-                            {project.title}
+                            {t(`projects.${project.projectKey}.title`)}
                         </h3>
 
                         <div className="h-0 overflow-hidden group-hover:h-auto group-hover:mt-2 transition-all duration-300">
                              <p className="text-slate-200 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                {project.description}
+                                {t(`projects.${project.projectKey}.description`)}
                             </p>
                         </div>
                     </div>
@@ -181,7 +176,7 @@ const PortfolioSection: React.FC = () => {
                 {/* Top Corner Badge */}
                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-black/30 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-xs font-medium border border-white/10 flex items-center gap-1.5">
-                        <Eye size={12} /> Lihat Studi Kasus
+                        <Eye size={12} /> {t('featuredCaseStudy')}
                     </div>
                 </div>
 
@@ -193,7 +188,7 @@ const PortfolioSection: React.FC = () => {
         {/* View All Button */}
         <div className="mt-16 text-center">
              <button className="px-8 py-4 rounded-full border border-slate-800 text-slate-300 font-semibold hover:bg-slate-800 transition-colors">
-                Lihat Semua Project
+                {t('viewAllProjects')}
              </button>
         </div>
       </div>

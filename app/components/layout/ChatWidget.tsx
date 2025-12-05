@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 // WhatsApp SVG Icon
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -13,6 +14,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 export default function ChatWidget() {
+  const t = useTranslations('chatWidget');
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
@@ -42,10 +44,10 @@ export default function ChatWidget() {
                   <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#25D366] rounded-full border-[3px] border-slate-900"></div>
                 </div>
                 <div>
-                  <h3 className="text-white font-bold text-lg leading-tight">Tim Support</h3>
+                  <h3 className="text-white font-bold text-lg leading-tight">{t('supportTeam')}</h3>
                   <p className="text-slate-400 text-xs font-medium flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 bg-[#25D366] rounded-full animate-pulse"></span>
-                    Online Sekarang
+                    {t('onlineNow')}
                   </p>
                 </div>
               </div>
@@ -61,8 +63,7 @@ export default function ChatWidget() {
             <div className="p-6 bg-slate-950">
               <div className="bg-slate-900 p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-800 text-sm text-slate-300 mb-6 leading-relaxed relative">
                 <span className="absolute -left-2 -top-2 w-4 h-4 bg-slate-900 border-l border-t border-slate-800 transform -rotate-45"></span>
-                Halo! 👋 <br/>
-                Terima kasih telah mengunjungi KEDJORA. Bagaimana kami bisa membantu Anda membangun produk digital hari ini?
+                {t('greeting')}
               </div>
 
               <a
@@ -72,12 +73,12 @@ export default function ChatWidget() {
                 className="group flex items-center justify-center gap-2 w-full py-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold rounded-xl transition-all shadow-lg shadow-green-500/20 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <WhatsAppIcon className="w-5 h-5" />
-                Mulai Chat
+                {t('startChat')}
                 <Send size={16} className="group-hover:translate-x-1 transition-transform" />
               </a>
 
               <p className="text-center text-[10px] text-slate-400 mt-4">
-                Waktu respons: <span className="font-bold text-slate-500">Beberapa menit</span>
+                {t('responseTime')}
               </p>
             </div>
           </motion.div>
@@ -95,7 +96,7 @@ export default function ChatWidget() {
             className="pointer-events-auto bg-slate-800 text-white px-4 py-2.5 rounded-2xl rounded-br-none shadow-xl border border-slate-700 font-bold text-sm flex items-center gap-2 mb-2 mr-2 relative z-50 animate-bounce"
             style={{ animationDuration: '3s' }}
           >
-            Butuh bantuan? Chat dengan kami! 👋
+            {t('tooltip')}
             <div className="absolute -bottom-1.5 right-0 w-4 h-4 bg-slate-800 transform rotate-45 border-b border-r border-slate-700 clip-path-polygon"></div>
           </motion.div>
         )}

@@ -4,21 +4,25 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const navLinks = [
-  { name: 'Beranda', path: '/' },
-  { name: 'Layanan', path: '/services' },
-  { name: 'Portfolio', path: '/portfolio' },
-  { name: 'Blog', path: '/blog' },
-  { name: 'Tentang', path: '/about' },
-];
+import { useTranslations, useLocale } from 'next-intl';
+import { type Locale } from '@/i18n/config';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations('nav');
+  const locale = useLocale() as Locale;
+
+  const navLinks = [
+    { name: t('home'), path: `/${locale}` },
+    { name: t('services'), path: `/${locale}/services` },
+    { name: 'Portfolio', path: `/${locale}/portfolio` },
+    { name: 'Blog', path: `/${locale}/blog` },
+    { name: t('about'), path: `/${locale}/about` },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,9 +33,25 @@ const Navbar: React.FC = () => {
   }, []);
 
   const isActive = (path: string) => {
-    if (path === '/') return pathname === '/';
-    return pathname.startsWith(path);
+    // Remove locale prefix for comparison
+    const pathWithoutLocale = pathname.replace(/^\/(id|en)/, '');
+    const targetWithoutLocale = path.replace(/^\/(id|en)/, '');
+
+    if (targetWithoutLocale === '' || targetWithoutLocale === '/') {
+      return pathWithoutLocale === '' || pathWithoutLocale === '/';
+    }
+    return pathWithoutLocale.startsWith(targetWithoutLocale);
   };
+
+  // Get path without locale for language switching
+  const getPathWithNewLocale = (newLocale: string) => {
+    const pathWithoutLocale = pathname.replace(/^\/(id|en)/, '');
+    return `/${newLocale}${pathWithoutLocale || ''}`;
+  };
+
+  // Toggle to the other locale
+  const otherLocale = locale === 'id' ? 'en' : 'id';
+  const toggleLocalePath = getPathWithNewLocale(otherLocale);
 
   return (
     <motion.nav
@@ -109,12 +129,22 @@ const Navbar: React.FC = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2 shrink-0">
+             {/* Language Switcher (Desktop) - Direct Toggle */}
+             <Link
+               href={toggleLocalePath}
+               className={`hidden md:flex items-center gap-1.5 rounded-full bg-slate-800/50 text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all ${scrolled ? 'px-2.5 py-1.5 text-xs' : 'px-3 py-2 text-sm'}`}
+               title={locale === 'id' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'}
+             >
+               <Globe size={scrolled ? 14 : 16} />
+               <span className="uppercase font-medium">{otherLocale}</span>
+             </Link>
+
              {/* CTA Button (Desktop) */}
              <Link
-                href="/contact"
+                href={`/${locale}/contact`}
                 className={`hidden md:flex items-center gap-2 rounded-full bg-white text-slate-900 font-bold hover:scale-105 transition-all ${scrolled ? 'px-4 py-2 text-xs' : 'px-5 py-2.5 text-sm'}`}
              >
-                Kontak
+                {t('contact')}
              </Link>
 
             {/* Mobile Menu Toggle */}
@@ -138,7 +168,7 @@ const Navbar: React.FC = () => {
               className="md:hidden border-t border-slate-800/50 overflow-hidden"
             >
               <div className="p-4 flex flex-col gap-2">
-                {[...navLinks, { name: 'Kontak', path: '/contact' }].map((link) => (
+                {[...navLinks, { name: t('contact'), path: `/${locale}/contact` }].map((link) => (
                   <Link
                     key={link.path}
                     href={link.path}
@@ -157,6 +187,21 @@ const Navbar: React.FC = () => {
                     </div>
                   </Link>
                 ))}
+
+                {/* Mobile Language Switcher - Direct Toggle */}
+                <div className="mt-2 pt-2 border-t border-slate-800/50">
+                  <Link
+                    href={toggleLocalePath}
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center justify-between px-4 py-3 rounded-xl bg-slate-800/50 text-slate-300 hover:bg-slate-700/50 transition-all"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Globe size={16} />
+                      <span>{locale === 'id' ? 'Switch to English' : 'Ganti ke Indonesia'}</span>
+                    </div>
+                    <span className="uppercase font-bold text-primary-400">{otherLocale}</span>
+                  </Link>
+                </div>
               </div>
             </motion.div>
           )}

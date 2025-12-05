@@ -1,0 +1,503 @@
+{
+  "common": {
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "contactUs": "Contact Us",
+    "getStarted": "Get Started",
+    "startProject": "Start Project",
+    "chatWhatsApp": "Chat via WhatsApp",
+    "viewPortfolio": "View Portfolio",
+    "subscribe": "Subscribe",
+    "sendMessage": "Send Message",
+    "loading": "Loading...",
+    "searchPlaceholder": "Search...",
+    "noResults": "No results found",
+    "all": "All",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "save": "Save",
+    "custom": "Custom",
+    "contactSales": "Contact Sales",
+    "mostPopular": "Most Popular",
+    "viewCaseStudy": "View Case Study",
+    "viewDetails": "View Details",
+    "loadMore": "Load More",
+    "askQuestion": "Ask a Question",
+    "optional": "Optional"
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Accepting New Projects",
+    "title1": "We Build",
+    "title2": "Digital Excellence",
+    "description": "Transform your business with KEDJORA. We combine premium design with cutting-edge code to build websites, apps, and bots that drive real growth.",
+    "cta": {
+      "startProject": "Start Project",
+      "viewPortfolio": "View Portfolio"
+    },
+    "stats": {
+      "projects": "Projects Completed",
+      "satisfaction": "Client Satisfaction"
+    }
+  },
+  "techStack": {
+    "title": "Powered by Modern Technology"
+  },
+  "services": {
+    "badge": "Our Expertise",
+    "title1": "We Build",
+    "title2": "Digital Masterpieces",
+    "description": "Comprehensive digital solutions designed to elevate your business in the modern era.",
+    "items": {
+      "web": {
+        "title": "Website Development",
+        "description": "We create high-performance websites that captivate your audience. From landing pages to complex web applications.",
+        "features": ["React & Next.js", "SEO Optimization", "Interactive UI", "CMS Integration"]
+      },
+      "mobile": {
+        "title": "Mobile Applications",
+        "description": "Native-like performance with cross-platform efficiency. Build once, deploy anywhere with Flutter.",
+        "features": ["iOS & Android", "Flutter Framework", "Smooth Animations", "Offline Mode"]
+      },
+      "bot": {
+        "title": "Automation & Bots",
+        "description": "Stop doing repetitive tasks. We build intelligent bots to handle your customer service and workflows.",
+        "features": ["WhatsApp & Telegram", "Data Scraping", "Workflow Automation", "API Integration"]
+      },
+      "design": {
+        "title": "Creative Design",
+        "description": "Visual storytelling that defines your brand. We create logos and assets that leave lasting impressions.",
+        "features": ["Brand Identity", "UI/UX Design", "Social Media", "Motion Graphics"]
+      }
+    }
+  },
+  "process": {
+    "badge": "Workflow",
+    "title1": "From Concept to",
+    "title2": "Reality",
+    "description": "Our proven 4-step process ensures transparency, efficiency, and outstanding results for every project we undertake.",
+    "step": "Step",
+    "cta": "Ready to start Step 01?",
+    "steps": {
+      "discuss": {
+        "title": "Discussion",
+        "description": "We dive deep into your needs, business goals, and target audience to build a strong foundation."
+      },
+      "design": {
+        "title": "Strategy & Design",
+        "description": "Our designers create intuitive prototypes and visual systems that align perfectly with your brand identity."
+      },
+      "develop": {
+        "title": "Development",
+        "description": "We write clean, scalable code using modern frameworks to bring designs to life with high performance."
+      },
+      "launch": {
+        "title": "Launch & Scale",
+        "description": "After rigorous testing, we launch your product and provide ongoing support to ensure growth."
+      }
+    }
+  },
+  "portfolio": {
+    "badge": "Our Portfolio",
+    "title1": "Selected",
+    "title2": "Works",
+    "description": "A curated collection of digital products that blend aesthetics, performance, and innovation.",
+    "viewAllProjects": "View All Projects",
+    "featuredCaseStudy": "Featured Case Study",
+    "viewCaseStudy": "View Case Study",
+    "viewDetail": "View Detail",
+    "technology": "Technology",
+    "categories": {
+      "all": "All",
+      "website": "Website",
+      "mobile": "Mobile App",
+      "bot": "Automation Bot",
+      "design": "Design"
+    },
+    "stats": {
+      "projects": "Projects Completed",
+      "awards": "Awards",
+      "coffees": "Coffees Consumed"
+    },
+    "projects": {
+      "neon": {
+        "title": "Neon E-Commerce",
+        "description": "Futuristic shopping experience with 3D product preview, AI-powered recommendations, and headless CMS architecture."
+      },
+      "fitpulse": {
+        "title": "FitPulse Tracker",
+        "description": "Cross-platform health companion built with Flutter. Features real-time biometric sync and social challenges."
+      },
+      "signalmaster": {
+        "title": "SignalMaster Bot",
+        "description": "High-frequency crypto trading bot integrated with Telegram for instant buy/sell alerts and portfolio management."
+      },
+      "aura": {
+        "title": "Aura Branding",
+        "description": "Complete visual identity overhaul for a renewable energy startup in Bali, focusing on sustainability and modern technology."
+      },
+      "urban": {
+        "title": "Urban Estates",
+        "description": "Luxury real estate portal with interactive map search, virtual tours, and automated booking system."
+      },
+      "tasty": {
+        "title": "TastyExpress",
+        "description": "Hyper-local food delivery ecosystem connecting 500+ vendors. Includes driver app, merchant dashboard, and consumer app."
+      },
+      "findash": {
+        "title": "FinDash Pro",
+        "description": "SaaS dashboard for financial analytics with real-time data visualization and export capabilities."
+      },
+      "autoresponder": {
+        "title": "AutoResponder AI",
+        "description": "AI customer service agent that handles 80% of incoming support queries automatically via WhatsApp and Email."
+      }
+    }
+  },
+  "pricing": {
+    "badge": "Transparent Pricing",
+    "title1": "Investment that",
+    "title2": "Makes Sense",
+    "description": "No hidden fees. Choose a package that fits your needs and budget.",
+    "perMonth": "/month",
+    "perYear": "/year",
+    "startingFrom": "Starting from",
+    "billedYearly": "Billed yearly",
+    "tiers": {
+      "starter": {
+        "name": "Starter",
+        "description": "Perfect for small businesses and startups just beginning their digital journey.",
+        "priceMonthly": "$450",
+        "priceYearly": "$360",
+        "features": ["Landing Page (1 page)", "Responsive Design", "Basic SEO Optimization", "Contact Form", "2x Revisions", "7 Days Delivery"]
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "For growing businesses that need more comprehensive digital solutions.",
+        "priceMonthly": "$1,200",
+        "priceYearly": "$960",
+        "features": ["Multi-page Website (5 pages)", "Custom UI/UX Design", "Advanced SEO Optimization", "CMS Integration", "Interactive Animations", "5x Revisions", "14 Days Delivery", "30 Days Support"]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Complete solution for large companies with complex needs and high scalability.",
+        "features": ["Custom Web Application", "Mobile App (iOS & Android)", "API & Backend Integration", "Admin Dashboard", "Automation & Bots", "Unlimited Revisions", "Dedicated Project Manager", "90 Days Support & Maintenance"]
+      }
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title1": "Frequently",
+    "title2": "Asked Questions",
+    "description": "Everything you need to know about working with KEDJORA. Can't find the answer you're looking for? Contact our team.",
+    "stillHaveQuestions": "Still have questions?",
+    "contactTeam": "Our team is ready to help answer your specific questions.",
+    "items": {
+      "timeline": {
+        "question": "How long does a project take?",
+        "answer": "Project duration varies depending on complexity. A simple landing page can be completed in 7-14 days, multi-page websites in 2-4 weeks, and mobile apps in 1-3 months. We'll provide a detailed timeline after discussing your requirements."
+      },
+      "pricing": {
+        "question": "How does the payment system work?",
+        "answer": "We use a staged payment system: 50% upfront as a deposit, and 50% upon project completion. For larger projects, payments can be divided into multiple milestones."
+      },
+      "revision": {
+        "question": "Is there a limit on revisions?",
+        "answer": "Each package has a different number of revisions. Starter package includes 2 revisions, Professional 5 revisions, and Enterprise unlimited revisions. Revisions beyond the quota will incur additional charges."
+      },
+      "support": {
+        "question": "What about support after project completion?",
+        "answer": "We provide free support according to the selected package (1-3 months). After the support period ends, you can subscribe to monthly maintenance or contact us for fixes at a separate cost."
+      },
+      "payment": {
+        "question": "What payment methods are accepted?",
+        "answer": "We accept bank transfers (BCA, Mandiri, BNI), e-wallets (GoPay, OVO, Dana), and for international clients, PayPal or Wise."
+      }
+    }
+  },
+  "contactCTA": {
+    "title": "Ready to Ignite Your Digital Potential?",
+    "description": "Join the visionaries who trust KEDJORA. From concept to launch, we are the engine behind your next big breakthrough.",
+    "scheduleCall": "Schedule a Call",
+    "orWhatsApp": "or directly",
+    "responseTime": "Response time: Less than 1 hour"
+  },
+  "testimonials": {
+    "trustedBy": "Trusted by Innovative Companies",
+    "title1": "Don't just take",
+    "title2": "our word for it",
+    "description": "We take pride in building lasting partnerships. Here's what our clients say about working with KEDJORA.",
+    "items": {
+      "sarah": {
+        "name": "Sarah Jenkins",
+        "role": "CTO",
+        "company": "TechStart Inc.",
+        "content": "The mobile app UI they designed is world-class. Clean, modern, and exactly what we needed to secure our Series A funding. The team's attention to detail is unmatched."
+      },
+      "budi": {
+        "name": "Budi Santoso",
+        "role": "Founder",
+        "company": "Kediri Kuliner",
+        "content": "KEDJORA transformed our manual ordering process into a seamless Telegram bot. Efficiency increased by 40% in just two weeks. Highly recommended for local businesses!"
+      },
+      "marcus": {
+        "name": "Marcus Chen",
+        "role": "Product Lead",
+        "company": "Nexus Finance",
+        "content": "We needed a high-performance web dashboard for our crypto trading platform. KEDJORA delivered a React app that handles real-time data flawlessly. Truly impressive engineering."
+      }
+    }
+  },
+  "footer": {
+    "description": "Digital agency focused on creating websites, mobile apps, and automation solutions that drive business growth.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "copyright": "Copyright",
+    "allRightsReserved": "All rights reserved.",
+    "address": {
+      "line1": "Imam Bonjol St. No. 218, Kediri,",
+      "line2": "East Java, Indonesia 64122"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Subscribe to get the latest tech trends and KEDJORA updates. No spam, ever."
+    },
+    "serviceLinks": {
+      "webDev": "Web Development",
+      "mobileApp": "Mobile Apps",
+      "automation": "Automation & Bots",
+      "design": "Creative Design"
+    }
+  },
+  "chatWidget": {
+    "supportTeam": "Support Team",
+    "onlineNow": "Online Now",
+    "greeting": "Hello! 👋 Thank you for visiting KEDJORA. How can we help you build your digital product today?",
+    "startChat": "Start Chat",
+    "responseTime": "Response time: A few minutes",
+    "tooltip": "Need help? Chat with us! 👋"
+  },
+  "about": {
+    "badge": "Our Story & Culture",
+    "title1": "We Are",
+    "title2": "Digital Architects",
+    "description": "KEDJORA is more than just a development agency. We are a collective of dreamers, thinkers, and makers dedicated to creating the future of the web.",
+    "stats": {
+      "experience": "Years Experience",
+      "projects": "Projects Completed",
+      "clients": "Happy Clients",
+      "coffee": "Coffees Brewed"
+    },
+    "origin": {
+      "title": "The Origin",
+      "paragraph1": "<strong>KEDJORA</strong> (derived from \"Kediri Jorah\") started as a small collective of passionate developers in East Java. \"Jorah\" implies excellence and being a champion—a spirit we instill in every line of code we write.",
+      "paragraph2": "We saw a gap in the industry: agencies too focused on design without substance, or too technical without soul. We were determined to bridge that gap.",
+      "paragraph3": "Today, we help businesses worldwide navigate the complex digital landscape, transforming vague ideas into powerful, scalable, and beautiful products."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "Democratizing world-class digital engineering. We believe every ambitious business deserves world-class technology, regardless of their size."
+    },
+    "values": {
+      "title": "Our Philosophy",
+      "description": "Guiding principles that drive our decisions and shape our culture.",
+      "items": {
+        "innovation": {
+          "title": "Innovation First",
+          "description": "We're not satisfied with \"good enough\". We continuously explore new technologies to give you the edge."
+        },
+        "transparency": {
+          "title": "Radical Transparency",
+          "description": "No hidden fees, no technical jargon. We keep you informed at every step."
+        },
+        "userObsession": {
+          "title": "User Obsession",
+          "description": "We design for humans, not robots. Every pixel has a purpose for the end user."
+        }
+      }
+    },
+    "team": {
+      "title": "Meet Our Team",
+      "description": "Talented individuals working behind the scenes to bring your vision to life.",
+      "joinTeam": "Join the Team",
+      "members": {
+        "alex": "Lead Developer",
+        "sarah": "UI/UX Designer",
+        "budi": "Mobile Developer",
+        "maya": "Project Manager"
+      }
+    },
+    "timeline": {
+      "title": "Our Journey",
+      "events": {
+        "founding": { "year": "2023", "title": "The Beginning", "description": "KEDJORA was founded in a small garage in Kediri by two college friends." },
+        "firstClient": { "year": "2023", "title": "First Major Client", "description": "Secured our first international contract, expanding our reach beyond Indonesia." },
+        "expansion": { "year": "2024", "title": "Team Expansion", "description": "Grew to a team of 10 full-time specialists in design, mobile, and web." },
+        "present": { "year": "Now", "title": "Rapid Growth", "description": "Launching our own SaaS products while serving enterprise clients globally." }
+      }
+    }
+  },
+  "blog": {
+    "badge": "Insights & Thoughts",
+    "title1": "The",
+    "title2": "KEDJORA Journal",
+    "description": "Deep dives into technology, design philosophy, and the future of digital product development.",
+    "featured": "Featured",
+    "searchPlaceholder": "Search articles...",
+    "noArticles": "No articles found",
+    "adjustSearch": "Try adjusting your search or category filter.",
+    "readTime": "min read",
+    "loadMore": "Load More",
+    "categories": {
+      "all": "All",
+      "engineering": "Engineering",
+      "design": "Design",
+      "automation": "Automation",
+      "mobile": "Mobile",
+      "business": "Business",
+      "marketing": "Marketing"
+    },
+    "newsletter": {
+      "title": "Stay one step ahead",
+      "description": "Join 5,000+ developers and founders who get the latest insights on technology, design, and automation delivered straight to their inbox.",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe",
+      "disclaimer": "No spam. Unsubscribe anytime."
+    },
+    "posts": {
+      "nextjs": {
+        "title": "The Future of Web: Why We Switched to Next.js 14",
+        "excerpt": "Server actions, partial prerendering, and the new compiler. Here's why our agency fully adopted the latest Next.js ecosystem for enterprise clients.",
+        "date": "Mar 10, 2025"
+      },
+      "glassmorphism": {
+        "title": "Designing for Trust: The Psychology of Glassmorphism",
+        "excerpt": "How transparency and blur effects in UI design can increase user trust and the perceived premium value of your application.",
+        "date": "Mar 08, 2025"
+      },
+      "automation": {
+        "title": "Automating Customer Support with Python & Telegram",
+        "excerpt": "A step-by-step guide to building a robust bot that handles 80% of your customer inquiries without human intervention.",
+        "date": "Mar 05, 2025"
+      },
+      "flutter": {
+        "title": "Flutter vs React Native in 2025",
+        "excerpt": "The eternal debate continues. We break down performance metrics, developer experience, and community support for both giants.",
+        "date": "Feb 28, 2025"
+      },
+      "seo": {
+        "title": "Optimizing SEO for Single Page Applications",
+        "excerpt": "SPAs often struggle with SEO. Learn the techniques we use to ensure our React apps rank #1 on Google.",
+        "date": "Feb 20, 2025"
+      },
+      "nocode": {
+        "title": "The Rise of No-Code Tools in Professional Agencies",
+        "excerpt": "Why we sometimes choose Framer or Webflow over custom code for marketing sites, and why it benefits clients.",
+        "date": "Feb 15, 2025"
+      }
+    }
+  },
+  "contact": {
+    "badge": "Start a Conversation",
+    "title1": "Let's Build Something",
+    "title2": "Extraordinary",
+    "description": "Have a project in mind? We'd love to hear about it.",
+    "info": {
+      "title": "Contact Information",
+      "description": "Fill out the form and our team will get back to you within 24 hours.",
+      "email": "Email",
+      "phone": "Phone / WhatsApp",
+      "location": "Location",
+      "connectWithUs": "Connect with us"
+    },
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "interestedIn": "I'm interested in...",
+      "budget": "Project Budget",
+      "message": "Message",
+      "messagePlaceholder": "Tell us a bit about your project goals...",
+      "submit": "Send Message",
+      "services": {
+        "web": "Web Development",
+        "mobile": "Mobile Apps",
+        "automation": "Automation Bots",
+        "design": "UI/UX Design",
+        "other": "Other"
+      },
+      "budgets": {
+        "tier1": "< $1,000",
+        "tier2": "$1,000 - $5,000",
+        "tier3": "$5,000 - $10,000",
+        "tier4": "$10,000+"
+      }
+    },
+    "steps": {
+      "title": "What happens next?",
+      "description": "Our seamless onboarding process ensures you're never left in the dark.",
+      "items": {
+        "submission": { "title": "1. Submission", "description": "You submit the form. We receive it instantly." },
+        "scheduling": { "title": "2. Scheduling", "description": "We reach out within 24 hours to schedule a discovery call." },
+        "proposal": { "title": "3. Proposal", "description": "We assess your needs and send a tailored plan." }
+      }
+    },
+    "faq": {
+      "title": "Engagement FAQ",
+      "items": {
+        "nda": { "question": "Do you sign NDAs?", "answer": "Absolutely. We respect your intellectual property and are happy to sign an NDA before discussing sensitive project details." },
+        "budget": { "question": "What's your typical budget range?", "answer": "Our projects typically start from $1,500 for basic websites and can go up to $50,000+ for complex enterprise applications. We offer flexible tiers for various needs." },
+        "international": { "question": "Do you work with international clients?", "answer": "Yes! 80% of our clients are from the US, Europe, and Australia. We're used to working across time zones using asynchronous communication." }
+      }
+    }
+  },
+  "servicesPage": {
+    "badge": "End-to-End Solutions",
+    "title1": "We Create",
+    "title2": "Digital Experiences",
+    "description": "From pixel-perfect design to complex backend systems, we provide the full spectrum of digital services to help your business thrive in the modern era.",
+    "services": {
+      "web": {
+        "title": "High-Performance Web Development",
+        "subtitle": "We build fast, SEO-optimized, and scalable web applications tailored to your business goals.",
+        "description": "From simple landing pages to complex SaaS platforms, our web solutions are engineered for performance and conversion. We use cutting-edge frameworks like Next.js and React to ensure your site is future-proof, accessible, and blazing fast.",
+        "features": ["Custom React.js / Next.js Development", "Headless CMS Integration (Sanity, Strapi)", "E-Commerce Solutions", "Progressive Web Apps (PWA)"]
+      },
+      "mobile": {
+        "title": "Cross-Platform Mobile Apps",
+        "subtitle": "Native-like performance on iOS and Android with a single codebase.",
+        "description": "Reach your customers on every device. Our mobile development team specializes in Flutter to deliver smooth, beautiful, and highly functional apps efficiently. We handle everything from UI design to App Store deployment.",
+        "features": ["iOS & Android App Development", "Flutter Cross-Platform Solutions", "App Store & Play Store Deployment", "Real-time Features & Offline Mode"]
+      },
+      "automation": {
+        "title": "Business Automation & Bots",
+        "subtitle": "Streamline your operations and save hours of manual work every day.",
+        "description": "We build intelligent bots and automation scripts that handle repetitive tasks, customer inquiries, and data processing. Whether it's a Telegram notification bot or a complex data scraper, we automate the boring stuff so you can focus on growth.",
+        "features": ["Custom Telegram & WhatsApp Bots", "Web Scraping & Data Extraction", "Internal Workflow Automation", "API Integration & Middleware"]
+      },
+      "design": {
+        "title": "UI/UX Design & Branding",
+        "subtitle": "Visual storytelling that resonates with your audience and builds trust.",
+        "description": "Design isn't just about looks; it's about how it works. We create intuitive user interfaces and compelling brand identities that set you apart from the competition. Our design process is data-driven and user-centered.",
+        "features": ["User Interface (UI) Design", "User Experience (UX) Research", "Design Systems & Prototyping", "Logo & Brand Identity"]
+      }
+    },
+    "standards": {
+      "title": "Our Engineering Standards",
+      "description": "We don't just write code; we uphold rigorous quality standards.",
+      "items": {
+        "speed": { "title": "Super Fast", "description": "Optimized for Google PageSpeed scores of 90+." },
+        "security": { "title": "Secure by Default", "description": "Best practices for data protection & encryption." },
+        "scalable": { "title": "Scalable Architecture", "description": "Built to handle growth from day one." }
+      }
+    }
+  }
+}
+

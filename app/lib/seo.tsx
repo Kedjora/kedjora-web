@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 
 export const SITE_CONFIG = {
   name: 'KEDJORA',
-  tagline: 'Jasa Pembuatan Website & Aplikasi',
+  tagline: 'Digital Solusi untuk Bisnis Anda',
   url: 'https://kedjora.id',
   locale: 'id_ID',
   twitterHandle: '@kedjora',

@@ -4,39 +4,28 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { MessageSquare, PenTool, Code2, Rocket, ArrowRight } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
+import { LucideIcon } from 'lucide-react';
 
-const steps = [
-  {
-    id: 1,
-    title: 'Diskusi',
-    description: 'Kami mendalami kebutuhan, tujuan bisnis, dan target audiens Anda untuk membangun fondasi yang kuat.',
-    icon: MessageSquare,
-    color: 'from-blue-400 to-blue-600'
-  },
-  {
-    id: 2,
-    title: 'Strategi & Desain',
-    description: 'Desainer kami membuat prototipe intuitif dan sistem visual yang selaras sempurna dengan identitas brand Anda.',
-    icon: PenTool,
-    color: 'from-indigo-400 to-indigo-600'
-  },
-  {
-    id: 3,
-    title: 'Pengembangan',
-    description: 'Kami menulis kode yang bersih dan skalabel menggunakan framework modern untuk mewujudkan desain dengan performa tinggi.',
-    icon: Code2,
-    color: 'from-violet-400 to-violet-600'
-  },
-  {
-    id: 4,
-    title: 'Peluncuran & Skalasi',
-    description: 'Setelah pengujian ketat, kami meluncurkan produk Anda dan memberikan dukungan berkelanjutan untuk memastikan pertumbuhan.',
-    icon: Rocket,
-    color: 'from-primary-400 to-primary-600'
-  },
+interface StepConfig {
+  id: number;
+  key: 'discuss' | 'design' | 'develop' | 'launch';
+  icon: LucideIcon;
+  color: string;
+}
+
+const stepConfigs: StepConfig[] = [
+  { id: 1, key: 'discuss', icon: MessageSquare, color: 'from-blue-400 to-blue-600' },
+  { id: 2, key: 'design', icon: PenTool, color: 'from-indigo-400 to-indigo-600' },
+  { id: 3, key: 'develop', icon: Code2, color: 'from-violet-400 to-violet-600' },
+  { id: 4, key: 'launch', icon: Rocket, color: 'from-primary-400 to-primary-600' },
 ];
 
 const Process: React.FC = () => {
+  const t = useTranslations('process');
+  const tCommon = useTranslations('common');
+  const locale = useLocale();
+
   return (
     <section className="py-32 bg-slate-950 relative overflow-hidden">
         {/* Background Decorations - Optimized: reduced blur */}
@@ -54,7 +43,7 @@ const Process: React.FC = () => {
             viewport={{ once: true }}
             className="inline-block px-4 py-1.5 rounded-full bg-primary-900/30 text-primary-300 text-xs font-bold uppercase tracking-widest mb-4"
           >
-            Alur Kerja
+            {t('badge')}
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -63,10 +52,10 @@ const Process: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Dari Konsep ke <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-blue-600">Realita</span>
+            {t('title1')} <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-blue-600">{t('title2')}</span>
           </motion.h2>
           <p className="text-lg text-slate-400 leading-relaxed">
-            Proses 4 langkah kami yang terbukti memastikan transparansi, efisiensi, dan hasil luar biasa untuk setiap project yang kami kerjakan.
+            {t('description')}
           </p>
         </div>
 
@@ -83,7 +72,7 @@ const Process: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, index) => (
+            {stepConfigs.map((step, index) => (
               <motion.div
                 key={step.id}
                 initial={{ opacity: 0, y: 50 }}
@@ -96,7 +85,7 @@ const Process: React.FC = () => {
 
                   {/* Step Badge */}
                   <div className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-slate-800 text-xs font-bold text-slate-400 mb-6 group-hover:bg-primary-500 group-hover:text-white transition-colors duration-300">
-                    Langkah 0{step.id}
+                    {t('step')} 0{step.id}
                   </div>
 
                   {/* Icon */}
@@ -105,11 +94,11 @@ const Process: React.FC = () => {
                   </div>
 
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary-500 transition-colors">
-                    {step.title}
+                    {t(`steps.${step.key}.title`)}
                   </h3>
 
                   <p className="text-slate-400 text-sm leading-relaxed">
-                    {step.description}
+                    {t(`steps.${step.key}.description`)}
                   </p>
 
                   {/* Giant Background Number */}
@@ -119,7 +108,7 @@ const Process: React.FC = () => {
                 </div>
 
                 {/* Arrow Connector (Desktop only, except last item) */}
-                {index < steps.length - 1 && (
+                {index < stepConfigs.length - 1 && (
                     <div className="hidden lg:flex absolute top-1/2 -right-4 w-8 h-8 -translate-y-1/2 z-20 items-center justify-center text-slate-700">
                         <ArrowRight size={20} />
                     </div>
@@ -138,7 +127,7 @@ const Process: React.FC = () => {
                 transition={{ delay: 0.8 }}
                 className="text-slate-400 text-sm"
             >
-                Siap memulai Langkah 01? <Link href="/contact" className="text-primary-500 font-bold hover:underline">Hubungi Kami</Link>
+                {t('cta')} <Link href={`/${locale}/contact`} className="text-primary-500 font-bold hover:underline">{tCommon('contactUs')}</Link>
             </motion.p>
         </div>
       </div>

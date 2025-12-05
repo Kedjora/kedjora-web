@@ -3,15 +3,12 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Star, Quote, TrendingUp, Hexagon, Triangle, Circle, Box } from 'lucide-react';
-import { LucideIcon } from 'lucide-react';
+import { Star, Quote, TrendingUp, Hexagon, Triangle, Circle, Box, type LucideIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-interface Testimonial {
+interface TestimonialConfig {
   id: string;
-  name: string;
-  role: string;
-  company: string;
-  content: string;
+  key: string;
   avatar: string;
 }
 
@@ -20,31 +17,10 @@ interface Client {
   icon: LucideIcon;
 }
 
-const testimonials: Testimonial[] = [
-  {
-    id: '1',
-    name: 'Sarah Jenkins',
-    role: 'CTO',
-    company: 'TechStart Inc.',
-    content: "UI aplikasi mobile yang mereka desain berkelas dunia. Bersih, modern, dan persis yang kami butuhkan untuk mengamankan pendanaan Series A. Perhatian tim terhadap detail tidak tertandingi.",
-    avatar: 'https://picsum.photos/100?random=11'
-  },
-  {
-    id: '2',
-    name: 'Budi Santoso',
-    role: 'Founder',
-    company: 'Kediri Kuliner',
-    content: "KEDJORA mengubah proses pemesanan manual kami menjadi bot Telegram yang mulus. Efisiensi meningkat 40% hanya dalam dua minggu. Sangat direkomendasikan untuk bisnis lokal!",
-    avatar: 'https://picsum.photos/100?random=10'
-  },
-  {
-    id: '3',
-    name: 'Marcus Chen',
-    role: 'Product Lead',
-    company: 'Nexus Finance',
-    content: "Kami membutuhkan dashboard web berkinerja tinggi untuk platform trading crypto kami. KEDJORA menghadirkan aplikasi React yang menangani data real-time dengan sempurna. Engineering yang benar-benar mengesankan.",
-    avatar: 'https://picsum.photos/100?random=12'
-  }
+const testimonialConfigs: TestimonialConfig[] = [
+  { id: '1', key: 'sarah', avatar: 'https://picsum.photos/100?random=11' },
+  { id: '2', key: 'budi', avatar: 'https://picsum.photos/100?random=10' },
+  { id: '3', key: 'marcus', avatar: 'https://picsum.photos/100?random=12' }
 ];
 
 const clients: Client[] = [
@@ -59,6 +35,8 @@ const clients: Client[] = [
 ];
 
 const Testimonials: React.FC = () => {
+  const t = useTranslations('testimonials');
+
   return (
     <section className="py-24 bg-slate-950 relative overflow-hidden">
         {/* Background Atmosphere - Optimized: reduced blur */}
@@ -71,7 +49,7 @@ const Testimonials: React.FC = () => {
         {/* Logo Marquee */}
         <div className="mb-24">
             <p className="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-8">
-                Dipercaya oleh Perusahaan Inovatif
+                {t('trustedBy')}
             </p>
             <div className="relative flex overflow-x-hidden group">
                  {/* Left/Right Fade Masks */}
@@ -98,8 +76,8 @@ const Testimonials: React.FC = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Jangan hanya percaya <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-blue-600">kata-kata kami</span>
+            {t('title1')} <br />
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-blue-600">{t('title2')}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -108,13 +86,13 @@ const Testimonials: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-lg text-slate-400"
           >
-            Kami bangga membangun kemitraan yang langgeng. Berikut apa yang klien kami katakan tentang bekerja sama dengan KEDJORA.
+            {t('description')}
           </motion.p>
         </div>
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {testimonialConfigs.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
               initial={{ opacity: 0, y: 30 }}
@@ -136,21 +114,21 @@ const Testimonials: React.FC = () => {
                 </div>
 
                 <p className="text-slate-300 leading-relaxed mb-8 relative z-10">
-                    &quot;{testimonial.content}&quot;
+                    &quot;{t(`items.${testimonial.key}.content`)}&quot;
                 </p>
 
                 <div className="flex items-center gap-4 border-t border-slate-800 pt-6">
                     <div className="relative">
                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-slate-700 shadow-md">
-                            <Image src={testimonial.avatar} alt={testimonial.name} width={48} height={48} className="w-full h-full object-cover" />
+                            <Image src={testimonial.avatar} alt={t(`items.${testimonial.key}.name`)} width={48} height={48} className="w-full h-full object-cover" />
                         </div>
                         <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-primary-500 rounded-full border-2 border-slate-900 flex items-center justify-center">
                             <Quote size={8} className="text-white fill-white" />
                         </div>
                     </div>
                     <div>
-                        <h4 className="font-bold text-white text-sm">{testimonial.name}</h4>
-                        <p className="text-xs text-slate-400">{testimonial.role}, {testimonial.company}</p>
+                        <h4 className="font-bold text-white text-sm">{t(`items.${testimonial.key}.name`)}</h4>
+                        <p className="text-xs text-slate-400">{t(`items.${testimonial.key}.role`)}, {t(`items.${testimonial.key}.company`)}</p>
                     </div>
                 </div>
 

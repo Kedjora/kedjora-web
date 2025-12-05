@@ -4,8 +4,12 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Instagram, Linkedin, Twitter, Mail, MapPin, Phone, ArrowUp, Send } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 
 const Footer: React.FC = () => {
+  const t = useTranslations('footer');
+  const locale = useLocale();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -37,7 +41,7 @@ const Footer: React.FC = () => {
 
           {/* Brand Column */}
           <div className="space-y-8">
-            <Link href="/" className="flex items-center gap-2 group w-fit">
+            <Link href={`/${locale}`} className="flex items-center gap-2 group w-fit">
               <Image
                 src="/logo.png"
                 alt="KEDJORA Logo"
@@ -50,7 +54,7 @@ const Footer: React.FC = () => {
               </span>
             </Link>
             <p className="text-slate-400 leading-relaxed">
-              Kami membangun pengalaman digital yang mendorong pertumbuhan. Dari kode kustom hingga alur kerja otomatis, kami membangun masa depan bisnis Anda.
+              {t('description')}
             </p>
             <div className="flex gap-3">
               {socialLinks.map((item, i) => (
@@ -67,14 +71,19 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold text-white text-lg mb-8">Layanan</h4>
+            <h4 className="font-bold text-white text-lg mb-8">{t('services')}</h4>
             <ul className="space-y-4">
-              {['Pengembangan Web', 'Aplikasi Mobile', 'Bot Automasi', 'Desain UI/UX', 'Branding Digital'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-slate-400 hover:text-primary-400 transition-colors flex items-center gap-2 group">
+              {[
+                { key: 'webDev', href: `/${locale}/services` },
+                { key: 'mobileApp', href: `/${locale}/services` },
+                { key: 'automation', href: `/${locale}/services` },
+                { key: 'design', href: `/${locale}/services` },
+              ].map((item) => (
+                <li key={item.key}>
+                  <Link href={item.href} className="text-slate-400 hover:text-primary-400 transition-colors flex items-center gap-2 group">
                     <span className="w-1.5 h-1.5 rounded-full bg-slate-700 group-hover:bg-primary-500 transition-colors"></span>
-                    {item}
-                  </a>
+                    {t(`serviceLinks.${item.key}`)}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -82,14 +91,14 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-bold text-white text-lg mb-8">Kontak</h4>
+            <h4 className="font-bold text-white text-lg mb-8">{t('contact')}</h4>
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
                 <div className="w-8 h-8 rounded-full bg-primary-900/30 flex items-center justify-center shrink-0 text-primary-400">
                     <MapPin size={16} />
                 </div>
                 <span className="text-slate-400 text-sm leading-relaxed">
-                  Jl. Imam Bonjol No. 218, Kediri, <br /> Jawa Timur, Indonesia 64122
+                  {t('address.line1')} <br /> {t('address.line2')}
                 </span>
               </li>
               <li className="flex items-center gap-4">
@@ -113,14 +122,14 @@ const Footer: React.FC = () => {
 
           {/* Newsletter */}
           <div>
-            <h4 className="font-bold text-white text-lg mb-8">Newsletter</h4>
+            <h4 className="font-bold text-white text-lg mb-8">{t('newsletter.title')}</h4>
             <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-              Berlangganan untuk mendapatkan tren teknologi terbaru dan update KEDJORA. Tanpa spam, selamanya.
+              {t('newsletter.description')}
             </p>
             <form className="relative group">
               <input
                 type="email"
-                placeholder="Alamat email"
+                placeholder={locale === 'id' ? 'Alamat email' : 'Email address'}
                 className="w-full bg-slate-900 border border-slate-800 rounded-xl px-5 py-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 transition-all placeholder:text-slate-400 pr-12"
               />
               <button className="absolute right-2 top-2 bottom-2 w-10 bg-primary-500 hover:bg-primary-600 text-white rounded-lg flex items-center justify-center transition-colors shadow-lg shadow-primary-500/20">
@@ -134,17 +143,21 @@ const Footer: React.FC = () => {
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 relative">
 
           <p className="text-slate-500 text-sm text-center md:text-left relative z-10">
-            © {new Date().getFullYear()} KEDJORA Digital Agency. Hak cipta dilindungi.
+            © {new Date().getFullYear()} KEDJORA Digital Agency. {t('allRightsReserved')}
           </p>
 
           <div className="flex items-center gap-8 relative z-10">
-            <a href="#" className="text-sm text-slate-500 hover:text-primary-500 transition-colors">Kebijakan Privasi</a>
-            <a href="#" className="text-sm text-slate-500 hover:text-primary-500 transition-colors">Syarat Layanan</a>
+            <a href="#" className="text-sm text-slate-500 hover:text-primary-500 transition-colors">
+              {locale === 'id' ? 'Kebijakan Privasi' : 'Privacy Policy'}
+            </a>
+            <a href="#" className="text-sm text-slate-500 hover:text-primary-500 transition-colors">
+              {locale === 'id' ? 'Syarat Layanan' : 'Terms of Service'}
+            </a>
 
             <button
                 onClick={scrollToTop}
                 className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-primary-500 hover:text-white transition-all duration-300"
-                aria-label="Kembali ke Atas"
+                aria-label={locale === 'id' ? 'Kembali ke Atas' : 'Back to Top'}
             >
                 <ArrowUp size={18} />
             </button>

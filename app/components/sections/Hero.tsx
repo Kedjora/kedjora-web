@@ -4,8 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, BarChart3, Globe, ShieldCheck, Play } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 
 const Hero: React.FC = () => {
+  const t = useTranslations('hero');
+  const locale = useLocale();
   return (
     <section className="relative min-h-[110vh] lg:min-h-screen flex items-center pt-32 overflow-hidden bg-slate-950">
       {/* Background Atmosphere - Optimized: reduced blur, removed animate-pulse */}
@@ -33,7 +36,7 @@ const Hero: React.FC = () => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
               <span className="text-xs font-bold tracking-wide uppercase text-slate-300">
-                Menerima Project Baru
+                {t('badge')}
               </span>
             </motion.div>
 
@@ -43,9 +46,9 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]"
             >
-              Kami Membangun <br />
+              {t('title1')} <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 via-blue-500 to-indigo-500">
-                Keunggulan Digital
+                {t('title2')}
               </span>
             </motion.h1>
 
@@ -55,7 +58,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed max-w-lg"
             >
-              Transformasi bisnis Anda bersama KEDJORA. Kami memadukan desain premium dengan kode mutakhir untuk membangun website, aplikasi, dan bot yang mendorong pertumbuhan nyata.
+              {t('description')}
             </motion.p>
 
             <motion.div
@@ -65,22 +68,22 @@ const Hero: React.FC = () => {
               className="flex flex-col sm:flex-row gap-4"
             >
               <Link
-                href="/contact"
+                href={`/${locale}/contact`}
                 className="group relative px-8 py-4 rounded-full bg-white text-slate-900 font-bold shadow-xl shadow-white/10 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex items-center justify-center gap-2"
               >
-                <span className="relative z-10">Mulai Project</span>
+                <span className="relative z-10">{t('cta.startProject')}</span>
                 <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" size={20} />
                 <div className="absolute inset-0 bg-linear-to-r from-primary-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Link>
 
               <Link
-                href="/portfolio"
+                href={`/${locale}/portfolio`}
                 className="px-8 py-4 rounded-full bg-slate-800/50 backdrop-blur-sm text-white font-semibold border border-slate-700 hover:bg-slate-800 hover:border-primary-500/30 transition-all duration-300 flex items-center justify-center gap-3"
               >
                 <div className="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shadow-sm text-primary-500">
                     <Play size={12} fill="currentColor" />
                 </div>
-                Lihat Portfolio
+                {t('cta.viewPortfolio')}
               </Link>
             </motion.div>
 
@@ -93,12 +96,12 @@ const Hero: React.FC = () => {
             >
                 <div>
                     <h4 className="text-2xl font-bold text-white">50+</h4>
-                    <p className="text-sm text-slate-400">Project Selesai</p>
+                    <p className="text-sm text-slate-400">{t('stats.projects')}</p>
                 </div>
                 <div className="w-px h-8 bg-slate-800"></div>
                  <div>
                     <h4 className="text-2xl font-bold text-white">98%</h4>
-                    <p className="text-sm text-slate-400">Kepuasan Klien</p>
+                    <p className="text-sm text-slate-400">{t('stats.satisfaction')}</p>
                 </div>
             </motion.div>
           </div>

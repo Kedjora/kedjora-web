@@ -3,39 +3,23 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Sparkles } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-interface PricingTier {
-  name: string;
-  price: string;
-  description: string;
-  features: string[];
+interface PlanConfig {
+  key: 'starter' | 'professional' | 'enterprise';
   recommended?: boolean;
 }
 
-const Pricing: React.FC = () => {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+const planConfigs: PlanConfig[] = [
+  { key: 'starter' },
+  { key: 'professional', recommended: true },
+  { key: 'enterprise' }
+];
 
-  const plans: PricingTier[] = [
-    {
-      name: 'Starter',
-      price: billingCycle === 'monthly' ? 'Rp 7,5jt' : 'Rp 6jt',
-      description: 'Sempurna untuk bisnis kecil yang memulai perjalanan digital.',
-      features: ['Website Satu Halaman', 'SEO Dasar', 'Responsif Mobile', 'Dukungan 1 Bulan', 'Analitik Standar']
-    },
-    {
-      name: 'Professional',
-      price: billingCycle === 'monthly' ? 'Rp 19,5jt' : 'Rp 15,6jt',
-      description: 'Solusi komprehensif untuk perusahaan yang berkembang.',
-      recommended: true,
-      features: ['Website 5-7 Halaman', 'Integrasi CMS', 'SEO Lanjutan', 'Kit Media Sosial', 'Dukungan 3 Bulan', 'Optimasi Performa']
-    },
-    {
-      name: 'Enterprise',
-      price: 'Kustom',
-      description: 'Transformasi digital dan automasi skala penuh.',
-      features: ['Aplikasi Web Kustom', 'Aplikasi Mobile (iOS/Android)', 'Bot Automasi', 'Dukungan Prioritas', 'Manajer Dedikasi', 'Infrastruktur Cloud']
-    }
-  ];
+const Pricing: React.FC = () => {
+  const t = useTranslations('pricing');
+  const tCommon = useTranslations('common');
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
 
   return (
     <section className="py-32 bg-slate-950 relative overflow-hidden" id="pricing">
@@ -52,7 +36,7 @@ const Pricing: React.FC = () => {
             viewport={{ once: true }}
             className="text-primary-500 font-bold tracking-wider uppercase text-sm mb-4"
           >
-            Paket Fleksibel
+            {t('badge')}
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -61,8 +45,8 @@ const Pricing: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-bold text-white mb-6"
           >
-            Investasi untuk <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-blue-600">Masa Depan Digital</span>
+            {t('title1')} <br />
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-400 to-blue-600">{t('title2')}</span>
           </motion.h2>
 
           {/* Billing Toggle */}
@@ -72,7 +56,7 @@ const Pricing: React.FC = () => {
             viewport={{ once: true }}
             className="flex items-center justify-center gap-4 mt-8"
           >
-            <span className={`text-sm font-semibold ${billingCycle === 'monthly' ? 'text-white' : 'text-slate-500'}`}>Bulanan</span>
+            <span className={`text-sm font-semibold ${billingCycle === 'monthly' ? 'text-white' : 'text-slate-500'}`}>{tCommon('monthly')}</span>
             <button
                 onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
                 className="w-16 h-8 bg-slate-800 rounded-full p-1 relative transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -84,17 +68,25 @@ const Pricing: React.FC = () => {
                 />
             </button>
             <span className={`text-sm font-semibold flex items-center gap-2 ${billingCycle === 'yearly' ? 'text-white' : 'text-slate-500'}`}>
-                Tahunan
+                {tCommon('yearly')}
                 <span className="px-2 py-0.5 rounded-full bg-green-900/30 text-green-400 text-[10px] font-bold uppercase tracking-wide">
-                    Hemat 20%
+                    {tCommon('save')} 20%
                 </span>
             </span>
           </motion.div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center max-w-7xl mx-auto">
-          {plans.map((plan, index) => {
+          {planConfigs.map((plan, index) => {
             const isRecommended = plan.recommended;
+            const isCustom = plan.key === 'enterprise';
+            const price = isCustom
+              ? tCommon('custom')
+              : billingCycle === 'monthly'
+                ? t(`tiers.${plan.key}.priceMonthly`)
+                : t(`tiers.${plan.key}.priceYearly`);
+            const features = t.raw(`tiers.${plan.key}.features`) as string[];
+
             return (
                 <motion.div
                     key={index}
@@ -110,31 +102,31 @@ const Pricing: React.FC = () => {
                 >
                     {isRecommended && (
                         <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-linear-to-r from-primary-500 to-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide shadow-lg shadow-primary-500/30 flex items-center gap-2">
-                            <Sparkles size={14} fill="currentColor" /> Paling Populer
+                            <Sparkles size={14} fill="currentColor" /> {tCommon('mostPopular')}
                         </div>
                     )}
 
                     <div className="mb-8">
-                        <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
-                        <p className="text-sm text-slate-400 h-10">{plan.description}</p>
+                        <h3 className="text-xl font-bold text-white mb-2">{t(`tiers.${plan.key}.name`)}</h3>
+                        <p className="text-sm text-slate-400 h-10">{t(`tiers.${plan.key}.description`)}</p>
                     </div>
 
                     <div className="mb-8 pb-8 border-b border-slate-800">
                         <div className="flex items-baseline gap-1">
                             <span className={`text-4xl font-bold tracking-tight ${isRecommended ? 'text-transparent bg-clip-text bg-linear-to-r from-primary-500 to-blue-600' : 'text-white'}`}>
-                                {plan.price}
+                                {price}
                             </span>
-                            {plan.price !== 'Kustom' && (
-                                <span className="text-slate-400 font-medium">/{billingCycle === 'monthly' ? 'bln' : 'thn'}</span>
+                            {!isCustom && (
+                                <span className="text-slate-400 font-medium">{billingCycle === 'monthly' ? t('perMonth') : t('perYear')}</span>
                             )}
                         </div>
-                        {billingCycle === 'yearly' && plan.price !== 'Kustom' && (
-                            <p className="text-xs text-green-400 mt-2 font-medium">Ditagih tahunan</p>
+                        {billingCycle === 'yearly' && !isCustom && (
+                            <p className="text-xs text-green-400 mt-2 font-medium">{t('billedYearly')}</p>
                         )}
                     </div>
 
                     <ul className="space-y-4 mb-8 flex-1">
-                        {plan.features.map((feature, i) => (
+                        {features.map((feature: string, i: number) => (
                             <li key={i} className="flex items-start gap-3 text-sm text-slate-300">
                                 <div className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${isRecommended ? 'bg-primary-900/30 text-primary-400' : 'bg-slate-800 text-slate-500'}`}>
                                     <Check size={12} strokeWidth={3} />
@@ -151,7 +143,7 @@ const Pricing: React.FC = () => {
                             : 'bg-slate-800 border border-slate-700 text-white hover:bg-slate-700'
                         }`}
                     >
-                        {plan.price === 'Kustom' ? 'Hubungi Sales' : 'Mulai Sekarang'}
+                        {isCustom ? tCommon('contactSales') : tCommon('getStarted')}
                     </button>
                 </motion.div>
             );
