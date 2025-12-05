@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Sparkles, Eye } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { BLUR_DATA_URL } from "@/lib/constants";
 
 interface PortfolioItem {
   id: string;
@@ -155,6 +156,9 @@ const PortfolioSection: React.FC = () => {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
                   />
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-linear-to-t from-slate-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />

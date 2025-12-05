@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Star, Quote, TrendingUp, Hexagon, Triangle, Circle, Box, type LucideIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { BLUR_AVATAR_URL } from '@/lib/constants';
 
 interface TestimonialConfig {
   id: string;
@@ -120,7 +121,7 @@ const Testimonials: React.FC = () => {
                 <div className="flex items-center gap-4 border-t border-slate-800 pt-6">
                     <div className="relative">
                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-slate-700 shadow-md">
-                            <Image src={testimonial.avatar} alt={t(`items.${testimonial.key}.name`)} width={48} height={48} className="w-full h-full object-cover" />
+                            <Image src={testimonial.avatar} alt={t(`items.${testimonial.key}.name`)} width={48} height={48} className="w-full h-full object-cover" loading="lazy" placeholder="blur" blurDataURL={BLUR_AVATAR_URL} />
                         </div>
                         <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-primary-500 rounded-full border-2 border-slate-900 flex items-center justify-center">
                             <Quote size={8} className="text-white fill-white" />

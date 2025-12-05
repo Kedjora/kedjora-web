@@ -7,6 +7,16 @@ const nextConfig: NextConfig = {
   compress: true,
   reactStrictMode: true,
   poweredByHeader: false,
+
+  // Optimize package imports - tree shaking
+  experimental: {
+    optimizePackageImports: [
+      "lucide-react",
+      "framer-motion",
+      "@radix-ui/react-icons",
+    ],
+  },
+
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [

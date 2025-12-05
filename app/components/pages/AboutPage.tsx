@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Target, Users, Zap, Award, Clock, Heart, Lightbulb, Shield, ArrowRight, Linkedin, Twitter } from 'lucide-react';
 import ContactCTA from '@/components/sections/ContactCTA';
 import { useTranslations } from 'next-intl';
+import { BLUR_DATA_URL } from '@/lib/constants';
 
 const About: React.FC = () => {
   const t = useTranslations('about');
@@ -199,7 +200,9 @@ const About: React.FC = () => {
                             alt={`${member.name} - ${member.role}`}
                             fill
                             className="object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
-                            unoptimized
+                            loading="lazy"
+                            placeholder="blur"
+                            blurDataURL={BLUR_DATA_URL}
                         />
                         <div className="absolute inset-0 bg-linear-to-t from-slate-900 to-transparent opacity-80" />
 

@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Sparkles, Code2, Layers, Eye, Trophy, Coffee, CheckCircle } from 'lucide-react';
 import ContactCTA from '@/components/sections/ContactCTA';
 import { useTranslations } from 'next-intl';
+import { BLUR_DATA_URL } from '@/lib/constants';
 
 interface Project {
   id: string;
@@ -156,7 +157,7 @@ function FeaturedProject({ project }: { project: Project }) {
       <div className="container mx-auto px-6">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative rounded-[3rem] overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl group">
           <div className="absolute inset-0">
-            <Image src={project.image} alt={t(project.titleKey)} fill className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000" unoptimized />
+            <Image src={project.image} alt={t(project.titleKey)} fill className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000" loading="lazy" placeholder="blur" blurDataURL={BLUR_DATA_URL} />
             <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/60 to-transparent" />
           </div>
           <div className="relative z-10 p-8 md:p-16 lg:p-20 grid lg:grid-cols-2 gap-12 items-end">
@@ -205,7 +206,7 @@ function ProjectGallery({ projects, filter, setFilter, categoryKeys }: { project
             {projects.filter(p => !p.featured || filter !== 'all').map((project) => (
               <motion.div key={project.id} layout initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="group">
                 <div className="relative aspect-4/3 rounded-4xl overflow-hidden bg-slate-900 mb-6">
-                  <Image src={project.image} alt={t(project.titleKey)} fill className="object-cover transition-transform duration-700 group-hover:scale-105" unoptimized />
+                  <Image src={project.image} alt={t(project.titleKey)} fill className="object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" placeholder="blur" blurDataURL={BLUR_DATA_URL} />
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <div className="px-6 py-3 bg-white/30 rounded-full text-white font-bold border border-white/20 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform"><Eye size={18} /> {t('viewDetail')}</div>
                   </div>

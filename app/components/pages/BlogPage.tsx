@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Clock, Calendar, ArrowRight, Sparkles, ChevronRight } from 'lucide-react';
 import ContactCTA from '@/components/sections/ContactCTA';
 import { useTranslations } from 'next-intl';
+import { BLUR_DATA_URL } from '@/lib/constants';
 
 interface BlogPost {
   id: string;
@@ -155,7 +156,7 @@ const BlogPage: React.FC = () => {
                     transition={{ delay: 0.3, duration: 0.8 }}
                     className="relative w-full aspect-video md:aspect-21/9 rounded-[3rem] overflow-hidden group cursor-pointer shadow-2xl"
                 >
-                    <Image src={featuredPost.image} alt={t(featuredPost.titleKey)} fill className="object-cover transition-transform duration-1000 group-hover:scale-105" unoptimized />
+                    <Image src={featuredPost.image} alt={t(featuredPost.titleKey)} fill className="object-cover transition-transform duration-1000 group-hover:scale-105" loading="lazy" placeholder="blur" blurDataURL={BLUR_DATA_URL} />
                     <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/50 to-transparent" />
 
                     <div className="absolute bottom-0 left-0 p-8 md:p-16 max-w-4xl">
@@ -233,7 +234,7 @@ const BlogPage: React.FC = () => {
                             className="group flex flex-col h-full bg-slate-950 rounded-4xl border border-slate-800 overflow-hidden hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-300"
                         >
                             <div className="relative aspect-4/3 overflow-hidden">
-                                <Image src={post.image} alt={t(post.titleKey)} fill className="object-cover transition-transform duration-700 group-hover:scale-110" unoptimized />
+                                <Image src={post.image} alt={t(post.titleKey)} fill className="object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" placeholder="blur" blurDataURL={BLUR_DATA_URL} />
                                 <div className="absolute top-4 left-4 px-3 py-1.5 bg-slate-900/95 rounded-lg text-xs font-bold uppercase tracking-wider text-primary-400">
                                     {t(`categories.${post.categoryKey}`)}
                                 </div>

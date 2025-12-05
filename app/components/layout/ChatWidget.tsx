@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { BLUR_AVATAR_URL } from '@/lib/constants';
 
 // WhatsApp SVG Icon
 const WhatsAppIcon = ({ className }: { className?: string }) => (
@@ -16,9 +17,23 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 export default function ChatWidget() {
   const t = useTranslations('chatWidget');
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Delay render 2 detik untuk prioritas konten utama
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className="fixed bottom-6 right-6 z-60 flex flex-col items-end gap-4 pointer-events-none">
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="fixed bottom-6 right-6 z-60 flex flex-col items-end gap-4 pointer-events-none"
+        >
 
       {/* 1. Chat Dialog Window */}
       <AnimatePresence>
@@ -39,7 +54,7 @@ export default function ChatWidget() {
               <div className="relative z-10 flex gap-4 items-center">
                 <div className="relative">
                   <div className="w-12 h-12 bg-white rounded-full p-1 shadow-lg relative overflow-hidden">
-                    <Image src="https://ui-avatars.com/api/?name=Agent&background=0D8ABC&color=fff" alt="Avatar KEDJORA Support Team - Tim dukungan pelanggan siap membantu via WhatsApp" fill className="rounded-full object-cover" unoptimized />
+                    <Image src="https://ui-avatars.com/api/?name=Agent&background=0D8ABC&color=fff" alt="Avatar KEDJORA Support Team - Tim dukungan pelanggan siap membantu via WhatsApp" fill className="rounded-full object-cover" loading="lazy" placeholder="blur" blurDataURL={BLUR_AVATAR_URL} />
                   </div>
                   <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#25D366] rounded-full border-[3px] border-slate-900"></div>
                 </div>
@@ -116,6 +131,8 @@ export default function ChatWidget() {
           <WhatsAppIcon className="w-8 h-8" />
         )}
       </button>
-    </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
