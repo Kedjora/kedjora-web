@@ -14,7 +14,7 @@ export const NAV_ITEMS: NavItem[] = [
 export const COMPANY = {
   name: 'KEDJORA',
   tagline: 'Digital Development Agency',
-  email: 'hello@kedjora.id',
+  email: 'hello@kedjora.com',
   phone: '+62 857-3382-0022',
   whatsapp: '6285733820022',
   location: 'Kediri, East Java, ID',

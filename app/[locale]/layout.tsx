@@ -67,12 +67,12 @@ export default async function LocaleLayout({ children, params }: Props) {
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
         {/* Alternate language links for SEO */}
-        <link rel="alternate" hrefLang="id" href="https://kedjora.id/id" />
-        <link rel="alternate" hrefLang="en" href="https://kedjora.id/en" />
+        <link rel="alternate" hrefLang="id" href="https://kedjora.com/id" />
+        <link rel="alternate" hrefLang="en" href="https://kedjora.com/en" />
         <link
           rel="alternate"
           hrefLang="x-default"
-          href="https://kedjora.id/id"
+          href="https://kedjora.com/id"
         />
 
         {/* JSON-LD Structured Data */}

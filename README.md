@@ -147,8 +147,8 @@ Atau deploy langsung via Vercel CLI atau GitHub integration.
 
 ## 📞 Kontak
 
-- **Website**: [kedjora.id](https://kedjora.id)
-- **Email**: hello@kedjora.id
+- **Website**: [kedjora.com](https://kedjora.com)
+- **Email**: hello@kedjora.com
 - **WhatsApp**: +6289696673806
 - **Location**: Kediri, East Java, Indonesia
 

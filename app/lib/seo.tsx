@@ -5,10 +5,10 @@ import type { Metadata } from 'next';
 export const SITE_CONFIG = {
   name: 'KEDJORA',
   tagline: 'Digital Solusi untuk Bisnis Anda',
-  url: 'https://kedjora.id',
+  url: 'https://kedjora.com',
   locale: 'id_ID',
   twitterHandle: '@kedjora',
-  email: 'hello@kedjora.id',
+  email: 'hello@kedjora.com',
   phone: '+62 857-3382-0022',
   address: {
     street: 'Jl. Imam Bonjol No. 218',
@@ -19,8 +19,8 @@ export const SITE_CONFIG = {
   },
   foundingDate: '2025',
   // Absolute URLs for proper social sharing & JSON-LD
-  logo: 'https://kedjora.id/logo.png',
-  ogImage: 'https://kedjora.id/og-image.png',
+  logo: 'https://kedjora.com/logo.png',
+  ogImage: 'https://kedjora.com/og-image.png',
 };
 
 // ==================== VERIFICATION & EXTERNAL RESOURCES ====================

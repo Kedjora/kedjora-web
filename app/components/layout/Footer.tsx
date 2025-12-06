@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
     { icon: Instagram, href: '#' },
     { icon: Twitter, href: '#' },
     { icon: Linkedin, href: '#' },
-    { icon: Mail, href: 'mailto:hello@kedjora.id' },
+    { icon: Mail, href: 'mailto:hello@kedjora.com' },
   ];
 
   return (
@@ -113,8 +113,8 @@ const Footer: React.FC = () => {
                 <div className="w-8 h-8 rounded-full bg-primary-900/30 flex items-center justify-center shrink-0 text-primary-400">
                     <Mail size={16} />
                 </div>
-                <a href="mailto:hello@kedjora.id" className="text-slate-400 text-sm hover:text-primary-500 transition-colors">
-                  hello@kedjora.id
+                <a href="mailto:hello@kedjora.com" className="text-slate-400 text-sm hover:text-primary-500 transition-colors">
+                  hello@kedjora.com
                 </a>
               </li>
             </ul>

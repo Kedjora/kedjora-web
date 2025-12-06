@@ -16,7 +16,7 @@ const WebBackground = () => (
         <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
         <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
         <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
-        <div className="ml-2 flex-1 h-4 bg-slate-600 rounded text-[8px] text-slate-400 flex items-center px-2">kedjora.id</div>
+        <div className="ml-2 flex-1 h-4 bg-slate-600 rounded text-[8px] text-slate-400 flex items-center px-2">kedjora.com</div>
       </div>
       {/* Code lines */}
       <div className="p-2 space-y-1.5">

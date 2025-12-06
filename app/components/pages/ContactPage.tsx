@@ -73,13 +73,13 @@ const Contact: React.FC = () => {
                             <p className="text-slate-400 mb-10">{t('info.description')}</p>
 
                             <div className="space-y-6">
-                                <a href="mailto:hello@kedjora.id" className="flex items-center gap-4 group">
+                                <a href="mailto:hello@kedjora.com" className="flex items-center gap-4 group">
                                     <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-primary-500 transition-colors">
                                         <Mail size={20} />
                                     </div>
                                     <div>
                                         <p className="text-xs text-slate-400 uppercase tracking-wider font-bold">{t('info.email')}</p>
-                                        <p className="text-lg font-medium">hello@kedjora.id</p>
+                                        <p className="text-lg font-medium">hello@kedjora.com</p>
                                     </div>
                                 </a>
                                 <a href="tel:+6285733820022" className="flex items-center gap-4 group">

@@ -331,7 +331,7 @@ export default async function BlogPostPage({ params }: Props) {
 ### Google Search Console
 1. Daftar di https://search.google.com/search-console
 2. Verifikasi domain dengan meta tag
-3. Submit sitemap: `https://kedjora.id/sitemap.xml`
+3. Submit sitemap: `https://kedjora.com/sitemap.xml`
 
 ### Bing Webmaster Tools
 1. Daftar di https://www.bing.com/webmasters
